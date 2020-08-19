@@ -21,7 +21,6 @@ namespace PathCreation.Examples
                 GetComponent<PathCreator>().bezierPath = bezierPath;
                 vertexPath = new VertexPath(bezierPath, transform);
 
-
                 Tortuosity();
             }
 
@@ -30,8 +29,6 @@ namespace PathCreation.Examples
         void Tortuosity()
         {
             generatedPath = GetComponent<PathCreator>();
-
-            //vertexPath = generatedPath.path;
             
             float[] lengths = generatedPath.path.cumulativeLengthAtEachVertex;
 
@@ -39,35 +36,16 @@ namespace PathCreation.Examples
 
             Vector3[] localPoints = generatedPath.path.localPoints;
 
+            float[] tortuosity = new float[localPoints.Length];
 
             for (int i = 0; i < lengths.Length; i++)
             {
                 float curve = lengths[i];
                 float dist = Vector3.Distance(localPoints[i], waypoints[0].position);
-                float tor = curve / dist;
-
-                //print("tor value: " + tor);
-            }
-        }
-
-        void Update()
-        {
-            /*
-            if (waypoints.Length > 0)
-            {
-                // Create a new bezier path from the waypoints.
-                BezierPath bezierPath = new BezierPath(waypoints, closedLoop, PathSpace.xyz);
-                GetComponent<PathCreator>().bezierPath = bezierPath;
-
-                float curve_length = pathCreator.path.length;
-
-                float dist2 = Vector3.Distance(waypoints[0].position, waypoints[waypoints.Length - 1].position);
-
-
-                float tortuoisty = curve_length / dist2;
-            }
-            */
+                tortuosity[i] = curve / dist;
             
+                //print(tortuosity[i]);
+            }
         }
     }
 }

@@ -9,6 +9,8 @@ namespace PathCreation.Examples
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
         public float speed = 5;
+        public Vector3 startPosition;
+        public Vector3 currentPosition;
         float timeRunning = 0.0f;
         float distanceTravelled;
         float initial_distaince;
@@ -22,6 +24,7 @@ namespace PathCreation.Examples
             if (pathCreator != null)
             {
                 length = pathCreator.path.length;
+
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;           
             }
@@ -48,17 +51,25 @@ namespace PathCreation.Examples
         {
             if (pathCreator != null && start)
             {
-                //timeRunning += Time.deltaTime;
                 distanceTravelled += (speed * Time.deltaTime);          
                 initial_distaince = 0f;  
                 total_dist = distanceTravelled + initial_distaince;
 
                 transform.position = pathCreator.path.GetPointAtDistance(total_dist, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(total_dist, endOfPathInstruction);
+                startPosition = pathCreator.path.GetPointAtDistance(0, endOfPathInstruction);
+
+                currentPosition = transform.position;
+
+                float distance = Vector3.Distance(currentPosition, startPosition);
+                float tortuosity = total_dist / distance;
+
+                //print(tortuosity);
+
                 if (rotateCheck)
                 {
                     transform.rotation *= Quaternion.Euler(0, 0, 90);
-                }
+                }          
             }
         }
 

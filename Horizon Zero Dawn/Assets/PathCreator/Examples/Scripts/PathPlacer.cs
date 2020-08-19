@@ -12,10 +12,13 @@ namespace PathCreation.Examples
         public EndOfPathInstruction endOfPathInstruction;
         public VertexPath vertex_path;
         public PathCreator pathCreator;
+        public GameObject robot;
         public GameObject Path;
         public GameObject prefab;
         public GameObject holder;
         public GameObject visualizations;
+        public Vector3 currentPosition;
+        public float visual_render_threshold = 0.8f;
         public float spacing = 3;
         public float revolve_speed = 0.13f;
         public float pulse_speed = 0.1f;
@@ -36,6 +39,7 @@ namespace PathCreation.Examples
             vertex_path = Path.GetComponent<GeneratePathExample>().vertexPath;
             pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
             Generate();
+           
 
             if (initial_distance != null)
             {
@@ -57,6 +61,21 @@ namespace PathCreation.Examples
             for (int i = numChildren - 1; i >= 0; i--)
             {
                 holder.transform.GetChild(i).GetComponent<Renderer>().enabled = visuals_check;
+            }
+        }
+
+        void updateVisual()
+        {
+            int numChildren = holder.transform.childCount;
+            for (int i = numChildren - 1; i >= 0; i--)
+            {
+                Vector3 arrowPosition = holder.transform.GetChild(i).position;
+                print(Vector3.Distance(arrowPosition, currentPosition));
+
+                if(Vector3.Distance(arrowPosition,currentPosition) < visual_render_threshold)
+                {
+                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
+                }
             }
         }
 
@@ -93,6 +112,12 @@ namespace PathCreation.Examples
 
         void Update()
         {
+            if (robot != null)
+            {
+                currentPosition = robot.GetComponent<PathFollower>().currentPosition;
+                updateVisual();
+            }
+
             //This is the revolve action
             if (pathCreator != null && prefab != null && holder != null && revolve == true && initial_distance != null)
             {

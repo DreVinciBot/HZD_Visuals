@@ -257,6 +257,8 @@ MonoBehaviour:
   pathCreator: {fileID: 839433806}
   endOfPathInstruction: 2
   speed: 5
+  startPosition: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &244891483
 Transform:
   m_ObjectHideFlags: 0
@@ -745,10 +747,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endOfPathInstruction: 0
   pathCreator: {fileID: 0}
+  robot: {fileID: 958857900}
   Path: {fileID: 839433805}
   prefab: {fileID: 7843851708884973313, guid: d11c20d5eb952a5418644a48a47ceb40, type: 3}
   holder: {fileID: 527909992}
   visualizations: {fileID: 527909992}
+  currentPosition: {x: 0, y: 0, z: 0}
+  visual_render_threshold: 1
   spacing: 3
   revolve_speed: 0.13
   pulse_speed: 0.1
@@ -861,7 +866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &762964052
 Transform:
   m_ObjectHideFlags: 0
@@ -915,12 +920,9 @@ MonoBehaviour:
     _bezierPath:
       points:
       - {x: -2, y: 0, z: 0}
-      - {x: -0.67581135, y: 0.19181624, z: -0.30030248}
-      - {x: 0.6483773, y: 0.38363248, z: -0.60060495}
+      - {x: -1, y: 0, z: 0}
+      - {x: 1, y: 0, z: 0}
       - {x: 2, y: 0, z: 0}
-      - {x: 4.1752663, y: -0.6174082, z: 0.96659815}
-      - {x: 4.9059925, y: -1.7383916, z: 2.7215803}
-      - {x: 5.6367188, y: -2.859375, z: 4.4765625}
       isClosed: 0
       space: 0
       controlMode: 3
@@ -932,10 +934,9 @@ MonoBehaviour:
       perAnchorNormalsAngle:
       - 0
       - 0
-      - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -1325,6 +1326,8 @@ MonoBehaviour:
   pathCreator: {fileID: 839433806}
   endOfPathInstruction: 0
   speed: 5
+  startPosition: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1115263193
 GameObject:
   m_ObjectHideFlags: 0

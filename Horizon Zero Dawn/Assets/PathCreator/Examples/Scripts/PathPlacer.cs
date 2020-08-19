@@ -15,7 +15,6 @@ namespace PathCreation.Examples
         public GameObject Path;
         public GameObject prefab;
         public GameObject holder;
-        //public GameObject visuals;
         public float spacing = 3;
         public float revolve_speed = 0.13f;
         public float pulse_speed = 0.1f;
@@ -23,7 +22,6 @@ namespace PathCreation.Examples
         public float pulse_delay = 2f;
         public bool revolve;
         public bool wave;
-        public bool visual_check;
         float[] initial_distance;
         float distanceTravelled;
         float total_distance;
@@ -36,21 +34,54 @@ namespace PathCreation.Examples
             vertex_path = Path.GetComponent<GeneratePathExample>().vertexPath;
             pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
             Generate();
+
+            if (initial_distance != null)
+            {
+                int numChildren = initial_distance.Length;
+
+                if (numChildren > 2)
+                {
+                    holder.transform.GetChild(numChildren - 1).gameObject.transform.position += transform.up * pulse_rise;
+                    holder.transform.GetChild(numChildren - 2).gameObject.transform.position += transform.up * pulse_rise * 2;
+                    holder.transform.GetChild(numChildren - 3).gameObject.transform.position += transform.up * pulse_rise;
+                }
+            }
         }
-      
 
         public void waveBotton()
         {
-            
             wave = !wave;
-            Debug.Log("Boolean");
-            //pathCreator.pathUpdated += Generate;
-           
+            waveAction();
+        }
+
+        public void waveAction()
+        {
+            if (wave)
+            {
+                StartCoroutine(Wave());
+            }
+        }
+
+        // Reset the position of the arrows by regenerating them.
+        public void resetAction()
+        {
+            Generate();
+            if (initial_distance != null)
+            {
+                int numChildren = initial_distance.Length;
+
+                if (numChildren > 2)
+                {
+                    holder.transform.GetChild(numChildren - 1).gameObject.transform.position += transform.up * pulse_rise;
+                    holder.transform.GetChild(numChildren - 2).gameObject.transform.position += transform.up * pulse_rise * 2;
+                    holder.transform.GetChild(numChildren - 3).gameObject.transform.position += transform.up * pulse_rise;
+                }
+            }
         }
 
         void Update()
         {
-
+            //This is the revolve action
             if (pathCreator != null && prefab != null && holder != null && revolve == true && initial_distance != null)
             {
                 int numChildren = initial_distance.Length;
@@ -64,32 +95,13 @@ namespace PathCreation.Examples
                     holder.transform.GetChild(i).gameObject.transform.position = vertex_path.GetPointAtDistance(total_distance, endOfPathInstruction);
                     holder.transform.GetChild(i).gameObject.transform.rotation = vertex_path.GetRotationAtDistance(total_distance, endOfPathInstruction);
                 }
-            }
-
-            if (wave && !revolve && initial_distance != null)
-            {
-
-                int numChildren = initial_distance.Length;
-
-                if (numChildren > 2)
-                {
-                    holder.transform.GetChild(numChildren - 1).gameObject.transform.position += transform.up * pulse_rise;
-                    holder.transform.GetChild(numChildren - 2).gameObject.transform.position += transform.up * pulse_rise * 2;
-                    holder.transform.GetChild(numChildren - 3).gameObject.transform.position += transform.up * pulse_rise;
-
-                    StartCoroutine(Wave());
-                    wave = false;
-                    //StartCoroutine(PulseWait());
-                }
-
-            }
-
+            }     
         }
 
+        // Function to cause multiple waves for visual effect.
         IEnumerator PulseWait()
         {
-            yield return new WaitForSeconds(pulse_delay);
-            wave = true;
+            yield return new WaitForSeconds(pulse_delay);          
         }
 
         IEnumerator Wave()
@@ -137,7 +149,6 @@ namespace PathCreation.Examples
                         yield return new WaitForSeconds(pulse_speed);
 
                     }
-
                     else if (i == numChildren - 1)
                     {
                         holder.transform.GetChild(i).gameObject.transform.position += transform.up * pulse_rise;
@@ -145,24 +156,19 @@ namespace PathCreation.Examples
                         holder.transform.GetChild(i - 2).gameObject.transform.position += transform.up * -pulse_rise;
                         holder.transform.GetChild(i - 3).gameObject.transform.position += transform.up * -pulse_rise;
                         yield return new WaitForSeconds(pulse_speed);
-                        StartCoroutine(Wave());                 
+                        waveAction();                 
                     }                 
                 }    
             }
         }
     
         void Generate ()
-        {
-                
+        {               
             if (pathCreator != null && prefab != null && holder != null && vertex_path != null)
             {
-                DestroyObjects ();
-
-                //VertexPath path = pathCreator.path;
-
+                DestroyObjects();
                 spacing = Mathf.Max(minSpacing, spacing);
                 float dst = 0;
-       
                 int count = 0;
                 initial_distance = new float[(int)(vertex_path.length / spacing)+1];
 
@@ -185,7 +191,8 @@ namespace PathCreation.Examples
             int numChildren = holder.transform.childCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                DestroyImmediate (holder.transform.GetChild (i).gameObject, false);
+                //Destroy(holder.transform.GetChild(i).gameObject);
+                DestroyImmediate(holder.transform.GetChild (i).gameObject, false);
             }
         }
    
@@ -197,7 +204,6 @@ namespace PathCreation.Examples
                 
             }
         }
-        */
-        
+        */       
     }
 }

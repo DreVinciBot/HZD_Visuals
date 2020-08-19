@@ -13,6 +13,7 @@ namespace PathCreation.Examples
         float initial_distaince;
         float total_dist;
         private float length;
+        public bool rotateCheck = true;
 
 
         void Start()
@@ -41,6 +42,10 @@ namespace PathCreation.Examples
 
                 transform.position = pathCreator.path.GetPointAtDistance(total_dist, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(total_dist, endOfPathInstruction);
+                if (rotateCheck)
+                {
+                    transform.rotation *= Quaternion.Euler(0, 0, 90);
+                }
             }
         }
 

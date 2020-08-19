@@ -15,13 +15,15 @@ namespace PathCreation.Examples
         public GameObject Path;
         public GameObject prefab;
         public GameObject holder;
+        public GameObject visualizations;
         public float spacing = 3;
         public float revolve_speed = 0.13f;
         public float pulse_speed = 0.1f;
         public float pulse_rise = 0.1f;
         public float pulse_delay = 2f;
         public bool revolve;
-        public bool wave;
+        private bool wave;
+        private bool visuals_check = true;
         float[] initial_distance;
         float distanceTravelled;
         float total_distance;
@@ -45,6 +47,16 @@ namespace PathCreation.Examples
                     holder.transform.GetChild(numChildren - 2).gameObject.transform.position += transform.up * pulse_rise * 2;
                     holder.transform.GetChild(numChildren - 3).gameObject.transform.position += transform.up * pulse_rise;
                 }
+            }
+        }
+
+        public void showVisuals()
+        {
+            visuals_check = !visuals_check;
+            int numChildren = holder.transform.childCount;
+            for (int i = numChildren - 1; i >= 0; i--)
+            {
+                holder.transform.GetChild(i).GetComponent<Renderer>().enabled = visuals_check;
             }
         }
 

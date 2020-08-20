@@ -70,7 +70,6 @@ namespace PathCreation.Examples
             for (int i = numChildren - 1; i >= 0; i--)
             {
                 Vector3 arrowPosition = holder.transform.GetChild(i).position;
-                print(Vector3.Distance(arrowPosition, currentPosition));
 
                 if(Vector3.Distance(arrowPosition,currentPosition) < visual_render_threshold)
                 {
@@ -144,8 +143,7 @@ namespace PathCreation.Examples
         IEnumerator Wave()
         {
             if (pathCreator != null && prefab != null && holder != null)
-            {
-      
+            {     
                 int numChildren = initial_distance.Length;
                 for (int i = 0; i <= numChildren - 1; i++)
                 {
@@ -228,7 +226,6 @@ namespace PathCreation.Examples
             int numChildren = holder.transform.childCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                //Destroy(holder.transform.GetChild(i).gameObject);
                 DestroyImmediate(holder.transform.GetChild (i).gameObject, false);
             }
         }

@@ -6,8 +6,10 @@ namespace PathCreation.Examples
     // Depending on the end of path instruction, will either loop, reverse, or stop at the end of the path.
     public class PathFollower : MonoBehaviour
     {
+        public GameObject Path;
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
+        public float[,] pathInfo;
         public float speed = 5;
         public Vector3 startPosition;
         public Vector3 currentPosition;
@@ -27,7 +29,7 @@ namespace PathCreation.Examples
 
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;           
-            }
+            }      
         }
 
         public void startFollow()
@@ -49,6 +51,10 @@ namespace PathCreation.Examples
 
         void Update()
         {
+            pathInfo = Path.GetComponent<GeneratePathExample>().tortuosity_segments;
+
+            
+
             if (pathCreator != null && start)
             {
                 distanceTravelled += (speed * Time.deltaTime);          

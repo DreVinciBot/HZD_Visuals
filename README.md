@@ -10,5 +10,5 @@ A repo for a prototype visual from HZD for Project HAVEN
 Requries the [Path-Creator](https://github.com/SebLague/Path-Creator) repo and modified script files.
 
 The goal of this project is to recreate this visual from the video game.
-![Alt text](Images/Horizon Zero Dawn™ Route Visual.jpg)
+![Alt text](Images/HZD_screenshot.jpg)
 <br/> Here we see the main character visualizing a machine's route.

@@ -25,25 +25,26 @@ namespace PathCreation.Examples
         void Start()
         {
             if (pathCreator != null)
-            {
-                length = pathCreator.path.length;             
+            {                         
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;           
             }
         }
 
+        //Function to start robot movement on path
         public void startFollow()
         {
             start = !start;
         }
 
+        //Function to reset robot's position on beginning of path
         public void resetPosition()
         {
             distanceTravelled = 0.0f;
             total_dist = 0.0f;
             transform.position = pathCreator.path.GetPointAtDistance(total_dist, endOfPathInstruction);
             transform.rotation = pathCreator.path.GetRotationAtDistance(total_dist, endOfPathInstruction);
-            if (rotateCheck)
+            if (rotateCheck) // Robot moves on its side for some reason; this rotates the object 90 degrees on z axis
             {
                 transform.rotation *= Quaternion.Euler(0, 0, 90);
             }
@@ -59,15 +60,13 @@ namespace PathCreation.Examples
                 initial_distaince = 0f;  
                 total_dist = distanceTravelled + initial_distaince;
 
-                //float extended_dist = total_dist + revealZone;
-
                 //Tracking the robot's position through segments
                 for (int i = 1; i < pathInfo.GetLength(0); i++)
                 {                     
                     if (total_dist > pathInfo[i-1, 0] && total_dist < pathInfo[i, 0])
                     {
                         current_tortuosity = pathInfo[i, 1];
-                        //print("Path Tor: " + current_tortuosity);
+                        print("Segment: " + i);
                     }
                 }
 
@@ -78,7 +77,7 @@ namespace PathCreation.Examples
 
                 float distance = Vector3.Distance(currentPosition, startPosition);
                 float tortuosity = total_dist / distance;         
-                if (rotateCheck)
+                if (rotateCheck) // Robot moves on its side for some reason; this rotates the object 90 degrees on z axis
                 {
                     transform.rotation *= Quaternion.Euler(0, 0, 90);
                 }          

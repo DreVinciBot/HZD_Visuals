@@ -389,7 +389,8 @@ MonoBehaviour:
   Path: {fileID: 0}
   pathCreator: {fileID: 839433806}
   endOfPathInstruction: 2
-  speed: 5
+  speed: 1
+  current_tortuosity: 0
   startPosition: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &244891483
@@ -620,7 +621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315902406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.19, y: 0, z: 34.31}
+  m_LocalPosition: {x: 11.35, y: 0, z: 17.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 762964052}
@@ -888,10 +889,14 @@ MonoBehaviour:
   currentPosition: {x: 0, y: 0, z: 0}
   visual_render_threshold: 1
   spacing: 3
-  revolve_speed: 0.13
   pulse_speed: 0.1
   pulse_rise: 0.3
-  pulse_delay: 2
+  revealZone: -6
+  minimuum_revael_length: 8
+  maximum_revael_length: 15
+  SI_max_threshold: 1.5
+  SI_mim_threshold: 1
+  current_tortuosity: 0
   revolve: 0
 --- !u!4 &527909994
 Transform:
@@ -978,7 +983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729862344}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.42, y: 0, z: 30.02}
+  m_LocalPosition: {x: 4.45, y: 0, z: 30.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 762964052}
@@ -1069,7 +1074,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -1496,6 +1501,7 @@ MonoBehaviour:
   pathCreator: {fileID: 839433806}
   endOfPathInstruction: 0
   speed: 3
+  current_tortuosity: 0
   startPosition: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1115263193

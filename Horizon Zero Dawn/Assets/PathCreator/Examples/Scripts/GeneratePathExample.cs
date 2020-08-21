@@ -33,7 +33,7 @@ namespace PathCreation.Examples
 
                 GlobalTortuosity();
                 LocalTortuosity();
-              
+                //Starts by un-rendering the waypoints
                 for (int i = waypoints.Length - 1; i >= 0; i--)
                 {
                     waypoints[i].GetComponent<Renderer>().enabled = waypoint_check;
@@ -41,6 +41,7 @@ namespace PathCreation.Examples
             }
         }
 
+        //Function to toggle displaying the segmentation points
         public void showSegments()
         {
             visuals_check = !visuals_check;
@@ -50,7 +51,7 @@ namespace PathCreation.Examples
                 segment_holder.transform.GetChild(i).GetComponent<Renderer>().enabled = visuals_check;
             }
         }
-
+        //Function to toggle displaying the waypoints
         public void showWaypoints()
         {
             waypoint_check = !waypoint_check;
@@ -70,6 +71,7 @@ namespace PathCreation.Examples
             }
         }
 
+        // Calculates the Global Path's Tortuosity through each vertex point if needed, really only need last value. 
         void GlobalTortuosity()
         {
             generatedPath = GetComponent<PathCreator>();           
@@ -87,11 +89,11 @@ namespace PathCreation.Examples
             }
         }
 
+        // Calculates the path's Local Tortuosity through path segments. Currently, the path is seperated into N equal parts. 
         void LocalTortuosity()
         {
-            //Split the path into segments, then calculate the Tortuosity for each. 
-            DestroyObjects();
-            if (num_segments > 0)
+            DestroyObjects(); // Recalculate the local tortuosity for any changes to a path since path is an input. 
+            if (num_segments > 0 && num_segments.GetType() == typeof(int))
             {
                 float cumulative_segment_length = 0.0f;
                 float total_length = generatedPath.path.length;
@@ -131,7 +133,7 @@ namespace PathCreation.Examples
             }
             else
             {
-                num_segments = 1;
+                num_segments = 1; //Ensure that the num_segments is a positive integer.
             }
         }
 

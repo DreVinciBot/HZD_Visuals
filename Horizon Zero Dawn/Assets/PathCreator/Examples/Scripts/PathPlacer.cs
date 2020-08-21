@@ -18,15 +18,17 @@ namespace PathCreation.Examples
         public GameObject holder;
         public GameObject visualizations;
         public Vector3 currentPosition;
+        public float extended_distance;
         public float visual_render_threshold = 0.8f;
         public float spacing = 3;
         public float revolve_speed = 0.13f;
         public float pulse_speed = 0.1f;
         public float pulse_rise = 0.1f;
         public float pulse_delay = 2f;
+        public float revealZone = 15f;
         public bool revolve;
         private bool wave;
-        private bool visuals_check = true;
+        private bool visuals_check = false;
         float[] initial_distance;
         float distanceTravelled;
         float total_distance;
@@ -40,7 +42,6 @@ namespace PathCreation.Examples
             pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
             Generate();
            
-
             if (initial_distance != null)
             {
                 int numChildren = initial_distance.Length;
@@ -71,11 +72,27 @@ namespace PathCreation.Examples
             {
                 Vector3 arrowPosition = holder.transform.GetChild(i).position;
 
-                if(Vector3.Distance(arrowPosition,currentPosition) < visual_render_threshold)
+                float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
+                float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
+                extended_distance = revealZone + robot_distance;
+             
+                if (Vector3.Distance(arrowPosition,currentPosition) < visual_render_threshold)
+                {
+                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
+                }
+
+                if(arrow_distance > robot_distance && arrow_distance < extended_distance)
+                {
+                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = true;
+                }
+
+                if(arrow_distance < robot_distance || arrow_distance > extended_distance)
                 {
                     holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
                 }
             }
+
+
         }
 
         public void waveBotton()
@@ -131,7 +148,14 @@ namespace PathCreation.Examples
                     holder.transform.GetChild(i).gameObject.transform.position = vertex_path.GetPointAtDistance(total_distance, endOfPathInstruction);
                     holder.transform.GetChild(i).gameObject.transform.rotation = vertex_path.GetRotationAtDistance(total_distance, endOfPathInstruction);
                 }
-            }     
+            }             
+
+        }
+
+        //function to determine how many visuals to show for each segment
+        public void tortuosityArrows(float segment_start, float segment_end, float tortousity)
+        {
+
         }
 
         // Function to cause multiple waves for visual effect.
@@ -213,6 +237,7 @@ namespace PathCreation.Examples
                     Quaternion rot = vertex_path.GetRotationAtDistance (dst);
                     //Instantiate (prefab, point, rot, holder.transform);
                     GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
+                    arrowClone.GetComponent<Renderer>().enabled = false;
                     arrowClone.name = dst.ToString();
                     initial_distance[count] = dst;
                     dst += spacing;

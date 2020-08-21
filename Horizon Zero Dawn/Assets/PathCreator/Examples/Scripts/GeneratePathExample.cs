@@ -103,7 +103,8 @@ namespace PathCreation.Examples
                     segment_marker.GetComponent<Renderer>().enabled = false;
                 }
 
-                tortuosity_segments = new float[num_segments,2];
+                tortuosity_segments = new float[num_segments+1,2];
+                tortuosity_segments[0, 0] = 0.0f;
 
                 //Try to divide the path into N equal parts for now. 
                 for (int i = 0; i < num_segments; i++)
@@ -114,8 +115,8 @@ namespace PathCreation.Examples
 
                     float segment_distance = Vector3.Distance(segment_start, segment_end);
                     float local_tortuosity = segmented_lengths / segment_distance;
-                    tortuosity_segments[i, 0] = cumulative_segment_length;
-                    tortuosity_segments[i, 1] = local_tortuosity;
+                    tortuosity_segments[i+1, 0] = cumulative_segment_length;
+                    tortuosity_segments[i+1, 1] = local_tortuosity;
 
                     Quaternion rot = generatedPath.path.GetRotationAtDistance(cumulative_segment_length);
                     segment_marker = Instantiate(prefab, segment_end, rot, segment_holder.transform);
@@ -128,7 +129,6 @@ namespace PathCreation.Examples
                 }
                 
             }
-
             else
             {
                 num_segments = 1;

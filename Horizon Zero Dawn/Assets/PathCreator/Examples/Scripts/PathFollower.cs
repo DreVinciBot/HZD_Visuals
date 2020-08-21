@@ -11,6 +11,7 @@ namespace PathCreation.Examples
         public EndOfPathInstruction endOfPathInstruction;
         public float[,] pathInfo;
         public float speed = 5;
+        public float current_tortuosity;
         public Vector3 startPosition;
         public Vector3 currentPosition;
         float timeRunning = 0.0f;
@@ -25,11 +26,10 @@ namespace PathCreation.Examples
         {
             if (pathCreator != null)
             {
-                length = pathCreator.path.length;
-
+                length = pathCreator.path.length;             
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;           
-            }      
+            }
         }
 
         public void startFollow()
@@ -51,27 +51,33 @@ namespace PathCreation.Examples
 
         void Update()
         {
-            pathInfo = Path.GetComponent<GeneratePathExample>().tortuosity_segments;
-
+            pathInfo = Path.GetComponent<GeneratePathExample>().tortuosity_segments;       
             
-
             if (pathCreator != null && start)
             {
                 distanceTravelled += (speed * Time.deltaTime);          
                 initial_distaince = 0f;  
                 total_dist = distanceTravelled + initial_distaince;
 
+                //float extended_dist = total_dist + revealZone;
+
+                //Tracking the robot's position through segments
+                for (int i = 1; i < pathInfo.GetLength(0); i++)
+                {                     
+                    if (total_dist > pathInfo[i-1, 0] && total_dist < pathInfo[i, 0])
+                    {
+                        current_tortuosity = pathInfo[i, 1];
+                        //print("Path Tor: " + current_tortuosity);
+                    }
+                }
+
                 transform.position = pathCreator.path.GetPointAtDistance(total_dist, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(total_dist, endOfPathInstruction);
                 startPosition = pathCreator.path.GetPointAtDistance(0, endOfPathInstruction);
-
                 currentPosition = transform.position;
 
                 float distance = Vector3.Distance(currentPosition, startPosition);
-                float tortuosity = total_dist / distance;
-
-                //print(tortuosity);
-
+                float tortuosity = total_dist / distance;         
                 if (rotateCheck)
                 {
                     transform.rotation *= Quaternion.Euler(0, 0, 90);

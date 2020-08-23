@@ -66,7 +66,7 @@ namespace PathCreation.Examples
                     if (total_dist > pathInfo[i-1, 0] && total_dist < pathInfo[i, 0])
                     {
                         current_tortuosity = pathInfo[i, 1];
-                        print("Segment: " + i);
+                        //print("Segment: " + i);
                     }
                 }
 

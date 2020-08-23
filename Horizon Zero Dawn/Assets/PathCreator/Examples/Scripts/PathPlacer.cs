@@ -140,7 +140,7 @@ namespace PathCreation.Examples
                 currentPosition = robot.GetComponent<PathFollower>().currentPosition;
                 current_tortuosity = robot.GetComponent<PathFollower>().current_tortuosity;
                 tortuosityArrows();
-                updateVisual();
+                updateVisual();                
             }
 
             //This is the revolve action
@@ -170,7 +170,8 @@ namespace PathCreation.Examples
                 1.50 ≤ SI: meandering
              */
 
-            //Using a linear model to calculate slope and y-intercept
+            // Using a linear model to calculate the revealZone (distance) ahead of the robot when given the tortuosity value of the path segment.
+            // To do this, calculate the slope (m) and y-intercept (b) using the substition of systme of equations. 
             float dy = (maximum_revael_length - minimuum_revael_length);
             float dx = (SI_max_threshold - SI_mim_threshold);
 
@@ -179,7 +180,7 @@ namespace PathCreation.Examples
 
             revealZone = (m * current_tortuosity) + b;
 
-            print("Reveal Distance: " + revealZone + " Tort: " + current_tortuosity);
+            //print("Reveal Distance: " + revealZone + " Tort: " + current_tortuosity);
         }
 
         // Function to cause multiple waves for visual effect.

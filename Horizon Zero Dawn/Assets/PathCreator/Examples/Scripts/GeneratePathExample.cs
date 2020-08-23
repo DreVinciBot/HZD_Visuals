@@ -21,7 +21,6 @@ namespace PathCreation.Examples
         private bool waypoint_check = false;
         public float[,] tortuosity_segments;
 
-
         void Awake ()
         {
             if (waypoints.Length > 0)

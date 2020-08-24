@@ -3,55 +3,95 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using PathCreation.Examples;
+using UnityEngine.SceneManagement;
 
-public class SelectionManager : MonoBehaviour
+namespace PathCreation.Examples
 {
-    [SerializeField] private string selectableTag = "Selectable";
-    [SerializeField] private Material unselected_material;
-    [SerializeField] private Material selected_material;
 
-    private bool arrowCheck = false; 
-    private Transform _selection;
-    public GameObject question;
-    public GameObject Selections;
-    public GameObject robot;
-   
-    public void showVisuals()
+    public class SelectionManager : MonoBehaviour
     {
-        arrowCheck = !arrowCheck;
-        Selections.SetActive(arrowCheck);
-        question.SetActive(arrowCheck);
-    }
+        [SerializeField] private string selectableTag = "Selectable";
+        [SerializeField] private Material unselected_material;
+        [SerializeField] private Material selected_material;
 
-    void Update()
-    {     
-        if(_selection != null)
+        private bool arrowCheck = false;
+        private Transform _selection;
+        public GameObject question;
+        public GameObject Selections;
+        public GameObject robot;
+        public Vector3 robotPosition;
+        bool checkpoint1 = true;
+        bool checkpoint2 = true;
+
+        public void showVisuals()
         {
-            var selectionRenerer = _selection.GetComponent<Renderer>();
-            selectionRenerer.material = unselected_material;
-            _selection = null;
+            arrowCheck = !arrowCheck;
+            Selections.SetActive(arrowCheck);
+            question.SetActive(arrowCheck);          
         }
 
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        void checkpoint()
         {
-            var selection = hit.transform;
-            if (selection.CompareTag(selectableTag))
+            //Do a check through a time stamp or distance traveled? Time maybe easier 
+            Scene currentScene = SceneManager.GetActiveScene();          
+
+            if (currentScene.name == "Simple Path A")
             {
-                var selectionRenderer = selection.GetComponent<Renderer>();
-                if (selectionRenderer != null)
+                Vector3 Pos1 = new Vector3(0, 0, 19);
+                Vector3 Pos2 = new Vector3(15, 0, 30);
+
+                if(Vector3.Distance(robotPosition,Pos1) < 0.05  && checkpoint1)
                 {
-                    selectionRenderer.material = selected_material;
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        print("clicked " + selection.name);
-                        showVisuals();
-                        robot.GetComponent<PathFollower>().startFollow();
-                    }
+                    robot.GetComponent<PathFollower>().startFollow();
+                    showVisuals();
+                    checkpoint1 = false;
+                }
+
+                if (Vector3.Distance(robotPosition, Pos2) < 0.05 && checkpoint2)
+                {
+                    robot.GetComponent<PathFollower>().startFollow();
+                    showVisuals();
+                    checkpoint2 = false;
                 }
             }
-            _selection = selection;
+
+        }
+
+        void Update()
+        {
+            robotPosition = robot.GetComponent<PathFollower>().currentPosition;
+            checkpoint();
+
+            if (_selection != null)
+            {
+                var selectionRenerer = _selection.GetComponent<Renderer>();
+                selectionRenerer.material = unselected_material;
+                _selection = null;
+            }
+
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                var selection = hit.transform;
+                if (selection.CompareTag(selectableTag))
+                {
+                    var selectionRenderer = selection.GetComponent<Renderer>();
+                    if (selectionRenderer != null)
+                    {
+                        selectionRenderer.material = selected_material;
+
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            print("clicked " + selection.name);
+                            showVisuals();
+
+                            robot.GetComponent<PathFollower>().startFollow();              
+                        }
+                    }
+                }
+                _selection = selection;
+            }
         }
     }
 }

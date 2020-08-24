@@ -1828,6 +1828,7 @@ MonoBehaviour:
   question: {fileID: 1899765392}
   Selections: {fileID: 153243153}
   robot: {fileID: 958857900}
+  robotPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1295418884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3169533531414360141, guid: 569953a55e5572a41bb12128e870b506,
@@ -1990,7 +1991,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Arrows
+  m_text: Choices
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2059,7 +2060,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1472065676}
-    characterCount: 6
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -3480,7 +3481,7 @@ GameObject:
   - component: {fileID: 2129198882}
   - component: {fileID: 2129198881}
   m_Layer: 5
-  m_Name: btn_arrows
+  m_Name: btn_choices
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -27,7 +27,8 @@ namespace PathCreation.Examples
             if (pathCreator != null)
             {                         
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
-                pathCreator.pathUpdated += OnPathChanged;           
+                pathCreator.pathUpdated += OnPathChanged;
+                length = pathCreator.path.length;
             }
         }
 
@@ -60,6 +61,11 @@ namespace PathCreation.Examples
                 initial_distaince = 0f;  
                 total_dist = distanceTravelled + initial_distaince;
 
+                if (total_dist > length)
+                {              
+                    resetPosition();
+                }
+
                 //Tracking the robot's position through segments
                 for (int i = 1; i < pathInfo.GetLength(0); i++)
                 {                     
@@ -67,7 +73,7 @@ namespace PathCreation.Examples
                     {
                         current_tortuosity = pathInfo[i, 1];
                         //print("Segment: " + i);
-                    }
+                    }         
                 }
 
                 transform.position = pathCreator.path.GetPointAtDistance(total_dist, endOfPathInstruction);

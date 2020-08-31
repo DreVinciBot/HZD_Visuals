@@ -9,7 +9,7 @@ namespace PathCreation.Examples
     {
         public EndOfPathInstruction endOfPathInstruction;
         public bool closedLoop = false;
-        public Transform[] waypoints;      
+        public Transform[] waypoints;       
         public PathCreator generatedPath;
         public VertexPath vertexPath;
         public GameObject prefab;
@@ -21,17 +21,31 @@ namespace PathCreation.Examples
         private bool waypoint_check = false;
         public float[,] tortuosity_segments;
 
+        public GameObject Path_pattern;
+
         void Awake ()
         {
-            if (waypoints.Length > 0)
+            if (Path_pattern.transform.childCount > 0)
             {
+                Transform[] path_waypoints = new Transform[Path_pattern.transform.childCount];
+
+                for (int i = 0; i < Path_pattern.transform.childCount; i++)
+                {
+                    Transform transform_object = Path_pattern.transform.GetChild(i);
+
+                    path_waypoints[i] = transform_object;
+                }
+
                 // Create a new bezier path from the waypoints.
-                BezierPath bezierPath = new BezierPath(waypoints, closedLoop, PathSpace.xyz);
+                //BezierPath bezierPath = new BezierPath(waypoints, closedLoop, PathSpace.xyz);
+                BezierPath bezierPath = new BezierPath(path_waypoints, closedLoop, PathSpace.xyz);
+
                 GetComponent<PathCreator>().bezierPath = bezierPath;
                 vertexPath = new VertexPath(bezierPath, transform);
 
                 GlobalTortuosity();
                 LocalTortuosity();
+
                 //Starts by un-rendering the waypoints
                 for (int i = waypoints.Length - 1; i >= 0; i--)
                 {

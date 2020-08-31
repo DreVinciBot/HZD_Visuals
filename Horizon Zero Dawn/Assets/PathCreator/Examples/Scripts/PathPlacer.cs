@@ -94,7 +94,7 @@ namespace PathCreation.Examples
                     // unrender arrows if out of the reveal zone
                     if (arrow_distance < robot_distance || arrow_distance > extended_distance)
                     {
-                        holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
+                        //holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
                     }
                 }
             }           

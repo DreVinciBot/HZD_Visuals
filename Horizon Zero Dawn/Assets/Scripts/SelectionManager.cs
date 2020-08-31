@@ -20,6 +20,7 @@ namespace PathCreation.Examples
         public GameObject Selections;
         public GameObject robot;
         public Vector3 robotPosition;
+        bool queryCheck = false;
         bool checkpoint1 = true;
         bool checkpoint2 = true;
 
@@ -33,9 +34,9 @@ namespace PathCreation.Examples
         void checkpoint()
         {
             //Do a check through a time stamp or distance traveled? Time maybe easier 
-            Scene currentScene = SceneManager.GetActiveScene();          
+            Scene currentScene = SceneManager.GetActiveScene();
 
-            if (currentScene.name == "Simple Path A")
+            if (currentScene.name == "Simple Path A" && queryCheck)
             {
                 Vector3 Pos1 = new Vector3(0, 0, 19);
                 Vector3 Pos2 = new Vector3(15, 0, 30);

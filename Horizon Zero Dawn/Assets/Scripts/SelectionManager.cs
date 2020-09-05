@@ -26,11 +26,12 @@ namespace PathCreation.Examples
 
         public Camera playerCamera;
 
-        public void showVisuals()
+        public void showArrows()
         {
             arrowCheck = !arrowCheck;
             Selections.SetActive(arrowCheck);
-            question.SetActive(arrowCheck);          
+            question.SetActive(arrowCheck);  
+            
         }
 
         void checkpoint()
@@ -46,14 +47,14 @@ namespace PathCreation.Examples
                 if(Vector3.Distance(robotPosition,Pos1) < 0.05  && checkpoint1)
                 {
                     robot.GetComponent<PathFollower>().startFollow();
-                    showVisuals();
+                    showArrows();
                     checkpoint1 = false;
                 }
 
                 if (Vector3.Distance(robotPosition, Pos2) < 0.05 && checkpoint2)
                 {
                     robot.GetComponent<PathFollower>().startFollow();
-                    showVisuals();
+                    showArrows();
                     checkpoint2 = false;
                 }
             }
@@ -89,7 +90,8 @@ namespace PathCreation.Examples
                         if (Input.GetMouseButtonDown(0))
                         {
                             print("clicked " + selection.name);
-                            showVisuals();
+                            Cursor.lockState = CursorLockMode.Locked;
+                            showArrows();
 
                             robot.GetComponent<PathFollower>().startFollow();              
                         }

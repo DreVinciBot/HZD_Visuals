@@ -9,7 +9,8 @@ namespace PathCreation.Examples
     {
         public EndOfPathInstruction endOfPathInstruction;
         public bool closedLoop = false;
-        public Transform[] waypoints;       
+        public Transform[] waypoints;
+        public Transform[] path_waypoints;
         public PathCreator generatedPath;
         public VertexPath vertexPath;
         public GameObject prefab;
@@ -27,7 +28,7 @@ namespace PathCreation.Examples
         {
             if (Path_pattern.transform.childCount > 0)
             {
-                Transform[] path_waypoints = new Transform[Path_pattern.transform.childCount];
+                path_waypoints = new Transform[Path_pattern.transform.childCount];
 
                 for (int i = 0; i < Path_pattern.transform.childCount; i++)
                 {
@@ -47,9 +48,9 @@ namespace PathCreation.Examples
                 LocalTortuosity();
 
                 //Starts by un-rendering the waypoints
-                for (int i = waypoints.Length - 1; i >= 0; i--)
+                for (int i = path_waypoints.Length - 1; i >= 0; i--)
                 {
-                    waypoints[i].GetComponent<Renderer>().enabled = waypoint_check;
+                    path_waypoints[i].GetComponent<Renderer>().enabled = waypoint_check;
                 }
             }
         }
@@ -68,10 +69,10 @@ namespace PathCreation.Examples
         public void showWaypoints()
         {
             waypoint_check = !waypoint_check;
-            int numChildren = waypoints.Length;
+            int numChildren = path_waypoints.Length;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                waypoints[i].GetComponent<Renderer>().enabled = waypoint_check;
+                path_waypoints[i].GetComponent<Renderer>().enabled = waypoint_check;
             }
         }
 

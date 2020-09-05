@@ -24,6 +24,8 @@ namespace PathCreation.Examples
         bool checkpoint1 = true;
         bool checkpoint2 = true;
 
+        public Camera playerCamera;
+
         public void showVisuals()
         {
             arrowCheck = !arrowCheck;
@@ -70,7 +72,9 @@ namespace PathCreation.Examples
                 _selection = null;
             }
 
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {

@@ -31,12 +31,13 @@ namespace PathCreation.Examples
         public float SI_mim_threshold = 1.0f;
         public float current_tortuosity;
         public bool revolve;
-        private bool wave;
-        private bool visuals_check = false;
+        public bool wave = false;
+        public bool visuals_check = false;
         float[] initial_distance;
         float distanceTravelled;
         float total_distance;
         const float minSpacing = 0.1f;
+        public bool no_visuals_check = true;
 
         void Start()
         {
@@ -70,7 +71,7 @@ namespace PathCreation.Examples
 
         void updateVisual()
         {
-            if (visuals_check == false)
+            if (visuals_check == false && !no_visuals_check)
             {
                 int numChildren = holder.transform.childCount;
                 for (int i = numChildren - 1; i >= 0; i--)
@@ -94,7 +95,7 @@ namespace PathCreation.Examples
                     // unrender arrows if out of the reveal zone
                     if (arrow_distance < robot_distance || arrow_distance > extended_distance)
                     {
-                        holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
+                        //holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
                     }
                 }
             }           
@@ -103,7 +104,7 @@ namespace PathCreation.Examples
         // Function to start the WaveAction animation
         public void waveBotton()
         {
-            wave = !wave;
+            //wave = !wave;
             waveAction();
         }
 

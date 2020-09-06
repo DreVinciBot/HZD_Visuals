@@ -66,7 +66,7 @@ namespace PathCreation.Examples
             robotPosition = robot.GetComponent<PathFollower>().currentPosition;
             checkpoint();
 
-            if (_selection != null)
+            if (_selection != null && _selection.CompareTag(selectableTag))
             {
                 var selectionRenerer = _selection.GetComponent<Renderer>();
                 selectionRenerer.material = unselected_material;

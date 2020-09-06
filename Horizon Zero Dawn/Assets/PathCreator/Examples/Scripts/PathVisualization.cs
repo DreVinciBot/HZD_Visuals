@@ -6,7 +6,7 @@ using UnityEngine;
 namespace PathCreation.Examples
 {
     [ExecuteInEditMode]
-    public class PathPlacer : MonoBehaviour
+    public class PathVisualization : MonoBehaviour
     {
         public EndOfPathInstruction endOfPathInstruction;
         public VertexPath vertex_path;
@@ -37,7 +37,7 @@ namespace PathCreation.Examples
         float distanceTravelled;
         float total_distance;
         const float minSpacing = 0.1f;
-        public bool initial_visuals;
+        public bool no_visuals_check = true;
 
         void Start()
         {
@@ -61,22 +61,17 @@ namespace PathCreation.Examples
         //Function to toggle displaying the arrows    
         public void showVisuals()
         {
-            if (initial_visuals)
+            visuals_check = !visuals_check;
+            int numChildren = holder.transform.childCount;
+            for (int i = numChildren - 1; i >= 0; i--)
             {
-                visuals_check = !visuals_check;
-                int numChildren = holder.transform.childCount;
-                for (int i = numChildren - 1; i >= 0; i--)
-                {
-                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = visuals_check;
-                }
+                holder.transform.GetChild(i).GetComponent<Renderer>().enabled = visuals_check;
             }
-
         }
 
         void updateVisual()
         {
-            /*
-            if (visuals_check == true)
+            if (visuals_check == false && !no_visuals_check)
             {
                 int numChildren = holder.transform.childCount;
                 for (int i = numChildren - 1; i >= 0; i--)
@@ -103,8 +98,7 @@ namespace PathCreation.Examples
                         //holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
                     }
                 }
-            } 
-            */
+            }           
         }
 
         // Function to start the WaveAction animation
@@ -147,7 +141,7 @@ namespace PathCreation.Examples
                 currentPosition = robot.GetComponent<PathFollower>().currentPosition;
                 current_tortuosity = robot.GetComponent<PathFollower>().current_tortuosity;
                 tortuosityArrows();
-                //updateVisual();                
+                updateVisual();                
             }
 
             //This is the revolve action

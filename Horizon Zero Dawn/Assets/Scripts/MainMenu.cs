@@ -22,6 +22,7 @@ namespace PathCreation.Examples
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 robot.GetComponent<PathFollower>().startFollow();
+                visualizations.GetComponent<PathPlacer>().showVisuals();
             }
 
             if (Input.GetKeyDown(KeyCode.P))
@@ -39,7 +40,22 @@ namespace PathCreation.Examples
 
         public void no_visuals_simple_Scene()
         {
-            SceneManager.LoadScene("Simple Path A");
+            SceneManager.LoadScene("no_visuals_simple_scene");
+        }
+
+        public void no_visuals_complex_Scene()
+        {
+            SceneManager.LoadScene("no_visuals_complex_scene");
+        }
+
+        public void all_visuals_complex_Scene()
+        {
+            SceneManager.LoadScene("all_visuals_complex_scene");
+        }
+
+        public void all_visuals_simple_Scene()
+        {
+            SceneManager.LoadScene("all_visuals_simple_scene");
         }
 
         public void Menu_Scene()

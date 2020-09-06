@@ -13,7 +13,7 @@ namespace PathCreation.Examples
         public Transform[] path_waypoints;
         public PathCreator generatedPath;
         public VertexPath vertexPath;
-        public GameObject prefab;
+        public GameObject segment_marker_prefab;
         public GameObject segment_holder;
         public Vector3 segment_start;
         public Vector3 segment_end;
@@ -22,20 +22,78 @@ namespace PathCreation.Examples
         private bool waypoint_check = false;
         public float[,] tortuosity_segments;
 
-        public GameObject Path_pattern;
+        public GameObject Path_Grid;
+        //public GameObject holder;
+        public GameObject waypoint;
+        private Vector3 point;
+        float width = 15;
+        public bool complexPath = true;
 
+   
         void Awake ()
         {
-            if (Path_pattern.transform.childCount > 0)
+            Quaternion rot = new Quaternion(0f, 0f, 0f, 0f);
+
+            for (int i = 0; i < 5; i++)
             {
-                path_waypoints = new Transform[Path_pattern.transform.childCount];
-
-                for (int i = 0; i < Path_pattern.transform.childCount; i++)
+                for (int j = -2; j < 3; j++)
                 {
-                    Transform transform_object = Path_pattern.transform.GetChild(i);
+                    if (i % 2 == 0)
+                    {
+                        point = new Vector3(j * width, 0f, i * width);
+                    }
+                    else
+                    {
+                        point = new Vector3((j * width) + (width / 2), 0f, i * width);
+                    }
 
-                    path_waypoints[i] = transform_object;
+                    GameObject wayPointClone = Instantiate(waypoint, point, rot, Path_Grid.transform);
                 }
+            }
+
+            creatPath();    
+ 
+        }
+
+        void creatPath()
+        {
+            if (Path_Grid.transform.childCount > 0)
+            {
+                //Determine the number of points that should be in the Simple/Complex path
+
+                if (complexPath)
+                {
+                    path_waypoints = new Transform[Path_Grid.transform.childCount];
+
+                    for (int i = 0; i < Path_Grid.transform.childCount; i++)
+                    {
+                        Transform transform_object = Path_Grid.transform.GetChild(i);
+                        path_waypoints[i] = transform_object;
+                    }
+
+                    //how to select waypoints randomly/shuffle order in array
+                    for (int t = 0; t < path_waypoints.Length; t++)
+                    {
+                        Transform tmp = path_waypoints[t];
+                        int r = Random.Range(t, path_waypoints.Length);
+                        path_waypoints[t] = path_waypoints[r];
+                        path_waypoints[r] = tmp;
+                    }
+                }
+
+                else
+                {
+                    path_waypoints = new Transform[Path_Grid.transform.childCount];
+
+                    for (int i = 0; i < Path_Grid.transform.childCount; i++)
+                    {
+                        Transform transform_object = Path_Grid.transform.GetChild(i);
+
+                        path_waypoints[i] = transform_object;
+                    }
+                }
+
+
 
                 // Create a new bezier path from the waypoints.
                 //BezierPath bezierPath = new BezierPath(waypoints, closedLoop, PathSpace.xyz);
@@ -113,7 +171,7 @@ namespace PathCreation.Examples
                 float total_length = generatedPath.path.length;
                 float segmented_lengths = total_length / num_segments;
 
-                GameObject segment_marker = Instantiate(prefab, generatedPath.path.GetPointAtDistance(0, endOfPathInstruction), generatedPath.path.GetRotationAtDistance(0), segment_holder.transform);
+                GameObject segment_marker = Instantiate(segment_marker_prefab, generatedPath.path.GetPointAtDistance(0, endOfPathInstruction), generatedPath.path.GetRotationAtDistance(0), segment_holder.transform);
                 if(!visuals_check)
                 {
                     segment_marker.GetComponent<Renderer>().enabled = false;
@@ -135,7 +193,7 @@ namespace PathCreation.Examples
                     tortuosity_segments[i+1, 1] = local_tortuosity;
 
                     Quaternion rot = generatedPath.path.GetRotationAtDistance(cumulative_segment_length);
-                    segment_marker = Instantiate(prefab, segment_end, rot, segment_holder.transform);
+                    segment_marker = Instantiate(segment_marker_prefab, segment_end, rot, segment_holder.transform);
                     if (!visuals_check)
                     {
                         segment_marker.GetComponent<Renderer>().enabled = false;

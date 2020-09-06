@@ -37,7 +37,7 @@ namespace PathCreation.Examples
         float distanceTravelled;
         float total_distance;
         const float minSpacing = 0.1f;
-        public bool no_visuals_check = true;
+        public bool initial_visuals;
 
         void Start()
         {
@@ -61,17 +61,22 @@ namespace PathCreation.Examples
         //Function to toggle displaying the arrows    
         public void showVisuals()
         {
-            visuals_check = !visuals_check;
-            int numChildren = holder.transform.childCount;
-            for (int i = numChildren - 1; i >= 0; i--)
+            if (initial_visuals)
             {
-                holder.transform.GetChild(i).GetComponent<Renderer>().enabled = visuals_check;
+                visuals_check = !visuals_check;
+                int numChildren = holder.transform.childCount;
+                for (int i = numChildren - 1; i >= 0; i--)
+                {
+                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = visuals_check;
+                }
             }
+
         }
 
         void updateVisual()
         {
-            if (visuals_check == false && !no_visuals_check)
+            /*
+            if (visuals_check == true)
             {
                 int numChildren = holder.transform.childCount;
                 for (int i = numChildren - 1; i >= 0; i--)
@@ -98,7 +103,8 @@ namespace PathCreation.Examples
                         //holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
                     }
                 }
-            }           
+            } 
+            */
         }
 
         // Function to start the WaveAction animation
@@ -141,7 +147,7 @@ namespace PathCreation.Examples
                 currentPosition = robot.GetComponent<PathFollower>().currentPosition;
                 current_tortuosity = robot.GetComponent<PathFollower>().current_tortuosity;
                 tortuosityArrows();
-                updateVisual();                
+                //updateVisual();                
             }
 
             //This is the revolve action

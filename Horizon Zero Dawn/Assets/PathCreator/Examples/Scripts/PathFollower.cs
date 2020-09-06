@@ -30,6 +30,9 @@ namespace PathCreation.Examples
                 pathCreator.pathUpdated += OnPathChanged;
                 length = pathCreator.path.length;
             }
+
+            Transform initialPosition = Path.GetComponent<GeneratePathExample>().path_waypoints[0];
+            transform.position = initialPosition.position;
         }
 
         //Function to start robot movement on path

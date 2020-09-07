@@ -9,7 +9,6 @@ public class CollectToken : MonoBehaviour
     public float duration;
     public Image fillImage;
     public GameObject gemPrefab;
-    //public Transform spawnPoint;
     public float t;
     public Vector3 spawnPoint;
     public int randXPosition;
@@ -24,8 +23,6 @@ public class CollectToken : MonoBehaviour
         spawnPoint = new Vector3(randXPosition, 1.2f, randZPosition);
         a.GetComponent<AnimationScript>().enabled = true;
         a.transform.position = spawnPoint;
-        a.GetComponent<NavMeshObstacle>().enabled = true;
-
     }
 
     void OnTriggerEnter (Collider other)
@@ -34,7 +31,6 @@ public class CollectToken : MonoBehaviour
         {
             t = 0;
             fillImage.fillAmount = 0;
-            //Debug.Log("Contact made...");
         }
     }
 
@@ -45,12 +41,11 @@ public class CollectToken : MonoBehaviour
             StartCoroutine(Timer(duration));
 
             t += Time.deltaTime;
-            if(t > 5)
+            if(t > duration)
             {
                 Destroy(this.gameObject);
-                spawnGem();
+                //spawnGem();
                 fillImage.fillAmount = 0;
-                //Debug.Log("Object Destroyed...");
                 //ScoringSystem.theScore += 50;
             }
         }
@@ -60,6 +55,7 @@ public class CollectToken : MonoBehaviour
     {
         if (other.gameObject.name == humanAgent)
         {
+            StopAllCoroutines();
             t = 0;
             fillImage.fillAmount = 0;
         }
@@ -68,12 +64,10 @@ public class CollectToken : MonoBehaviour
     public IEnumerator Timer(float duration)
     {
         float startTime = Time.time;
-        float time = duration;
         float value = 0;
 
         while (Time.time - startTime < duration)
         {
-            //time += Time.deltaTime;
             value = t / duration;
             fillImage.fillAmount = value;
             yield return null;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEngine.UI;
+using UnityEngine;
 
 namespace PathCreation.Examples
 {
@@ -9,7 +10,6 @@ namespace PathCreation.Examples
     {
         public EndOfPathInstruction endOfPathInstruction;
         public bool closedLoop = false;
-        public Transform[] waypoints;
         public Transform[] path_waypoints;
         public PathCreator generatedPath;
         public VertexPath vertexPath;
@@ -21,11 +21,12 @@ namespace PathCreation.Examples
         private bool visuals_check = false;
         private bool waypoint_check = false;
         public float[,] tortuosity_segments;
-
+        public GameObject gem;
+        public GameObject gemHolder;
         public GameObject Path_Grid;
-        //public GameObject holder;
         public GameObject waypoint;
         private Vector3 point;
+        private Vector3 gemPoint;
         float width = 15;
         public bool complexPath = true;
 
@@ -41,13 +42,18 @@ namespace PathCreation.Examples
                     if (i % 2 == 0)
                     {
                         point = new Vector3(j * width, 0f, i * width);
+                        gemPoint = point +  new Vector3(0f, 1f, 0f);
                     }
                     else
                     {
                         point = new Vector3((j * width) + (width / 2), 0f, i * width);
+                        gemPoint = point + new Vector3(0f, 1f, 0f);
+
                     }
 
                     GameObject wayPointClone = Instantiate(waypoint, point, rot, Path_Grid.transform);
+                    GameObject gemClones = Instantiate(gem, gemPoint, Quaternion.Euler(-90, 0, 0), gemHolder.transform);
+                    gemClones.GetComponent<CollectToken>().fillImage = gem.GetComponent<CollectToken>().fillImage;
                 }
             }
 
@@ -156,7 +162,7 @@ namespace PathCreation.Examples
             for (int i = 0; i < lengths.Length; i++)
             {
                 float curve = lengths[i];
-                float dist = Vector3.Distance(localPoints[i], waypoints[0].position);
+                float dist = Vector3.Distance(localPoints[i], path_waypoints[0].position);
                 tortuosity[i] = curve / dist;
             }
         }

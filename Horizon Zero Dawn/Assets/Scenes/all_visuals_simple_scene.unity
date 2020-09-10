@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1131,10 +1131,12 @@ MonoBehaviour:
     _bezierPath:
       points:
       - {x: -2, y: 0, z: 0}
-      - {x: -1, y: 0, z: 0}
-      - {x: 1, y: 0, z: 0}
+      - {x: -2, y: 0, z: 2}
+      - {x: 2, y: 0, z: 2}
       - {x: 2, y: 0, z: 0}
-      isClosed: 0
+      - {x: 2, y: 0, z: -2}
+      - {x: -2, y: 0, z: -2}
+      isClosed: 1
       space: 0
       controlMode: 3
       autoControlLength: 0.382
@@ -1195,7 +1197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endOfPathInstruction: 2
-  closedLoop: 0
+  closedLoop: 1
   path_waypoints: []
   generatedPath: {fileID: 0}
   segment_marker_prefab: {fileID: 6681860651224920717, guid: 45a7544df880f0f4db20f51f172282d7,

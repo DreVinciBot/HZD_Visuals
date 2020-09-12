@@ -7,18 +7,20 @@ using TMPro;
 
 public class Web : MonoBehaviour
 {
-
+    public GameObject thisPanel;
     public TMP_Text loginResponse;
+    public bool state = false;
 
     void Start()
     {
         // A correct website page.
         //StartCoroutine(GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
+        //StartCoroutine(GetRequest("https://example-php-files.s3.us-east-2.amazonaws.com/GetID.php"));
         //StartCoroutine(GetUsers());
         //StartCoroutine(Login("testuser", "123456"));
         //StartCoroutine(RegisterUser("testuser3", "tufts"));
         //StartCoroutine(RegisterUserID("testuser4"));
-  
+
     }
 
     IEnumerator GetRequest(string uri)
@@ -42,8 +44,9 @@ public class Web : MonoBehaviour
         }
     }
 
-    IEnumerator GetUsers()
+    public IEnumerator GetUsers()
     {
+        //string uri = "http://24.60.202.6:80/ARNavigationStudy2020/GetUsers.php";
         string uri = "http://localhost/ARNavigationStudy2020/GetUsers.php";
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
@@ -74,7 +77,7 @@ public class Web : MonoBehaviour
 
         using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
         {
-            
+
             yield return www.SendWebRequest();
 
             if (www.isNetworkError || www.isHttpError)
@@ -82,16 +85,16 @@ public class Web : MonoBehaviour
                 Debug.Log(www.error);
             }
             else
-            {          
+            {
                 Debug.Log(www.downloadHandler.text);
                 string message = www.downloadHandler.text;
 
                 loginResponse.text = message;
 
                 if (message == "Login Success")
-                {                   
+                {
                     SceneManager.LoadScene("menu_scene");
-                }      
+                }
             }
         }
     }
@@ -119,17 +122,32 @@ public class Web : MonoBehaviour
         }
     }
 
+    //This function is for the AR Navigational Study
     public IEnumerator RegisterUserID(string username)
     {
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
         //form.AddField("loginPass", password);
 
-        string uri = "http://localhost/ARNavigationStudy2020/RegisterUserID.php";
+        //trying url with ip address with portforwarding
+        string uri = "https://54c35bc63b0a.ngrok.io" + "/ARNavigationStudy2020/RegisterUserID.php";
+
+        // uri for localhost
+        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserID.php";
 
         using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
         {
             yield return www.SendWebRequest();
+
+            //loginResponse.text = www.downloadHandler.text;
+            
+            if (www.isDone)
+            {
+                loginResponse.text = www.downloadHandler.text;
+                
+
+                //SceneManager.LoadScene("menu_scene");
+            }
 
             if (www.isNetworkError || www.isHttpError)
             {
@@ -139,11 +157,13 @@ public class Web : MonoBehaviour
             {
                 Debug.Log(www.downloadHandler.text);
                 string message = www.downloadHandler.text;
-           
+    
+                loginResponse.text = message;
+
                 if (message == "created user")
                 {
-                    loginResponse.text = "Login Successful";
-                    SceneManager.LoadScene("menu_scene");
+                    loginResponse.text = "Login Successful, Click next to continue.";
+                    //SceneManager.LoadScene("menu_scene");                  
                 }
                 else
                 {

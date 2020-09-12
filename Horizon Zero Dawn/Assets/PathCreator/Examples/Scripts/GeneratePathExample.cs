@@ -29,6 +29,7 @@ namespace PathCreation.Examples
         private Vector3 gemPoint;
         float width = 15;
         public bool complexPath = true;
+        float gem_height = 6f;
 
    
         void Awake ()
@@ -42,18 +43,22 @@ namespace PathCreation.Examples
                     if (i % 2 == 0)
                     {
                         point = new Vector3(j * width, 0f, i * width);
-                        gemPoint = point +  new Vector3(0f, 1f, 0f);
+                        gemPoint = point +  new Vector3(0f, gem_height, 0f);
                     }
                     else
                     {
                         point = new Vector3((j * width) + (width / 2), 0f, i * width);
-                        gemPoint = point + new Vector3(0f, 1f, 0f);
+                        gemPoint = point + new Vector3(0f, gem_height, 0f);
 
                     }
 
                     GameObject wayPointClone = Instantiate(waypoint, point, rot, Path_Grid.transform);
                     GameObject gemClones = Instantiate(gem, gemPoint, Quaternion.Euler(-90, 0, 0), gemHolder.transform);
                     gemClones.GetComponent<CollectToken>().fillImage = gem.GetComponent<CollectToken>().fillImage;
+                    gemClones.GetComponent<CollectToken>().robotAlert = gem.GetComponent<CollectToken>().robotAlert;
+                    gemClones.GetComponent<CollectToken>().Collected_text = gem.GetComponent<CollectToken>().Collected_text;
+                    gemClones.GetComponent<CollectToken>().Remaining_text = gem.GetComponent<CollectToken>().Remaining_text;
+
                 }
             }
 

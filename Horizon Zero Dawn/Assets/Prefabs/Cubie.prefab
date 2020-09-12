@@ -122,12 +122,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc32b374074bb940b39f17037d5fb4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 3
+  duration: 1
   fillImage: {fileID: 0}
+  robotAlert: {fileID: 0}
   gemPrefab: {fileID: 6654240362412941144}
+  t: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   randXPosition: 0
   randZPosition: 0
+  currentScore: 0
 --- !u!136 &3136238401689788844
 CapsuleCollider:
   m_ObjectHideFlags: 0

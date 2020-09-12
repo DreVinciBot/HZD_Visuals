@@ -8,12 +8,24 @@ public class CollectToken : MonoBehaviour
 {
     public float duration;
     public Image fillImage;
+    public GameObject robotAlert;
     public GameObject gemPrefab;
+    public GameObject scoreSystem;
     public float t;
     public Vector3 spawnPoint;
     public int randXPosition;
     public int randZPosition;
     private string humanAgent = "HumanAgent";
+    public static int currentScore = 0;
+
+    public GameObject Collected_text;
+    public GameObject Remaining_text;
+    
+    void Start()
+    {
+        robotAlert.SetActive(false);
+        //currentScore = scoreSystem.GetComponent<ScoringSystem>().theScore;
+    }
 
     public void spawnGem()
     {
@@ -23,7 +35,9 @@ public class CollectToken : MonoBehaviour
         spawnPoint = new Vector3(randXPosition, 1.2f, randZPosition);
         a.GetComponent<AnimationScript>().enabled = true;
         a.transform.position = spawnPoint;
+
     }
+
 
     void OnTriggerEnter (Collider other)
     {
@@ -36,7 +50,7 @@ public class CollectToken : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == humanAgent)
+        if (other.gameObject.name == humanAgent && !robotAlert.activeSelf)
         {
             StartCoroutine(Timer(duration));
 
@@ -46,7 +60,16 @@ public class CollectToken : MonoBehaviour
                 Destroy(this.gameObject);
                 //spawnGem();
                 fillImage.fillAmount = 0;
-                //ScoringSystem.theScore += 50;
+          
+                currentScore += 1;
+              
+                if(currentScore >= 3)
+                {
+                    robotAlert.SetActive(true);
+                    Collected_text.SetActive(false);
+                    Remaining_text.SetActive(false);
+                    currentScore = 0;
+                }
             }
         }
     }
@@ -73,4 +96,6 @@ public class CollectToken : MonoBehaviour
             yield return null;
         }
     }
+
+    
 }

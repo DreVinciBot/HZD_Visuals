@@ -15,7 +15,7 @@ namespace PathCreation.Examples
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SceneManager.LoadScene("menu_scene");
+                //SceneManager.LoadScene("menu_scene");
                 Cursor.lockState = CursorLockMode.None;
             }
 

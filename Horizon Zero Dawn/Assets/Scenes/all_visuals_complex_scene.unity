@@ -941,6 +941,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main_Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 4458306026021664902, guid: 7beb816f2647594478efe74304a2196e,
+        type: 3}
+      propertyPath: robot
+      value: 
+      objectReference: {fileID: 958857900}
+    - target: {fileID: 4458306026021664902, guid: 7beb816f2647594478efe74304a2196e,
+        type: 3}
+      propertyPath: visualizations
+      value: 
+      objectReference: {fileID: 527909992}
+    - target: {fileID: 4458306026021664902, guid: 7beb816f2647594478efe74304a2196e,
+        type: 3}
+      propertyPath: DirectionChoices
+      value: 
+      objectReference: {fileID: 1162204491}
     - target: {fileID: 4458306026021664903, guid: 7beb816f2647594478efe74304a2196e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -996,21 +1011,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4458306026021664902, guid: 7beb816f2647594478efe74304a2196e,
-        type: 3}
-      propertyPath: robot
-      value: 
-      objectReference: {fileID: 958857900}
-    - target: {fileID: 4458306026021664902, guid: 7beb816f2647594478efe74304a2196e,
-        type: 3}
-      propertyPath: visualizations
-      value: 
-      objectReference: {fileID: 527909992}
-    - target: {fileID: 4458306026021664902, guid: 7beb816f2647594478efe74304a2196e,
-        type: 3}
-      propertyPath: DirectionChoices
-      value: 
-      objectReference: {fileID: 1162204491}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7beb816f2647594478efe74304a2196e, type: 3}
 --- !u!1 &637038818
@@ -3537,8 +3537,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:

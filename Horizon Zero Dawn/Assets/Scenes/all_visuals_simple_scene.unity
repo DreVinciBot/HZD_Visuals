@@ -1388,6 +1388,8 @@ MonoBehaviour:
   Path_Grid: {fileID: 637038818}
   waypoint: {fileID: 3169533531414360136, guid: 569953a55e5572a41bb12128e870b506,
     type: 3}
+  row: 3
+  col: 5
   complexPath: 0
 --- !u!1 &840988862 stripped
 GameObject:
@@ -2006,6 +2008,8 @@ MonoBehaviour:
   Remaining_text: {fileID: 781473411}
   gemHolder: {fileID: 1570304593}
   Completed_text: {fileID: 951877804}
+  Continue_Panel: {fileID: 0}
+  Random_scene: {fileID: 0}
 --- !u!136 &958857904
 CapsuleCollider:
   m_ObjectHideFlags: 0

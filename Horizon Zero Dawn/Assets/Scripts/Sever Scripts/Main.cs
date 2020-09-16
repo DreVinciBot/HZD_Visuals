@@ -14,6 +14,4 @@ public class Main : MonoBehaviour
         Web = GetComponent<Web>();
         UserInfo = GetComponent<UserInfo>();
     }
-
-
 }

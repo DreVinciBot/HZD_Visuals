@@ -8,29 +8,39 @@ namespace PathCreation.Examples
     public class MainMenu : MonoBehaviour
     {
         public GameObject robot;
-        //public GameObject visualizations;
+        public GameObject visualizations;
+        bool start_round = true;
+
+
         //public GameObject DirectionChoices;
 
 
         void Start()
-        {
-            robot.GetComponent<PathFollower>().startFollow();
-            //visualizations.GetComponent<PathPlacer>().showVisuals();
+        {     
+            if (SceneManager.GetActiveScene().name == "demo_scene")
+            {
+                robot.GetComponent<PathFollower>().startFollow();
+
+            }
+
+            //.GetComponent<PathPlacer>().showVisuals();
 
         }
 
         void Update()
         {
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 //SceneManager.LoadScene("menu_scene");
                 Cursor.lockState = CursorLockMode.None;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && start_round)
             {
-                //robot.GetComponent<PathFollower>().startFollow();
-                //visualizations.GetComponent<PathPlacer>().showVisuals();
+                start_round = false;
+                robot.GetComponent<PathFollower>().startFollow();
+                visualizations.GetComponent<PathPlacer>().showVisuals();
             }
 
             if (Input.GetKeyDown(KeyCode.P))

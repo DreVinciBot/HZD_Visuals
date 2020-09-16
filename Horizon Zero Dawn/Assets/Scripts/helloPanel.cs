@@ -10,6 +10,21 @@ public class helloPanel : MonoBehaviour
     public GameObject thisPanel;
     public Text button_message;
     bool state = true;
+    bool start_round = true;
+
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && start_round)
+        {
+            start_round = false;
+            thisPanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+
+        }
+
+    }
+
 
     public void showPanel()
     {  

@@ -10,14 +10,13 @@ public class Web : MonoBehaviour
   
     public TMP_Text loginResponse;
     public bool state = false;
-    public string username_input;
+    public static string username_input;
 
-    private string ngrok = "https://fd31d90bd86a.ngrok.io";
+    private string ngrok = "https://8060fd8f3542.ngrok.io";
 
     void Start()
     {
-        string username = PlayerPrefs.GetString("username");
-        
+      
         // A correct website page.
         //StartCoroutine(GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
         //StartCoroutine(GetRequest("https://example-php-files.s3.us-east-2.amazonaws.com/GetID.php"));
@@ -25,6 +24,7 @@ public class Web : MonoBehaviour
         //StartCoroutine(Login("testuser", "123456"));
         //StartCoroutine(RegisterUser("testuser3", "tufts"));
         //StartCoroutine(RegisterUserID("testuser4"));
+        //StartCoroutine(RegisterUserLevel(4));
 
     }
 
@@ -186,6 +186,8 @@ public class Web : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username_input);
         form.AddField("loginLevel", level);
+
+        print("u/n : " + username_input + " recieved: " + level);
      
         //trying url with ip address with portforwarding
         string uri = ngrok + "/ARNavigationStudy2020/RegisterLevel.php";

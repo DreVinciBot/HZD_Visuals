@@ -28,6 +28,8 @@ namespace PathCreation.Examples
         private Vector3 point;
         private Vector3 gemPoint;
         float width = 15;
+        public int row = 3;
+        public int col = 5; 
         public bool complexPath = true;
         float gem_height = 6f;
 
@@ -36,9 +38,9 @@ namespace PathCreation.Examples
         {
             Quaternion rot = new Quaternion(0f, 0f, 0f, 0f);
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < col; i++)
             {
-                for (int j = -2; j < 3; j++)
+                for (int j = -2; j < row; j++)
                 {
                     if (i % 2 == 0)
                     {
@@ -58,6 +60,7 @@ namespace PathCreation.Examples
                     gemClones.GetComponent<CollectToken>().robotAlert = gem.GetComponent<CollectToken>().robotAlert;
                     gemClones.GetComponent<CollectToken>().Collected_text = gem.GetComponent<CollectToken>().Collected_text;
                     gemClones.GetComponent<CollectToken>().Remaining_text = gem.GetComponent<CollectToken>().Remaining_text;
+                    gemClones.GetComponent<CollectToken>().collected_text = gem.GetComponent<CollectToken>().collected_text;
 
                 }
             }

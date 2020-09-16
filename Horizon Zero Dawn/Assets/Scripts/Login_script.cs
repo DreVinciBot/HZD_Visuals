@@ -12,10 +12,14 @@ public class Login_script : MonoBehaviour
     public TMP_InputField PasswordInput;
     public Button LoginButton;
     public GameObject next_btn;
+    public static string username;
 
     // Start is called before the first frame update
     void Start()
     {
+        username = UsernameInput.text;
+        PlayerPrefs.SetString("username", UsernameInput.text);
+
         next_btn.SetActive(false);
         LoginButton.onClick.AddListener(() => {
             //StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text));
@@ -34,10 +38,4 @@ public class Login_script : MonoBehaviour
 
         });
     }
-
-    public void nextButton()
-    {
-        next_btn.SetActive(true);
-    }
-
 }

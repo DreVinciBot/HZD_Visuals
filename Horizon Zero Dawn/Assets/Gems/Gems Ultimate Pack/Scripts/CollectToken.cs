@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using TMPro;
 
 public class CollectToken : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class CollectToken : MonoBehaviour
     public int randZPosition;
     private string humanAgent = "HumanAgent";
     public static int currentScore = 0;
-
+    public TMP_Text collected_text;
     public GameObject Collected_text;
     public GameObject Remaining_text;
     
@@ -25,6 +26,11 @@ public class CollectToken : MonoBehaviour
     {
         robotAlert.SetActive(false);
         //currentScore = scoreSystem.GetComponent<ScoringSystem>().theScore;
+    }
+
+    void Update()
+    {
+        collected_text.text = "Collected: " + currentScore;
     }
 
     public void spawnGem()
@@ -35,9 +41,7 @@ public class CollectToken : MonoBehaviour
         spawnPoint = new Vector3(randXPosition, 1.2f, randZPosition);
         a.GetComponent<AnimationScript>().enabled = true;
         a.transform.position = spawnPoint;
-
     }
-
 
     void OnTriggerEnter (Collider other)
     {

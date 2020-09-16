@@ -6,6 +6,8 @@ public class panelSwitch : MonoBehaviour
 {
 
     public GameObject[] panels;
+    public GameObject NextButton;
+    public GameObject PreviousButton;
     private int pageNumber = 0;
 
     // Start is called before the first frame update
@@ -26,6 +28,26 @@ public class panelSwitch : MonoBehaviour
             else
             {
                 panels[i].SetActive(false);
+            }
+
+            if(pageNumber == panels.Length)
+            {
+                NextButton.SetActive(false);
+                Cursor.lockState = CursorLockMode.Locked;
+
+            }
+            else
+            {
+                NextButton.SetActive(true);
+            }
+
+            if(pageNumber == 0 || pageNumber == panels.Length)
+            {
+                PreviousButton.SetActive(false);
+            }
+            else
+            {
+                PreviousButton.SetActive(true);
             }
         }
     }

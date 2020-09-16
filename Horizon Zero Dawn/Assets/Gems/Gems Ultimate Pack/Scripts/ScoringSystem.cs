@@ -16,6 +16,5 @@ public class ScoringSystem : MonoBehaviour
     void Update()
     {   
         remaining_text.text = "Gems Left: " + gemHolder.transform.childCount;
-        collected_text.text = "Collected: " + (25 - gemHolder.transform.childCount);
     }
 }

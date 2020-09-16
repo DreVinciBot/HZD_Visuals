@@ -8,8 +8,16 @@ namespace PathCreation.Examples
     public class MainMenu : MonoBehaviour
     {
         public GameObject robot;
-        public GameObject visualizations;
-        public GameObject DirectionChoices;
+        //public GameObject visualizations;
+        //public GameObject DirectionChoices;
+
+
+        void Start()
+        {
+            robot.GetComponent<PathFollower>().startFollow();
+            //visualizations.GetComponent<PathPlacer>().showVisuals();
+
+        }
 
         void Update()
         {
@@ -21,20 +29,20 @@ namespace PathCreation.Examples
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                robot.GetComponent<PathFollower>().startFollow();
-                visualizations.GetComponent<PathPlacer>().showVisuals();
+                //robot.GetComponent<PathFollower>().startFollow();
+                //visualizations.GetComponent<PathPlacer>().showVisuals();
             }
 
             if (Input.GetKeyDown(KeyCode.P))
             {
-                visualizations.GetComponent<PathPlacer>().showVisuals();
+                //visualizations.GetComponent<PathPlacer>().showVisuals();
             }
 
             if (Input.GetKeyDown(KeyCode.C))
             {
-                robot.GetComponent<PathFollower>().startFollow();
-                DirectionChoices.GetComponent<SelectionManager>().showArrows();
-                Cursor.lockState = CursorLockMode.None;
+                //robot.GetComponent<PathFollower>().startFollow();
+                //DirectionChoices.GetComponent<SelectionManager>().showArrows();
+               // Cursor.lockState = CursorLockMode.None;
             }
         }
 
@@ -61,6 +69,11 @@ namespace PathCreation.Examples
         public void Menu_Scene()
         {
             SceneManager.LoadScene("menu_scene");
+        }
+
+        public void Demo_Scene()
+        {
+            SceneManager.LoadScene("demo_scene");
         }
 
         public void QuitGame()

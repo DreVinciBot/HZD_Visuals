@@ -7,12 +7,17 @@ using TMPro;
 
 public class Web : MonoBehaviour
 {
-    public GameObject thisPanel;
+  
     public TMP_Text loginResponse;
     public bool state = false;
+    public string username_input;
+
+    private string ngrok = "https://fd31d90bd86a.ngrok.io";
 
     void Start()
     {
+        string username = PlayerPrefs.GetString("username");
+        
         // A correct website page.
         //StartCoroutine(GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
         //StartCoroutine(GetRequest("https://example-php-files.s3.us-east-2.amazonaws.com/GetID.php"));
@@ -125,12 +130,13 @@ public class Web : MonoBehaviour
     //This function is for the AR Navigational Study
     public IEnumerator RegisterUserID(string username)
     {
+        username_input = username;
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username);
         //form.AddField("loginPass", password);
 
         //trying url with ip address with portforwarding
-        string uri = "https://54c35bc63b0a.ngrok.io" + "/ARNavigationStudy2020/RegisterUserID.php";
+        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserID.php";
 
         // uri for localhost
         //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserID.php";
@@ -155,6 +161,8 @@ public class Web : MonoBehaviour
             }
             else
             {
+                //Main.Instance.UserInfo.SetInfo(username);
+
                 Debug.Log(www.downloadHandler.text);
                 string message = www.downloadHandler.text;
     
@@ -169,6 +177,33 @@ public class Web : MonoBehaviour
                 {
                     loginResponse.text = message;
                 }
+            }
+        }
+    }
+
+    public IEnumerator RegisterUserLevel(int level)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("loginUser", username_input);
+        form.AddField("loginLevel", level);
+     
+        //trying url with ip address with portforwarding
+        string uri = ngrok + "/ARNavigationStudy2020/RegisterLevel.php";
+
+        // uri for localhost
+        //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                //Debug.Log(www.error);
+            }
+            else
+            {
+                //Debug.Log(www.downloadHandler.text);            
             }
         }
     }

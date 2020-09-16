@@ -13,6 +13,8 @@ public class ComfirmGems : MonoBehaviour
     public GameObject Continue_Panel;
     public GameObject Random_scene;
 
+    public static int robot_counter = 0;
+
     bool checkpoint = true;
 
     // Start is called before the first frame update
@@ -44,9 +46,16 @@ public class ComfirmGems : MonoBehaviour
     {
         if (other.gameObject.name == humanAgent)
         {
+            robot_counter += CollectToken.currentScore;
             robotAlert.SetActive(false);
             Collected_text.SetActive(true);
             Remaining_text.SetActive(true);
+            CollectToken.currentScore = 0;
         }
+    }
+
+    IEnumerator Wait(int num)
+    {
+        yield return new WaitForSeconds(3);
     }
 }

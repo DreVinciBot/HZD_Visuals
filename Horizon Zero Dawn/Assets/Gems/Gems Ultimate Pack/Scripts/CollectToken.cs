@@ -25,7 +25,8 @@ public class CollectToken : MonoBehaviour
     void Start()
     {
         robotAlert.SetActive(false);
-        //currentScore = scoreSystem.GetComponent<ScoringSystem>().theScore;
+
+       
     }
 
     void Update()
@@ -49,6 +50,7 @@ public class CollectToken : MonoBehaviour
         {
             t = 0;
             fillImage.fillAmount = 0;
+
         }
     }
 
@@ -72,8 +74,9 @@ public class CollectToken : MonoBehaviour
                     robotAlert.SetActive(true);
                     Collected_text.SetActive(false);
                     Remaining_text.SetActive(false);
-                    currentScore = 0;
                 }
+
+
             }
         }
     }

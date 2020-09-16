@@ -10,12 +10,6 @@ public class panelSwitch : MonoBehaviour
     public GameObject PreviousButton;
     private int pageNumber = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -34,6 +28,7 @@ public class panelSwitch : MonoBehaviour
             {
                 NextButton.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
+                PlayerMovement.playerCheck = true;
 
             }
             else

@@ -36,7 +36,9 @@ namespace PathCreation.Examples
                 Cursor.lockState = CursorLockMode.None;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && start_round)
+
+            
+            if (Input.GetKeyDown(KeyCode.Space) && start_round && SceneManager.GetActiveScene().name != "menu_scene")
             {
                 start_round = false;
                 robot.GetComponent<PathFollower>().startFollow();

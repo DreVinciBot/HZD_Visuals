@@ -15,7 +15,7 @@ public class helloPanel : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && start_round)
+        if(Input.GetKeyDown(KeyCode.Space) && start_round && SceneManager.GetActiveScene().name != "menu_scene")
         {
             start_round = false;
             thisPanel.SetActive(false);

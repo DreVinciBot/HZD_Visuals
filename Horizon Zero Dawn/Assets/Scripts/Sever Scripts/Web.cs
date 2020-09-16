@@ -15,9 +15,7 @@ public class Web : MonoBehaviour
     private string ngrok = "https://8060fd8f3542.ngrok.io";
 
     void Start()
-    {
-      
-        // A correct website page.
+    {  
         //StartCoroutine(GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
         //StartCoroutine(GetRequest("https://example-php-files.s3.us-east-2.amazonaws.com/GetID.php"));
         //StartCoroutine(GetUsers());
@@ -25,7 +23,6 @@ public class Web : MonoBehaviour
         //StartCoroutine(RegisterUser("testuser3", "tufts"));
         //StartCoroutine(RegisterUserID("testuser4"));
         //StartCoroutine(RegisterUserLevel(4));
-
     }
 
     IEnumerator GetRequest(string uri)

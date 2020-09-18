@@ -20,8 +20,11 @@ public class RandomCase : MonoBehaviour
 
     public static void SecondRound()
     {
-        print("SecondRound");
-    }
+        if(SceneManager.GetActiveScene().name == "all_visuals_complex_scene")
+        {
+            SceneManager.LoadScene("all_visuals_simple_scene");
+        }
+    } 
 
     IEnumerator Wait(int num)
     {

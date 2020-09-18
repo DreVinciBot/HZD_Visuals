@@ -12,10 +12,10 @@ public class Web : MonoBehaviour
     public bool state = false;
     public static string username_input;
 
-    private string ngrok = "https://cca6334f8853.ngrok.io";
+    private string ngrok = "https://abc9eef8de1e.ngrok.io";
 
     void Start()
-    {  
+    {
         //StartCoroutine(GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
         //StartCoroutine(GetRequest("https://example-php-files.s3.us-east-2.amazonaws.com/GetID.php"));
         //StartCoroutine(GetUsers());
@@ -23,6 +23,7 @@ public class Web : MonoBehaviour
         //StartCoroutine(RegisterUser("testuser3", "tufts"));
         //StartCoroutine(RegisterUserID("testuser4"));
         //StartCoroutine(RegisterUserLevel(4));
+        //StartCoroutine(RegisterUserTime1("4"));
     }
 
     IEnumerator GetRequest(string uri)
@@ -191,6 +192,35 @@ public class Web : MonoBehaviour
 
         // uri for localhost
         //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                //Debug.Log(www.error);
+            }
+            else
+            {
+                //Debug.Log(www.downloadHandler.text);            
+            }
+        }
+    }
+
+    public IEnumerator RegisterUserTime1(string time1)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("loginUser", username_input);
+        form.AddField("loginTime1", time1);
+
+        print("u/n : " + username_input + " recieved: " + time1);
+
+        //trying url with ip address with portforwarding
+        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime1.php";
+
+        // uri for localhost
+        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
 
         using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
         {

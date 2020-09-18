@@ -14,6 +14,7 @@ public class ComfirmGems : MonoBehaviour
     public GameObject Completed_text;
     public GameObject Continue_Panel;
     public GameObject Random_scene;
+    public GameObject Countdown;
     public static int robot_counter = 0;
 
     public static bool demo_complete = false;
@@ -50,7 +51,7 @@ public class ComfirmGems : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && demo_complete && firstround && helloPanel.endofFirstRound && secondround)
         {
-            RandomCase.SecondRound();
+            StartCoroutine(Delay_secondround());     
         }
 
         if (gemHolder.transform.childCount == 0 && roundinsession)
@@ -62,6 +63,14 @@ public class ComfirmGems : MonoBehaviour
             Delivered_text.SetActive(false);
             Completed_text.SetActive(true);
             Continue_Panel.SetActive(true);
+
+            if(helloPanel.startofFirstRound)
+            {
+                Countdown.GetComponent<Timer>().RecordTime1();
+            }
+
+
+            Timer.timerCheck = false;
 
             roundinsession = false;
 
@@ -101,4 +110,11 @@ public class ComfirmGems : MonoBehaviour
         yield return new WaitForSeconds(1);
         Delivered_Obj.SetActive(false);
     }
+
+    IEnumerator Delay_secondround()
+    {
+        yield return new WaitForSeconds(2);
+        RandomCase.SecondRound();
+    }
+
 }

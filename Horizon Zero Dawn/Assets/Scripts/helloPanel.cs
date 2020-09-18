@@ -28,6 +28,8 @@ public class helloPanel : MonoBehaviour
             ComfirmGems.roundinsession = true;
             firstloop = false;
             startofFirstRound = true;
+            Timer.timerCheck = true;
+
             print("loop  1 ");
         }
 
@@ -40,6 +42,10 @@ public class helloPanel : MonoBehaviour
             ComfirmGems.roundinsession = true;
             secondloop = false;
             endofFirstRound = true;
+
+            Timer.timerCheck = true;
+
+
             print("loop  2 ");
         }
 

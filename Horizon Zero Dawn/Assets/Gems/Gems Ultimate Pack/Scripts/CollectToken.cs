@@ -25,7 +25,7 @@ public class CollectToken : MonoBehaviour
     void Start()
     {
         robotAlert.SetActive(false);
-        //currentScore = scoreSystem.GetComponent<ScoringSystem>().theScore;
+        currentScore = 0;
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class CollectToken : MonoBehaviour
 
     public void spawnGem()
     {
-        GameObject a = Instantiate(gemPrefab)as GameObject;
+        GameObject a = Instantiate(gemPrefab) as GameObject;
         randXPosition = Random.Range(8, 21);
         randZPosition = Random.Range(8,21);
         spawnPoint = new Vector3(randXPosition, 1.2f, randZPosition);
@@ -49,6 +49,7 @@ public class CollectToken : MonoBehaviour
         {
             t = 0;
             fillImage.fillAmount = 0;
+
         }
     }
 
@@ -72,7 +73,6 @@ public class CollectToken : MonoBehaviour
                     robotAlert.SetActive(true);
                     Collected_text.SetActive(false);
                     Remaining_text.SetActive(false);
-                    currentScore = 0;
                 }
             }
         }
@@ -100,6 +100,4 @@ public class CollectToken : MonoBehaviour
             yield return null;
         }
     }
-
-    
 }

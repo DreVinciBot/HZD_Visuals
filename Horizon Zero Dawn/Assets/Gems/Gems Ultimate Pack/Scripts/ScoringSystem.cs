@@ -8,6 +8,7 @@ public class ScoringSystem : MonoBehaviour
 {
 
     public TMP_Text remaining_text;
+    public TMP_Text delivered_text;
     public TMP_Text collected_text;
     public GameObject gemHolder;
 
@@ -15,6 +16,7 @@ public class ScoringSystem : MonoBehaviour
 
     void Update()
     {   
-        remaining_text.text = "Gems Left: " + gemHolder.transform.childCount;
+        remaining_text.text = "Remaining: " + gemHolder.transform.childCount;
+        delivered_text.text = "Delivered: " + ComfirmGems.robot_counter;
     }
 }

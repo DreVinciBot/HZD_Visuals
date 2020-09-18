@@ -9,48 +9,34 @@ namespace PathCreation.Examples
     {
         public GameObject robot;
         public GameObject visualizations;
-        bool start_round = true;
-
-
-        //public GameObject DirectionChoices;
-
-
-        void Start()
-        {     
-            if (SceneManager.GetActiveScene().name == "demo_scene")
-            {
-                robot.GetComponent<PathFollower>().startFollow();
-
-            }
-
-            //.GetComponent<PathPlacer>().showVisuals();
-
-        }
+        bool demo_check = true;
+        bool firstround_check = true;
 
         void Update()
         {
-
             if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                //SceneManager.LoadScene("menu_scene");
+            {        
                 Cursor.lockState = CursorLockMode.None;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && start_round)
+            // start the firstround 
+            if (ComfirmGems.demo_complete && firstround_check && helloPanel.startofFirstRound)
             {
-                start_round = false;
-                robot.GetComponent<PathFollower>().startFollow();
+                //robot.GetComponent<PathFollower>().startFollow();
                 visualizations.GetComponent<PathPlacer>().showVisuals();
+                firstround_check = false;                
             }
 
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                //visualizations.GetComponent<PathPlacer>().showVisuals();
+            // Start Demo round after clicking the final next button
+            if (PlayerMovement.playerCheck && SceneManager.GetActiveScene().name != "menu_scene" && demo_check)
+            {               
+                robot.GetComponent<PathFollower>().startFollow();
+                demo_check = false;
             }
+
 
             if (Input.GetKeyDown(KeyCode.C))
             {
-                //robot.GetComponent<PathFollower>().startFollow();
                 //DirectionChoices.GetComponent<SelectionManager>().showArrows();
                // Cursor.lockState = CursorLockMode.None;
             }

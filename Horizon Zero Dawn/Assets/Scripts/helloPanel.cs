@@ -10,17 +10,43 @@ public class helloPanel : MonoBehaviour
     public GameObject thisPanel;
     public Text button_message;
     bool state = true;
-    bool start_round = true;
 
+    public static bool startofFirstRound = false;
+    public static bool endofFirstRound = false;
+
+    bool firstloop = true;
+    bool secondloop = true;
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && start_round)
+        //Start of Round 1
+        if(Input.GetKeyDown(KeyCode.Space) && firstloop && ComfirmGems.demo_complete)
         {
-            start_round = false;
             thisPanel.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            PlayerMovement.playerCheck = true;
+            ComfirmGems.roundinsession = true;
+            firstloop = false;
+            startofFirstRound = true;
+            Timer.timerCheck = true;
 
+            print("loop  1 ");
+        }
+
+        //Start of Round 2
+        if (Input.GetKeyDown(KeyCode.Space) && secondloop && ComfirmGems.demo_complete)
+        {
+            thisPanel.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            PlayerMovement.playerCheck = true;
+            ComfirmGems.roundinsession = true;
+            secondloop = false;
+            endofFirstRound = true;
+
+            Timer.timerCheck = true;
+
+
+            print("loop  2 ");
         }
 
     }

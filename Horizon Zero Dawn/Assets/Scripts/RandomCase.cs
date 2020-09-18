@@ -7,18 +7,28 @@ using TMPro;
 public class RandomCase : MonoBehaviour
 {
 
+    public int num;
+
     public void RandomCase_Selected()
     {        
-        int num = Random.Range(0, 5);
-        print("chose: " + num);
+        num = Random.Range(0, 5);
+        print("FirstRound");
         StartCoroutine(Wait(num));
-      
         StartCoroutine(Main.Instance.Web.RegisterUserLevel(num));
     }
 
+
+    public static void SecondRound()
+    {
+        if(SceneManager.GetActiveScene().name == "all_visuals_complex_scene")
+        {
+            SceneManager.LoadScene("all_visuals_simple_scene");
+        }
+    } 
+
     IEnumerator Wait(int num)
     {
-       yield return new WaitForSeconds(3);
+       yield return new WaitForSeconds(2);
 
        switch (num)
        {
@@ -27,14 +37,14 @@ public class RandomCase : MonoBehaviour
 
                if (A == 0)
                {
+                    print("NS"); 
                    SceneManager.LoadScene("all_visuals_complex_scene");
-
                    //SceneManager.LoadScene("no_visuals_simple_scene");
                }
                else
                {
-                   SceneManager.LoadScene("all_visuals_complex_scene");
-
+                    print("NC");
+                    SceneManager.LoadScene("all_visuals_complex_scene");
                    //SceneManager.LoadScene("no_visuals_complex_scene");
                }
                break;
@@ -43,14 +53,14 @@ public class RandomCase : MonoBehaviour
 
                if (B == 0)
                {
-                   SceneManager.LoadScene("all_visuals_complex_scene");
-
+                    print("AC");
+                    SceneManager.LoadScene("all_visuals_complex_scene");
                    //SceneManager.LoadScene("all_visuals_complex_scene");
                }
                else
                {
-                   SceneManager.LoadScene("all_visuals_complex_scene");
-
+                    print("AS");
+                    SceneManager.LoadScene("all_visuals_complex_scene");
                    //SceneManager.LoadScene("all_visuals_simple_scene");
                }
                break;
@@ -59,14 +69,14 @@ public class RandomCase : MonoBehaviour
 
                if (C == 0)
                {
-                   SceneManager.LoadScene("all_visuals_complex_scene");
-
+                    print("FC");
+                    SceneManager.LoadScene("all_visuals_complex_scene");
                    //SceneManager.LoadScene("no_visuals_simple_scene");
                }
                else
                {
-                   SceneManager.LoadScene("all_visuals_complex_scene");
-
+                    print("FS");
+                    SceneManager.LoadScene("all_visuals_complex_scene");
                    //SceneManager.LoadScene("no_visuals_complex_scene");
                }
                break;
@@ -75,24 +85,35 @@ public class RandomCase : MonoBehaviour
 
                if (D == 0)
                {
-                   SceneManager.LoadScene("all_visuals_complex_scene");
-
+                    print("YC");
+                    SceneManager.LoadScene("all_visuals_complex_scene");
                    //SceneManager.LoadScene("all_visuals_complex_scene");
                }
                else
                {
-                   SceneManager.LoadScene("all_visuals_complex_scene");
-
+                    print("YS");
+                    SceneManager.LoadScene("all_visuals_complex_scene");
                    // SceneManager.LoadScene("all_visuals_simple_scene");
                }
                break;
            case 0:
-               SceneManager.LoadScene("all_visuals_complex_scene");
+                int E = Random.Range(0, 2);
 
-               break;
+                if (E == 0)
+                {
+                    print("LC");
+                    SceneManager.LoadScene("all_visuals_complex_scene");
+                    //SceneManager.LoadScene("all_visuals_complex_scene");
+                }
+                else
+                {
+                    print("LS");
+                    SceneManager.LoadScene("all_visuals_complex_scene");
+                    // SceneManager.LoadScene("all_visuals_simple_scene");
+                }
+                break;       
            default:
-               SceneManager.LoadScene("all_visuals_complex_scene");
-
+                print("Fail to select Level"); 
                break;
        }    
    

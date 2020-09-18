@@ -26,7 +26,7 @@ public class Login_script : MonoBehaviour
 
             if (PasswordInput.text == "robot" && UsernameInput.text != null)
             {
-                response.text = "Please Wait...";
+                //response.text = "Please Wait...";
                 StartCoroutine(Main.Instance.Web.RegisterUserID(UsernameInput.text));
 
                 next_btn.SetActive(true);

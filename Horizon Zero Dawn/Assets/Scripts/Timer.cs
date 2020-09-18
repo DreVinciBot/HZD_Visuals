@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     public static bool timerCheck = false;
     public static float timeRemaining = 120; //seconds
     private static float ElaspedTime = 0;
-    public static string Time1;
+    public static string TimeRecord;
     public TMP_Text time_text;
     bool finaltime = true;
 
@@ -46,8 +46,7 @@ public class Timer : MonoBehaviour
                 //rint("Time Left: " + DisplayTime(timeRemaining));
                 //print("Elapsed Time: " + DisplayTime(ElaspedTime));
 
-                //Call aws server to record time
-                Time1 = DisplayTime(ElaspedTime);
+                TimeRecord = DisplayTime(ElaspedTime);
                 finaltime = false;
             }
         }
@@ -55,10 +54,18 @@ public class Timer : MonoBehaviour
 
     public void RecordTime1()
     {
-        print("Elapsed Time: " + DisplayTime(ElaspedTime));
-        Time1 = DisplayTime(ElaspedTime);
+        print("Elapsed Time1: " + DisplayTime(ElaspedTime));
+        TimeRecord = DisplayTime(ElaspedTime);
         StartCoroutine(Wait());
-        StartCoroutine(Main.Instance.Web.RegisterUserTime1(Time1));
+        StartCoroutine(Main.Instance.Web.RegisterUserTime1(TimeRecord));
+    }
+
+    public void RecordTime2()
+    {
+        print("Elapsed Time2: " + DisplayTime(ElaspedTime));
+        TimeRecord = DisplayTime(ElaspedTime);
+        StartCoroutine(Wait());
+        StartCoroutine(Main.Instance.Web.RegisterUserTime2(TimeRecord));
     }
 
     public string DisplayTime(float timeToDisplay)

@@ -12,7 +12,7 @@ public class Web : MonoBehaviour
     public bool state = false;
     public static string username_input;
 
-    private string ngrok = "https://abc9eef8de1e.ngrok.io";
+    private string ngrok = "https://7f816c23bc58.ngrok.io";
 
     void Start()
     {
@@ -218,6 +218,35 @@ public class Web : MonoBehaviour
 
         //trying url with ip address with portforwarding
         string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime1.php";
+
+        // uri for localhost
+        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                //Debug.Log(www.error);
+            }
+            else
+            {
+                //Debug.Log(www.downloadHandler.text);            
+            }
+        }
+    }
+
+    public IEnumerator RegisterUserTime2(string time2)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("loginUser", username_input);
+        form.AddField("loginTime2", time2);
+
+        print("u/n : " + username_input + " recieved: " + time2);
+
+        //trying url with ip address with portforwarding
+        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime2.php";
 
         // uri for localhost
         //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";

@@ -13,16 +13,24 @@ public class ComfirmGems : MonoBehaviour
     public GameObject gemHolder;
     public GameObject Completed_text;
     public GameObject Continue_Panel;
+    public GameObject Finished_Panel;
     public GameObject Random_scene;
     public GameObject Countdown;
     public static int robot_counter = 0;
 
     public static bool demo_complete = false;
-    public static bool start_round = false;
+    public static bool round1 = false;
+    public static bool round2 = false;
     public static bool roundinsession = true;
 
     static bool firstround = false;
     static bool secondround = false;
+    static bool finalround = false;
+    static bool finalmessage = false;
+
+    static bool timerecord1 = true;
+    static bool timerecord2 = true;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +38,7 @@ public class ComfirmGems : MonoBehaviour
         Completed_text.SetActive(false);
         Continue_Panel.SetActive(false);
         Delivered_Obj.SetActive(false);
+        Finished_Panel.SetActive(false);
         robot_counter = 0;
 
         PlayerMovement.playerCheck = false;
@@ -44,14 +53,25 @@ public class ComfirmGems : MonoBehaviour
             Random_scene.GetComponent<RandomCase>().RandomCase_Selected();
             PlayerMovement.playerCheck = false;
             firstround = true;
-            start_round = true;
-
-            print("gems 2");
+            round1 = true;
+            print("1");
         }
 
+        //Start the second round
         if (Input.GetKeyDown(KeyCode.Space) && demo_complete && firstround && helloPanel.endofFirstRound && secondround)
         {
-            StartCoroutine(Delay_secondround());     
+            print("5");
+            StartCoroutine(Delay_secondround());
+            round2 = true;
+            secondround = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && helloPanel.endofSecondRound && !finalmessage && finalround)
+        {
+            finalmessage = true;
+            Debug.Log("Quit Game!");
+            Application.Quit();
+
         }
 
         if (gemHolder.transform.childCount == 0 && roundinsession)
@@ -62,27 +82,49 @@ public class ComfirmGems : MonoBehaviour
             Remaining_text.SetActive(false);
             Delivered_text.SetActive(false);
             Completed_text.SetActive(true);
-            Continue_Panel.SetActive(true);
 
-            if(helloPanel.startofFirstRound)
+            if(!helloPanel.endofSecondRound)
             {
-                Countdown.GetComponent<Timer>().RecordTime1();
+                Continue_Panel.SetActive(true);
             }
-
-
+            else
+            {
+                Finished_Panel.SetActive(true);
+            }
+            
             Timer.timerCheck = false;
-
             roundinsession = false;
 
+            if (helloPanel.startofFirstRound && timerecord1)
+            {
+                Countdown.GetComponent<Timer>().RecordTime1();
+                timerecord1 = false;
+                print("4");
+            }
+
+            if (helloPanel.startofSecondRound && timerecord2)
+            {
+                print("6");
+                timerecord2 = false;
+                Countdown.GetComponent<Timer>().RecordTime2();
+            }      
+
+            
+            if(secondround)
+            {
+                finalround = true;
+            }
+
+            
             if(firstround)
             {
                 secondround = true;
             }
+            
+            
 
             demo_complete = true;
-
             print("gems collected");
-
         }
     }
 

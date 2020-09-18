@@ -7,11 +7,18 @@ using System;
 public class Timer : MonoBehaviour
 {
     public static bool timerCheck = false;
-    private static float timeRemaining = 30; //seconds
+    public static float timeRemaining = 120; //seconds
     private static float ElaspedTime = 0;
     public static string Time1;
     public TMP_Text time_text;
     bool finaltime = true;
+
+
+    void Start()
+    {
+        ElaspedTime = 0;
+        timeRemaining = 120;
+    }
 
     void Update()
     {

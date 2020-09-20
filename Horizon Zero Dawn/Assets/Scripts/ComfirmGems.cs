@@ -16,6 +16,7 @@ public class ComfirmGems : MonoBehaviour
     public GameObject Finished_Panel;
     public GameObject Random_scene;
     public GameObject Countdown;
+    public GameObject TimesUp_text;
     public static int robot_counter = 0;
 
     public static bool demo_complete = false;
@@ -36,6 +37,7 @@ public class ComfirmGems : MonoBehaviour
     void Start()
     {
         Completed_text.SetActive(false);
+        TimesUp_text.SetActive(false);
         Continue_Panel.SetActive(false);
         Delivered_Obj.SetActive(false);
         Finished_Panel.SetActive(false);
@@ -73,6 +75,62 @@ public class ComfirmGems : MonoBehaviour
             Application.Quit();
 
         }
+
+        if(Timer.timesup && roundinsession)
+        {
+            
+            Timer.timesup = false;
+            PlayerMovement.playerCheck = false;
+            robotAlert.SetActive(false);
+            Collected_text.SetActive(false);
+            Remaining_text.SetActive(false);
+            Delivered_text.SetActive(false);
+            TimesUp_text.SetActive(true);
+
+            if (!helloPanel.endofSecondRound)
+            {
+                Continue_Panel.SetActive(true);
+            }
+            else
+            {
+                Finished_Panel.SetActive(true);
+            }
+
+            Timer.timerCheck = false;
+            roundinsession = false;
+
+            if (helloPanel.startofFirstRound && timerecord1)
+            {
+                Countdown.GetComponent<Timer>().RecordTime1();
+                timerecord1 = false;
+                print("4");
+            }
+
+            if (helloPanel.startofSecondRound && timerecord2)
+            {
+                print("6");
+                timerecord2 = false;
+                Countdown.GetComponent<Timer>().RecordTime2();
+            }
+
+
+            if (secondround)
+            {
+                finalround = true;
+            }
+
+
+            if (firstround)
+            {
+                secondround = true;
+            }
+
+
+
+            demo_complete = true;
+            print("gems collected");
+        }
+
 
         if (gemHolder.transform.childCount == 0 && roundinsession)
         {

@@ -86,7 +86,8 @@ namespace PathCreation.Examples
                     }
 
                     //how to select waypoints randomly/shuffle order in array
-                    for (int t = 0; t < path_waypoints.Length; t++)
+                    // Started at t = 1 to ensure the robot starts at the same location every run.
+                    for (int t = 1; t < path_waypoints.Length; t++)
                     {
                         Transform tmp = path_waypoints[t];
                         int r = Random.Range(t, path_waypoints.Length);

@@ -260,9 +260,11 @@ namespace PathCreation.Examples
                 int count = 0;
                 initial_distance = new float[(int)(vertex_path.length / spacing)+1];
 
+
+                Vector3 offset = new Vector3(0,0.65f,0);
                 while (dst < vertex_path.length)
                 {
-                    Vector3 point = vertex_path.GetPointAtDistance (dst);
+                    Vector3 point = vertex_path.GetPointAtDistance (dst) + offset;
                     Quaternion rot = vertex_path.GetRotationAtDistance (dst);
                     //Instantiate (prefab, point, rot, holder.transform);
                     GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);

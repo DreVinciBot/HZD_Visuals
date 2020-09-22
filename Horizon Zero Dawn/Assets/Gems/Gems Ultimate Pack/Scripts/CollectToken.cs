@@ -18,6 +18,7 @@ public class CollectToken : MonoBehaviour
     public int randZPosition;
     private string humanAgent = "HumanAgent";
     public static int currentScore = 0;
+    public static int total_collected = 0;
     public TMP_Text collected_text;
     public GameObject Collected_text;
     public GameObject Remaining_text;
@@ -26,6 +27,7 @@ public class CollectToken : MonoBehaviour
     {
         robotAlert.SetActive(false);
         currentScore = 0;
+        total_collected = 0;
     }
 
     void Update()
@@ -67,6 +69,8 @@ public class CollectToken : MonoBehaviour
                 fillImage.fillAmount = 0;
           
                 currentScore += 1;
+                total_collected += 1;
+                print("collected now: " + total_collected);
               
                 if(currentScore >= 3)
                 {
@@ -100,4 +104,5 @@ public class CollectToken : MonoBehaviour
             yield return null;
         }
     }
+
 }

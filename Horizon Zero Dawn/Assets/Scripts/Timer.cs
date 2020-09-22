@@ -99,6 +99,18 @@ public class Timer : MonoBehaviour
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    public void RecordCollected1()
+    {
+        StartCoroutine(Wait());
+        StartCoroutine(Main.Instance.Web.RegisterUserCollected1(CollectToken.total_collected));
+    }
+
+    public void RecordCollected2()
+    {
+        StartCoroutine(Wait());
+        StartCoroutine(Main.Instance.Web.RegisterUserCollected2(CollectToken.total_collected));
+    }
+
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(2);

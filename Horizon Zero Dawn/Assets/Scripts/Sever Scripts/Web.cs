@@ -12,7 +12,7 @@ public class Web : MonoBehaviour
     public bool state = false;
     public static string username_input;
 
-    private string ngrok = "https://6547fc3cd983.ngrok.io";
+    private string ngrok = "https://42d5f49714f0.ngrok.io";
 
     void Start()
     {
@@ -24,6 +24,8 @@ public class Web : MonoBehaviour
         //StartCoroutine(RegisterUserID("testuser4"));
         //StartCoroutine(RegisterUserLevel(4));
         //StartCoroutine(RegisterUserTime1("4"));
+        //StartCoroutine(RegisterUserCollected1(5));
+        //StartCoroutine(RegisterUserCollected2(5));
     }
 
     IEnumerator GetRequest(string uri)
@@ -247,6 +249,64 @@ public class Web : MonoBehaviour
 
         //trying url with ip address with portforwarding
         string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime2.php";
+
+        // uri for localhost
+        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                //Debug.Log(www.error);
+            }
+            else
+            {
+                //Debug.Log(www.downloadHandler.text);            
+            }
+        }
+    }
+
+    public IEnumerator RegisterUserCollected1(int items1)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("loginUser", username_input);
+        form.AddField("loginCollected1", items1);
+
+        print("u/n : " + username_input + " recieved: " + items1);
+
+        //trying url with ip address with portforwarding
+        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserCollected1.php";
+
+        // uri for localhost
+        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                //Debug.Log(www.error);
+            }
+            else
+            {
+                //Debug.Log(www.downloadHandler.text);            
+            }
+        }
+    }
+
+    public IEnumerator RegisterUserCollected2(int items2)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("loginUser", username_input);
+        form.AddField("loginCollected2", items2);
+
+        print("u/n : " + username_input + " recieved: " + items2);
+
+        //trying url with ip address with portforwarding
+        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserCollected2.php";
 
         // uri for localhost
         //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";

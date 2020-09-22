@@ -102,6 +102,8 @@ public class ComfirmGems : MonoBehaviour
             if (helloPanel.startofFirstRound && timerecord1)
             {
                 Countdown.GetComponent<Timer>().RecordTime1();
+                Countdown.GetComponent<Timer>().RecordCollected1();
+
                 timerecord1 = false;
                 print("4");
             }
@@ -111,6 +113,8 @@ public class ComfirmGems : MonoBehaviour
                 print("6");
                 timerecord2 = false;
                 Countdown.GetComponent<Timer>().RecordTime2();
+                Countdown.GetComponent<Timer>().RecordCollected2();
+
             }
 
 
@@ -156,6 +160,7 @@ public class ComfirmGems : MonoBehaviour
             if (helloPanel.startofFirstRound && timerecord1)
             {
                 Countdown.GetComponent<Timer>().RecordTime1();
+                Countdown.GetComponent<Timer>().RecordCollected1();
                 timerecord1 = false;
                 print("4");
             }
@@ -165,6 +170,7 @@ public class ComfirmGems : MonoBehaviour
                 print("6");
                 timerecord2 = false;
                 Countdown.GetComponent<Timer>().RecordTime2();
+                Countdown.GetComponent<Timer>().RecordCollected2();
             }      
 
             
@@ -216,5 +222,6 @@ public class ComfirmGems : MonoBehaviour
         yield return new WaitForSeconds(2);
         RandomCase.SecondRound();
     }
+
 
 }

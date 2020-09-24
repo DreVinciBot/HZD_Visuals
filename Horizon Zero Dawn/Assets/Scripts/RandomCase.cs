@@ -24,6 +24,11 @@ public class RandomCase : MonoBehaviour
         {
             SceneManager.LoadScene("all_visuals_simple_scene");
         }
+
+        if (SceneManager.GetActiveScene().name == "all_visuals_simple_scene")
+        {
+            SceneManager.LoadScene("all_visuals_complex_scene");
+        }
     } 
 
     IEnumerator Wait(int num)
@@ -60,8 +65,8 @@ public class RandomCase : MonoBehaviour
                else
                {
                     print("AS");
-                    SceneManager.LoadScene("all_visuals_complex_scene");
-                   //SceneManager.LoadScene("all_visuals_simple_scene");
+                    //SceneManager.LoadScene("all_visuals_complex_scene");
+                    SceneManager.LoadScene("all_visuals_simple_scene");
                }
                break;
            case 2:

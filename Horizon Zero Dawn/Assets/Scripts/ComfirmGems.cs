@@ -22,11 +22,14 @@ public class ComfirmGems : MonoBehaviour
     public static bool demo_complete = false;
     public static bool round1 = false;
     public static bool round2 = false;
+    public static bool round3 = false;
     public static bool roundinsession = true;
 
     static bool firstround = false;
     static bool secondround = false;
+    static bool exitround = false;
     static bool finalround = false;
+    static bool lastmessage = false;
     static bool finalmessage = false;
 
     static bool timerecord1 = true;
@@ -60,14 +63,17 @@ public class ComfirmGems : MonoBehaviour
         }
 
         //Start the second round
-        if (Input.GetKeyDown(KeyCode.Space) && demo_complete && firstround && helloPanel.endofFirstRound && secondround)
+        if (Input.GetKeyDown(KeyCode.Space) && demo_complete && helloPanel.endofFirstRound && secondround && !exitround)
         {
             print("5");
             StartCoroutine(Delay_secondround());
-            round2 = true;
-            secondround = true;
+            round2 = true;         
+            secondround = false;
+            exitround = true;
+
         }
 
+        //Final message
         if (Input.GetKeyDown(KeyCode.Space) && helloPanel.endofSecondRound && !finalmessage && finalround)
         {
             finalmessage = true;
@@ -87,11 +93,12 @@ public class ComfirmGems : MonoBehaviour
             Delivered_text.SetActive(false);
             TimesUp_text.SetActive(true);
 
-            if (!helloPanel.endofSecondRound)
+            if (helloPanel.endofFirstRound && !lastmessage)
             {
+                lastmessage = true;
                 Continue_Panel.SetActive(true);
             }
-            else
+            else if (helloPanel.startofSecondRound)
             {
                 Finished_Panel.SetActive(true);
             }
@@ -102,36 +109,35 @@ public class ComfirmGems : MonoBehaviour
             if (helloPanel.startofFirstRound && timerecord1)
             {
                 Countdown.GetComponent<Timer>().RecordTime1();
-                Countdown.GetComponent<Timer>().RecordCollected1();
-
+                Countdown.GetComponent<Timer>().RecordCollected1();        
                 timerecord1 = false;
                 print("4");
+                secondround = true;
+
             }
 
             if (helloPanel.startofSecondRound && timerecord2)
             {
-                print("6");
+                print("7");
                 timerecord2 = false;
                 Countdown.GetComponent<Timer>().RecordTime2();
                 Countdown.GetComponent<Timer>().RecordCollected2();
-
-            }
-
-
-            if (secondround)
-            {
                 finalround = true;
+                round3 = true;
             }
 
 
-            if (firstround)
+            if (helloPanel.endofFirstRound)
             {
                 secondround = true;
             }
 
 
+            if (firstround)
+            {
+                //secondround = true;
+            }
 
-            demo_complete = true;
             print("gems collected");
         }
 
@@ -145,15 +151,22 @@ public class ComfirmGems : MonoBehaviour
             Delivered_text.SetActive(false);
             Completed_text.SetActive(true);
 
-            if(!helloPanel.endofSecondRound)
+            if(!demo_complete)
             {
                 Continue_Panel.SetActive(true);
             }
-            else
+
+            else if (helloPanel.startofFirstRound && !lastmessage)
+            {
+                lastmessage = true;
+                Continue_Panel.SetActive(true);
+            }
+
+            if (helloPanel.startofSecondRound)
             {
                 Finished_Panel.SetActive(true);
             }
-            
+
             Timer.timerCheck = false;
             roundinsession = false;
 
@@ -163,29 +176,26 @@ public class ComfirmGems : MonoBehaviour
                 Countdown.GetComponent<Timer>().RecordCollected1();
                 timerecord1 = false;
                 print("4");
+                secondround = true;
             }
 
             if (helloPanel.startofSecondRound && timerecord2)
             {
-                print("6");
+                print("7");
                 timerecord2 = false;
                 Countdown.GetComponent<Timer>().RecordTime2();
                 Countdown.GetComponent<Timer>().RecordCollected2();
-            }      
-
-            
-            if(secondround)
-            {
                 finalround = true;
+                round3 = true;
             }
 
-            
-            if(firstround)
+
+            if (helloPanel.endofFirstRound)
             {
                 secondround = true;
             }
-            
-            
+
+    
 
             demo_complete = true;
             print("gems collected");

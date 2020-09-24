@@ -70,7 +70,7 @@ public class CollectToken : MonoBehaviour
           
                 currentScore += 1;
                 total_collected += 1;
-                print("collected now: " + total_collected);
+           
               
                 if(currentScore >= 3)
                 {

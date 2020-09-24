@@ -31,7 +31,9 @@ namespace PathCreation.Examples
         public int row = 3;
         public int col = 5; 
         public bool complexPath = true;
+        public bool simplePath = false;
         float gem_height = 6f;
+        private static int waypoint_counter = -1;
 
    
         void Awake ()
@@ -46,15 +48,18 @@ namespace PathCreation.Examples
                     {
                         point = new Vector3(j * width, 0f, i * width);
                         gemPoint = point +  new Vector3(0f, gem_height, 0f);
+                        waypoint_counter += 1;
                     }
                     else
                     {
                         point = new Vector3((j * width) + (width / 2), 0f, i * width);
                         gemPoint = point + new Vector3(0f, gem_height, 0f);
-
+                        waypoint_counter += 1;
                     }
 
                     GameObject wayPointClone = Instantiate(waypoint, point, rot, Path_Grid.transform);
+                    wayPointClone.name = i + "," + j;
+                    wayPointClone.GetComponent<Renderer>().enabled = visuals_check;
                     GameObject gemClones = Instantiate(gem, gemPoint, Quaternion.Euler(-90, 0, 0), gemHolder.transform);
                     gemClones.GetComponent<CollectToken>().fillImage = gem.GetComponent<CollectToken>().fillImage;
                     gemClones.GetComponent<CollectToken>().robotAlert = gem.GetComponent<CollectToken>().robotAlert;
@@ -96,19 +101,33 @@ namespace PathCreation.Examples
                     }
                 }
 
-                else
+                //simple path
+                else if(simplePath)
                 {
+                    path_waypoints = new Transform[4];
+                    path_waypoints[0] = Path_Grid.transform.GetChild(0);
+                    path_waypoints[1] = Path_Grid.transform.GetChild(4);
+                    path_waypoints[2] = Path_Grid.transform.GetChild(20);
+                    path_waypoints[3] = Path_Grid.transform.GetChild(24);
+
+                    for (int t = 1; t < path_waypoints.Length; t++)
+                    {
+                        Transform tmp = path_waypoints[t];
+                        int r = Random.Range(t, path_waypoints.Length);
+                        path_waypoints[t] = path_waypoints[r];
+                        path_waypoints[r] = tmp;
+                    }
+                }
+                else
+                {                             
                     path_waypoints = new Transform[Path_Grid.transform.childCount];
 
                     for (int i = 0; i < Path_Grid.transform.childCount; i++)
                     {
                         Transform transform_object = Path_Grid.transform.GetChild(i);
-
                         path_waypoints[i] = transform_object;
-                    }
+                    }                    
                 }
-
-
 
                 // Create a new bezier path from the waypoints.
                 //BezierPath bezierPath = new BezierPath(waypoints, closedLoop, PathSpace.xyz);

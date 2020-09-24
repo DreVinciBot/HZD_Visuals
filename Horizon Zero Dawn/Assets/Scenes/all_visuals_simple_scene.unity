@@ -2050,6 +2050,7 @@ MonoBehaviour:
   row: 3
   col: 5
   complexPath: 0
+  simplePath: 1
 --- !u!1 &840988862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8226049100601006873, guid: abe88adc7a2818042a9cc86c4d47270f,

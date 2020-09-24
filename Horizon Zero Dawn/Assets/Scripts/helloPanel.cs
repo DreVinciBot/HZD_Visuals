@@ -62,14 +62,14 @@ public class helloPanel : MonoBehaviour
 
             startofSecondRound = true;
 
-            endofSecondRound = true;
+            //endofSecondRound = true;
             Timer.timerCheck = true;
-            print("7");
+            print("6");
         }
 
 
         //End of Round 2
-        if (Input.GetKeyDown(KeyCode.Space) && finalloop && endofSecondRound)
+        if (Input.GetKeyDown(KeyCode.Space) && finalloop && startofSecondRound && ComfirmGems.round3)
         {
             thisPanel.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;

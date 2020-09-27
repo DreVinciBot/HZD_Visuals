@@ -1164,18 +1164,19 @@ MonoBehaviour:
   currentPosition: {x: 0, y: 0, z: 0}
   visual_render_threshold: 1
   spacing: 3
+  revolve_speed: 0
   pulse_speed: 0.1
   pulse_rise: 0
   revealZone: -26
+  fixed_time_zone: 16
   minimuum_revael_length: 8
   maximum_revael_length: 25
   SI_max_threshold: 1.5
   SI_mim_threshold: 1
   current_tortuosity: 0
-  revolve: 0
   wave: 0
-  visuals_check: 0
-  initial_visuals: 1
+  initial_visuals: 0
+  fixed_time: 1
 --- !u!4 &527909994
 Transform:
   m_ObjectHideFlags: 0
@@ -2049,7 +2050,8 @@ MonoBehaviour:
     type: 3}
   row: 3
   col: 5
-  complexPath: 1
+  complexPath: 0
+  simplePath: 1
 --- !u!1 &840988862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8226049100601006873, guid: abe88adc7a2818042a9cc86c4d47270f,

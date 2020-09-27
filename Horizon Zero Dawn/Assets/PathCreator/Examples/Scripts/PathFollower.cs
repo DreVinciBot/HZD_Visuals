@@ -10,12 +10,12 @@ namespace PathCreation.Examples
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
         public float[,] pathInfo;
-        public float speed = 5;
+        public float speed;
         public float current_tortuosity;
         public Vector3 startPosition;
         public Vector3 currentPosition;
         float timeRunning = 0.0f;
-        float distanceTravelled;
+        public static float distanceTravelled;
         float initial_distaince;
         float total_dist;
         private float length;

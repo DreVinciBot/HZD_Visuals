@@ -20,27 +20,31 @@ namespace PathCreation.Examples
         private float extended_distance;
         public float visual_render_threshold = 0.8f;
         public float spacing = 3;
-        private float revolve_speed = 0.13f;
+        public float revolve_speed;
         public float pulse_speed = 0.1f;
         public float pulse_rise = 0.1f;
         private float pulse_delay = 2f;
         public float revealZone = 15f;
+        public float fixed_time_zone;
         public float minimuum_revael_length = 8.0f;
         public float maximum_revael_length = 15f;
         public float SI_max_threshold = 1.5f;
         public float SI_mim_threshold = 1.0f;
         public float current_tortuosity;
-        public bool revolve;
+        public static bool revolve;
         public bool wave = false;
-        public bool visuals_check = false;
         float[] initial_distance;
         float distanceTravelled;
         float total_distance;
         const float minSpacing = 0.1f;
         public bool initial_visuals;
+        public bool fixed_time = true;
+        public static bool initial_call = false;
+        bool update_check;
 
         void Start()
         {
+            update_check = true;
             vertex_path = Path.GetComponent<GeneratePathExample>().vertexPath;
             pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
             Generate();
@@ -63,11 +67,10 @@ namespace PathCreation.Examples
         {
             if (initial_visuals)
             {
-                visuals_check = !visuals_check;
                 int numChildren = holder.transform.childCount;
                 for (int i = numChildren - 1; i >= 0; i--)
                 {
-                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = visuals_check;
+                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = initial_visuals;
                 }
             }
 
@@ -75,6 +78,41 @@ namespace PathCreation.Examples
 
         void updateVisual()
         {
+      
+            if(fixed_time)
+            {
+                int numChildren = holder.transform.childCount;
+                for (int i = numChildren - 1; i >= 0; i--)
+                {
+                    Vector3 arrowPosition = holder.transform.GetChild(i).position;
+
+                    float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
+                    float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
+                    extended_distance = revealZone + robot_distance;
+
+                    // removes arrow once robot has reached the arrows location
+                    if (Vector3.Distance(arrowPosition, currentPosition) < visual_render_threshold)
+                    {
+                        holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
+                    }
+
+                    // renders arrow if arrows are within the reveal zone
+                    if (arrow_distance > robot_distance && arrow_distance < extended_distance)
+                    {
+                        holder.transform.GetChild(i).GetComponent<Renderer>().enabled = true;
+                    }
+                    // unrender arrows if out of the reveal zone
+                    if (arrow_distance < robot_distance || arrow_distance > extended_distance)
+                    {
+                        holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
+                    }
+
+                }
+
+                update_check = true;
+                
+            }
+
             /*
             if (visuals_check == true)
             {
@@ -142,9 +180,15 @@ namespace PathCreation.Examples
 
         void Update()
         {
+            if (initial_visuals && initial_call)
+            {
+                showVisuals();
+                initial_call = false;
+            }
+
             if (robot != null)
             {
-                currentPosition = robot.GetComponent<PathFollower>().currentPosition;
+                
                 current_tortuosity = robot.GetComponent<PathFollower>().current_tortuosity;
                 tortuosityArrows();
                 //updateVisual();                
@@ -161,12 +205,70 @@ namespace PathCreation.Examples
 
                     total_distance = distanceTravelled + initial_distance[i];
 
-                    holder.transform.GetChild(i).gameObject.transform.position = vertex_path.GetPointAtDistance(total_distance, endOfPathInstruction);
-                    holder.transform.GetChild(i).gameObject.transform.rotation = vertex_path.GetRotationAtDistance(total_distance, endOfPathInstruction);
+                    //holder.transform.GetChild(i).gameObject.transform.position = vertex_path.GetPointAtDistance(total_distance, endOfPathInstruction);
+                    //holder.transform.GetChild(i).gameObject.transform.rotation = vertex_path.GetRotationAtDistance(total_distance, endOfPathInstruction);
                 }
-            }             
+            }  
+            
+            //take all the existing arrows and un-render all the arrows not in the time-zone only once, then apply the revolve action
+
+            if(fixed_time)
+            {
+                //function to unrender arrows call only once
+                if (update_check)
+                {
+                    
+                    update_check = false;
+                    unrenderArrows();
+                }
+                //apply the revolve action to remaining action
+
+                //This is the revolve action
+                if (pathCreator != null && prefab != null && holder != null && revolve == true && initial_distance != null)
+                {
+                    int numChildren = initial_distance.Length;
+                    Vector3 offset = new Vector3(0, 0.65f, 0);
+
+                    for (int i = numChildren - 1; i >= 0; i--)
+                    {
+                        //distanceTravelled += (revolve_speed * Time.deltaTime);
+                        distanceTravelled = PathFollower.distanceTravelled;
+                        total_distance = distanceTravelled + initial_distance[i];
+                        //total_distance = initial_distance[i];
+
+                        holder.transform.GetChild(i).gameObject.transform.position = vertex_path.GetPointAtDistance(total_distance, endOfPathInstruction) + offset;
+                        holder.transform.GetChild(i).gameObject.transform.rotation = vertex_path.GetRotationAtDistance(total_distance, endOfPathInstruction);
+                    }
+                }
+
+
+            }
         }
 
+        void unrenderArrows()
+        {
+          
+            currentPosition = robot.GetComponent<PathFollower>().currentPosition;
+
+            int numChildren = holder.transform.childCount;
+            for (int i = numChildren - 1; i >= 0; i--)
+            {
+
+                Vector3 arrowPosition = holder.transform.GetChild(i).position;
+
+                float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
+                float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
+                extended_distance = fixed_time_zone + robot_distance;
+
+               
+                
+                // renders arrow if arrows are within the reveal zone
+                if (arrow_distance > 0 && arrow_distance < fixed_time_zone)
+                {                
+                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = true;
+                }
+            }
+        }
         //function to determine how many visuals to show for each segment
         void tortuosityArrows()
         {
@@ -250,7 +352,7 @@ namespace PathCreation.Examples
         }
     
         // Generate the arrows along the gernerate path once recieved
-        void Generate ()
+        void Generate()
         {               
             if (pathCreator != null && prefab != null && holder != null && vertex_path != null)
             {
@@ -260,9 +362,12 @@ namespace PathCreation.Examples
                 int count = 0;
                 initial_distance = new float[(int)(vertex_path.length / spacing)+1];
 
+
+                Vector3 offset = new Vector3(0,0.65f,0);
                 while (dst < vertex_path.length)
                 {
-                    Vector3 point = vertex_path.GetPointAtDistance (dst);
+                    
+                    Vector3 point = vertex_path.GetPointAtDistance (dst) + offset;
                     Quaternion rot = vertex_path.GetRotationAtDistance (dst);
                     //Instantiate (prefab, point, rot, holder.transform);
                     GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);

@@ -110,7 +110,7 @@ namespace PathCreation.Examples
                 }
 
                 update_check = true;
-                print("True");
+                
             }
 
             /*

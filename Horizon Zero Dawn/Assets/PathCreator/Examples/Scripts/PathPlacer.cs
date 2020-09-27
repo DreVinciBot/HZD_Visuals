@@ -217,7 +217,7 @@ namespace PathCreation.Examples
                 //function to unrender arrows call only once
                 if (update_check)
                 {
-                    print("unrendered  Arrows");
+                    
                     update_check = false;
                     unrenderArrows();
                 }
@@ -260,7 +260,7 @@ namespace PathCreation.Examples
                 float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
                 extended_distance = fixed_time_zone + robot_distance;
 
-                print("ed" + extended_distance + "rd" + robot_distance);
+               
                 
                 // renders arrow if arrows are within the reveal zone
                 if (arrow_distance > 0 && arrow_distance < fixed_time_zone)

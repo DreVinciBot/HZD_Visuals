@@ -23,7 +23,7 @@ namespace PathCreation.Examples
             if (ComfirmGems.demo_complete && firstround_check && helloPanel.startofFirstRound)
             {
                 //robot.GetComponent<PathFollower>().startFollow();
-                visualizations.GetComponent<PathPlacer>().showVisuals();
+                //visualizations.GetComponent<PathPlacer>().showVisuals();
                 firstround_check = false;                
             }
 

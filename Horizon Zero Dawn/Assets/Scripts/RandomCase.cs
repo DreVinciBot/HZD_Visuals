@@ -11,7 +11,7 @@ public class RandomCase : MonoBehaviour
 
     public void RandomCase_Selected()
     {        
-        num = Random.Range(0, 5);
+        num = Random.Range(2, 5);
         print("FirstRound");
         StartCoroutine(Wait(num));
         StartCoroutine(Main.Instance.Web.RegisterUserLevel(num));
@@ -29,6 +29,26 @@ public class RandomCase : MonoBehaviour
         {
             SceneManager.LoadScene("all_visuals_complex_scene");
         }
+
+        if (SceneManager.GetActiveScene().name == "no_visuals_simple_scene")
+        {
+            SceneManager.LoadScene("no_visuals_complex_scene");
+        }
+
+        if (SceneManager.GetActiveScene().name == "no_visuals_complex_scene")
+        {
+            SceneManager.LoadScene("no_visuals_simple_scene");
+        }
+
+        if (SceneManager.GetActiveScene().name == "fixed_visuals_complex_scene")
+        {
+            SceneManager.LoadScene("fixed_visuals_simple_scene");
+        }
+
+        if (SceneManager.GetActiveScene().name == "fixed_visuals_simple_scene")
+        {
+            SceneManager.LoadScene("fixed_visuals_complex_scene");
+        }
     } 
 
     IEnumerator Wait(int num)
@@ -43,14 +63,14 @@ public class RandomCase : MonoBehaviour
                if (A == 0)
                {
                     print("NS"); 
-                   SceneManager.LoadScene("all_visuals_complex_scene");
-                   //SceneManager.LoadScene("no_visuals_simple_scene");
+                   //SceneManager.LoadScene("all_visuals_complex_scene");
+                   SceneManager.LoadScene("no_visuals_simple_scene");
                }
                else
                {
                     print("NC");
-                    SceneManager.LoadScene("all_visuals_complex_scene");
-                   //SceneManager.LoadScene("no_visuals_complex_scene");
+                    //SceneManager.LoadScene("all_visuals_complex_scene");
+                   SceneManager.LoadScene("no_visuals_complex_scene");
                }
                break;
            case 3:
@@ -75,13 +95,13 @@ public class RandomCase : MonoBehaviour
                if (C == 0)
                {
                     print("FC");
-                    SceneManager.LoadScene("all_visuals_complex_scene");
+                    SceneManager.LoadScene("fixed_visuals_complex_scene");
                    //SceneManager.LoadScene("no_visuals_simple_scene");
                }
                else
                {
                     print("FS");
-                    SceneManager.LoadScene("all_visuals_complex_scene");
+                    SceneManager.LoadScene("fixed_visuals_simple_scene");
                    //SceneManager.LoadScene("no_visuals_complex_scene");
                }
                break;

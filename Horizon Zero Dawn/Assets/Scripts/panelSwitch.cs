@@ -12,6 +12,7 @@ namespace PathCreation.Examples
         public GameObject NextButton;
         public GameObject PreviousButton;
         private int pageNumber = 0;
+        bool initial_run = true;
 
         // Update is called once per frame
         void Update()
@@ -27,16 +28,21 @@ namespace PathCreation.Examples
                     panels[i].SetActive(false);
                 }
 
-                if (pageNumber == panels.Length)
+                if (pageNumber == panels.Length && initial_run)
                 {
                     NextButton.SetActive(false);
                     Cursor.lockState = CursorLockMode.Locked;
-                    PlayerMovement.playerCheck = true;           
+                    PlayerMovement.playerCheck = true;
+                    PathPlacer.initial_call = true;
+                    initial_run = false;
+
+                    PathPlacer.revolve = true;
+                   
 
                 }
                 else
                 {
-                    NextButton.SetActive(true);
+                    //NextButton.SetActive(true);
                 }
 
                 if (pageNumber == 0 || pageNumber == panels.Length)

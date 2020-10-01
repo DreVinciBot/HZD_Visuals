@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+
 using TMPro;
 
 public class Web : MonoBehaviour
@@ -26,6 +27,8 @@ public class Web : MonoBehaviour
         //StartCoroutine(RegisterUserTime1("4"));
         //StartCoroutine(RegisterUserCollected1(5));
         //StartCoroutine(RegisterUserCollected2(5));
+
+        
     }
 
     IEnumerator GetRequest(string uri)

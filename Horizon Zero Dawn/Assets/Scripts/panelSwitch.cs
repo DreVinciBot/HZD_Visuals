@@ -30,6 +30,7 @@ namespace PathCreation.Examples
 
                 if (pageNumber == panels.Length && initial_run)
                 {
+
                     NextButton.SetActive(false);
                     Cursor.lockState = CursorLockMode.Locked;
                     PlayerMovement.playerCheck = true;

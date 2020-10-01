@@ -42,6 +42,8 @@ namespace PathCreation.Examples
             }
         }
 
+   
+
         public void no_visuals_simple_Scene()
         {
             SceneManager.LoadScene("no_visuals_simple_scene");

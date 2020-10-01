@@ -47,10 +47,12 @@ namespace PathCreation.Examples
                 PlayerMovement.playerCheck = true;
                 ComfirmGems.roundinsession = true;
                 secondloop = false;
-
+           
                 endofFirstRound = true;
                 //startofSecondRound = true;
                 Timer.timerCheck = true;
+
+                PathPlacer.start_fixed_path = true;
                 print("3");
             }
 
@@ -67,6 +69,8 @@ namespace PathCreation.Examples
 
                 //endofSecondRound = true;
                 Timer.timerCheck = true;
+
+                PathPlacer.start_fixed_path = true;
                 print("6");
             }
 

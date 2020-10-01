@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/fixed_visuals_simple_scene.unity
     guid: 46e065396f9d1eb49981f17ae70c4e2a
+  - enabled: 1
+    path: Assets/Scenes/log_visuals_complex_scene.unity
+    guid: 6acafdc88636d464982dbdcd2662c8d4
   m_configObjects: {}

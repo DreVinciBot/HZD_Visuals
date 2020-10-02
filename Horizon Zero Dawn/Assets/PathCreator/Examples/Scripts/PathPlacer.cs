@@ -31,7 +31,6 @@ namespace PathCreation.Examples
         public float maximum_revael_length = 15f;
         public float SI_max_threshold = 1.5f;
         public float SI_mim_threshold = 1.0f;
-        public float current_tortuosity;
         public static bool revolve;   
         public bool wave = false;
         float[] initial_distance;
@@ -39,8 +38,6 @@ namespace PathCreation.Examples
         float total_distance;
         const float minSpacing = 0.1f;
         public bool initial_visuals;
-        //public bool fixed_time;
-        public bool log_time;
         public bool fixed_time_new;
         public static bool initial_call = false;
         bool update_check;
@@ -51,6 +48,8 @@ namespace PathCreation.Examples
         public static bool log_time_initialized;
         public static bool start_fixed_path;
         public static bool start_log_path;
+        public static bool fixed_condition;
+        public static bool log_condition;
         public bool log_time_new;
 
         void Start()
@@ -60,6 +59,8 @@ namespace PathCreation.Examples
             log_time_initialized = true;
             update_check = true;
             temp_reveal_length = 1;
+            fixed_condition = false;
+            log_condition = false;
             vertex_path = Path.GetComponent<GeneratePathExample>().vertexPath;
             pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
             Generate();
@@ -90,38 +91,6 @@ namespace PathCreation.Examples
             }
         }
 
-        void updateVisual()
-        {             
-            int numChildren = holder.transform.childCount;
-            for (int i = numChildren - 1; i >= 0; i--)
-            {
-                Vector3 arrowPosition = holder.transform.GetChild(i).position;
-
-                float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
-                float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
-                extended_distance = revealZone + robot_distance;
-
-                // removes arrow once robot has reached the arrows location
-                if (Vector3.Distance(arrowPosition, currentPosition) < visual_render_threshold)
-                {
-                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
-                }
-
-                // renders arrow if arrows are within the reveal zone
-                if (arrow_distance > robot_distance && arrow_distance < extended_distance)
-                {
-                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = true;
-                }
-
-                // unrender arrows if out of the reveal zone
-                if (arrow_distance < robot_distance || arrow_distance > extended_distance)
-                {
-                    //holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
-                }
-            }
-
-            update_check = true;                     
-        }
 
         // Function to start the WaveAction animation
         public void waveBotton()
@@ -159,104 +128,99 @@ namespace PathCreation.Examples
    
         void Update()
         {
+            // All visuals condition
             if (initial_visuals && initial_call)
             {
                 showVisuals();
                 initial_call = false;
-            }
+            }  
 
-            if (robot != null)
-            {
-
-                current_tortuosity = robot.GetComponent<PathFollower>().current_tortuosity;
-                tortuosityArrows();
-                //updateVisual();                
-            }
-
-
-            //write the natural log function here
-            if (log_time)
-            {
-              
-                //function to unrender arrows call only once
-                if (update_check)
-                {
-                    float log_scalar = 10;
-                    //update_check = false;
-                    revealZone = (float)(log_scalar * Math.Log(Math.Exp(1) * current_tortuosity));
-
-                    DestroyObjects();
-                    spacing = Mathf.Max(minSpacing, spacing);
-                    float dst = 0;
-                    count = 0;
-                    initial_distance = new float[(int)(vertex_path.length / spacing) + 1];
-
-
-                    Vector3 offset = new Vector3(0, 0.65f, 0);
-                    while (dst < revealZone)
-                    {
-
-                        Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
-                        Quaternion rot = vertex_path.GetRotationAtDistance(dst);
-                        //Instantiate (prefab, point, rot, holder.transform);
-                        GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
-                        arrowClone.GetComponent<Renderer>().enabled = true;
-                        arrowClone.name = dst.ToString();
-                        initial_distance[count] = dst;
-                        dst += spacing;
-                        count++;
-                    }                   
-                }
-
-                if (pathCreator != null && prefab != null && holder != null && revolve == true && initial_distance != null)
-                {
-                    int numChildren = count;
-                    Vector3 offset = new Vector3(0, 0.65f, 0);
-
-                    for (int i = numChildren - 1; i >= 0; i--)
-                    {
-                        //distanceTravelled += (revolve_speed * Time.deltaTime);
-                        distanceTravelled = PathFollower.distanceTravelled;
-                        total_distance = distanceTravelled + initial_distance[i];
-                        //total_distance = initial_distance[i];
-
-                        holder.transform.GetChild(i).gameObject.transform.position = vertex_path.GetPointAtDistance(total_distance, endOfPathInstruction) + offset;
-                        holder.transform.GetChild(i).gameObject.transform.rotation = vertex_path.GetRotationAtDistance(total_distance, endOfPathInstruction);
-                    }
-                }
-            }
-
+            // Log-time condition
             if (log_time_new && holder != null && start_log_path)
             {
-                if (log_time_initialized)
-                {
-                    float log_scalar = 10;
-                    revealZone = (float)(log_scalar * Math.Log(Math.Exp(1) * current_tortuosity));
+                log_condition = true;
+                float log_scalar = 10;
+                revealZone = (float)(log_scalar * Math.Log(Math.Exp(1) * PathFollower.current_tortuosity));
 
-                    if (revealZone != temp_reveal_length)
-                    {                 
-                        if(revealZone > temp_reveal_length)
+                if (revealZone != temp_reveal_length)
+                {                 
+                    if(revealZone > temp_reveal_length)
+                    {
+                        //log_time_initialized = false;
+                        currentPosition = PathFollower.currentPosition;
+                        pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
+                        float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
+
+                        temp_reveal_length = revealZone;
+                        DestroyObjects();
+          
+                        extended_distance = revealZone + robot_distance;
+                        spacing = Mathf.Max(minSpacing, spacing);                   
+                        float dst = robot_distance;
+                        count = 0;
+
+                        while (dst < extended_distance)
                         {
-                            //log_time_initialized = false;
-                            currentPosition = robot.GetComponent<PathFollower>().currentPosition;
-                            pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
-                            float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
+                            Vector3 offset = new Vector3(0, 0.65f, 0);
+                            Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
+                            Quaternion rot = vertex_path.GetRotationAtDistance(dst);              
+                            GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
+                            arrowClone.GetComponent<Renderer>().enabled = true;
+                            arrowClone.name = dst.ToString();
+                            dst += spacing;
+                            count += 1;
+                        }
+                    }
 
-                            temp_reveal_length = revealZone;
-                            DestroyObjects();
-                            //print("rz: " + revealZone);
-                            extended_distance = revealZone + robot_distance;
+                    else if(revealZone < temp_reveal_length)
+                    {
+                        temp_reveal_length = revealZone;
+                    }
 
-                            spacing = Mathf.Max(minSpacing, spacing);
+                    else
+                    {
+                        print("error");
+                    }
+                        
+                }
 
-                            //float dst = 0;
-                            float dst = robot_distance;
-                            count = 0;
+                //calculate the distance between the last arrow and the robot and compare that with the latest revealzone
+                else
+                {
+                    for (int i = count - 1; i >= 0; i--)
+                    {
+                        Vector3 arrowPosition = holder.transform.GetChild(i).position;
+                        float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
 
-                            while (dst < extended_distance)
+                        currentPosition = PathFollower.currentPosition;
+                        float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
+
+                        Vector3 lastArrow = holder.transform.GetChild(count - 1).position;
+                        float dst = pathCreator.path.GetClosestDistanceAlongPath(lastArrow);
+                        
+                        // removes arrow once robot has reached the arrows' location
+                        if (Math.Abs(arrow_distance - robot_distance) < visual_render_threshold)
+                        {
+                            DestroyImmediate(holder.transform.GetChild(i).gameObject, false);
+                            count -= 1;
+
+                            //Vector3 lastArrow = holder.transform.GetChild(count - 1).position;
+                            //float dst = pathCreator.path.GetClosestDistanceAlongPath(lastArrow);
+
+                            //print("d: " + (dst - robot_distance) + "rz: " + revealZone);
+                            float dstRobot_to_arrow = Vector3.Distance(currentPosition, lastArrow);
+
+                            print("rb to aw: " + dstRobot_to_arrow);
+
+                            if (dstRobot_to_arrow > revealZone)
                             {
+                                //pass
+                            }
+                            else
+                            {
+                                //add new arrow
                                 Vector3 offset = new Vector3(0, 0.65f, 0);
-                                Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
+                                Vector3 point = vertex_path.GetPointAtDistance(dst + spacing) + offset;
                                 Quaternion rot = vertex_path.GetRotationAtDistance(dst);
                                 //Instantiate (prefab, point, rot, holder.transform);
                                 GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
@@ -266,86 +230,22 @@ namespace PathCreation.Examples
                                 count += 1;
                             }
                         }
-
-                        else if(revealZone < temp_reveal_length)
-                        {
-                            temp_reveal_length = revealZone;
-                        }
-
-                        else
-                        {
-                            print("error");
-                        }
-                        
                     }
-
-                    //calculate the distance between the last arrow and the robot and compare that with the latest revealzone
-                    else
-                    {
-                        for (int i = count - 1; i >= 0; i--)
-                        {
-                            Vector3 arrowPosition = holder.transform.GetChild(i).position;
-                            float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
-
-                            currentPosition = robot.GetComponent<PathFollower>().currentPosition;
-                            float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
-
-                            Vector3 lastArrow = holder.transform.GetChild(count - 1).position;
-                            float dst = pathCreator.path.GetClosestDistanceAlongPath(lastArrow);
-
-                            
-
-                            
-                            // removes arrow once robot has reached the arrows' location
-                            if (Math.Abs(arrow_distance - robot_distance) < visual_render_threshold)
-                            {
-                                DestroyImmediate(holder.transform.GetChild(i).gameObject, false);
-                                count -= 1;
-
-                                //Vector3 lastArrow = holder.transform.GetChild(count - 1).position;
-                                //float dst = pathCreator.path.GetClosestDistanceAlongPath(lastArrow);
-
-                                //print("d: " + (dst - robot_distance) + "rz: " + revealZone);
-                                float dstRobot_to_arrow = Vector3.Distance(currentPosition, lastArrow);
-
-                                print("rb to aw: " + dstRobot_to_arrow);
-
-                                if (dstRobot_to_arrow > revealZone)
-                                {
-                                    //pass
-                                }
-                                else
-                                {
-                                    //add new arrow
-                                    Vector3 offset = new Vector3(0, 0.65f, 0);
-                                    Vector3 point = vertex_path.GetPointAtDistance(dst + spacing) + offset;
-                                    Quaternion rot = vertex_path.GetRotationAtDistance(dst);
-                                    //Instantiate (prefab, point, rot, holder.transform);
-                                    GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
-                                    arrowClone.GetComponent<Renderer>().enabled = true;
-                                    arrowClone.name = dst.ToString();
-                                    dst += spacing;
-                                    count += 1;
-                                }
-                            }
-                        }
-                    }
-                }            
+                }                         
             }            
         
             if(fixed_time_new && holder != null && start_fixed_path)
             {
+                fixed_condition = true;
                 if (fixed_time_intialized)
-                {                   
-                    fixed_time_intialized = false;      
+                {
+                    fixed_time_intialized = false;
                     DestroyObjects();
-                    currentPosition = robot.GetComponent<PathFollower>().currentPosition;
+                    currentPosition = PathFollower.currentPosition;
                     pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
                     float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
                     extended_distance = fixed_time_zone + robot_distance;
                     spacing = Mathf.Max(minSpacing, spacing);
-                    //float dst = 0;
-                    //float dst = robot_distance;
                     float dst = 0;
                     count = 0;
 
@@ -359,114 +259,25 @@ namespace PathCreation.Examples
                         arrowClone.GetComponent<Renderer>().enabled = true;
                         arrowClone.name = dst.ToString();
                         dst += spacing;
-                        count += 1;
-
+                        
                     }
                 }
 
-                for (int i = count - 1; i >= 0; i--)
+                if(ArrowBehavior.newArrow)
                 {
-                    Vector3 arrowPosition = holder.transform.GetChild(i).position;
-                    float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
+                    ArrowBehavior.newArrow = false;
+                    Vector3 lastArrow = holder.transform.GetChild(holder.transform.childCount-1).position;
+                    float dst = pathCreator.path.GetClosestDistanceAlongPath(lastArrow) + spacing;
+                    //add new arrow
+                    Vector3 offset = new Vector3(0, 0.65f, 0);
+                    Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
+                    Quaternion rot = vertex_path.GetRotationAtDistance(dst);
+                    GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
+                    arrowClone.GetComponent<Renderer>().enabled = true;
+                    arrowClone.name = dst.ToString();
 
-                    currentPosition = robot.GetComponent<PathFollower>().currentPosition;
-                    float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
-
-                    // removes arrow once robot has reached the arrows location
-
-                    if ((Math.Abs(arrow_distance - robot_distance )) < visual_render_threshold)
-                    {
-                        DestroyImmediate(holder.transform.GetChild(i).gameObject, false);
-                        count -= 1;                      
-                        Vector3 lastArrow = holder.transform.GetChild(count-1).position;
-                        float dst = pathCreator.path.GetClosestDistanceAlongPath(lastArrow) + spacing;
-                        //add new arrow
-                        Vector3 offset = new Vector3(0, 0.65f, 0);
-                        Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
-                        Quaternion rot = vertex_path.GetRotationAtDistance(dst);
-                        //Instantiate (prefab, point, rot, holder.transform);
-                        GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
-                        arrowClone.GetComponent<Renderer>().enabled = true;
-                        arrowClone.name = dst.ToString();
-                        dst += spacing;
-                        count += 1;
-
-                       
-                    }                 
                 }
             }
-        }
-
-        void updateArrows()
-        {
-            DestroyObjects();
-            currentPosition = robot.GetComponent<PathFollower>().currentPosition;
-            float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
-            extended_distance = fixed_time_zone + robot_distance;
-            spacing = Mathf.Max(minSpacing, spacing);
-            //float dst = 0;
-            float dst = robot_distance;
-            count = 0;
-
-            while (dst < extended_distance)
-            {
-                Vector3 offset = new Vector3(0, 0.65f, 0);
-                Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
-                Quaternion rot = vertex_path.GetRotationAtDistance(dst);
-                //Instantiate (prefab, point, rot, holder.transform);
-                GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
-                arrowClone.GetComponent<Renderer>().enabled = true;
-                arrowClone.name = dst.ToString();
-                dst += spacing;
-                count += 1;
-
-            }
-        
-        }
-
-        void unrenderArrows()
-        {      
-            currentPosition = robot.GetComponent<PathFollower>().currentPosition;
-
-            int numChildren = holder.transform.childCount;
-            for (int i = numChildren - 1; i >= 0; i--)
-            {
-                Vector3 arrowPosition = holder.transform.GetChild(i).position;
-
-                float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
-                float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
-                extended_distance = fixed_time_zone + robot_distance;
-
-                //print("ed: " + extended_distance + " rd: " + robot_distance);
-                
-                // renders arrow if arrows are within the reveal zone
-                if (arrow_distance > 0 && arrow_distance < fixed_time_zone)
-                {                
-                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = true;
-                }
-            }
-        }
-        //function to determine how many visuals to show for each segment
-        void tortuosityArrows()
-        {
-            /* classification of rivers, https://en.wikipedia.org/wiki/Sinuosity
-             * SI <1.05: almost straight
-                1.05 ≤ SI <1.25: winding
-                1.25 ≤ SI <1.50: twisty
-                1.50 ≤ SI: meandering
-             */
-
-            // Using a linear model to calculate the revealZone (distance) ahead of the robot when given the tortuosity value of the path segment.
-            // To do this, calculate the slope (m) and y-intercept (b) using the substition of systme of equations. 
-            float dy = (maximum_revael_length - minimuum_revael_length);
-            float dx = (SI_max_threshold - SI_mim_threshold);
-
-            float m = (dy / dx);
-            float b = minimuum_revael_length - (m * SI_mim_threshold);
-
-            //revealZone = (m * current_tortuosity) + b;
-
-            //print("Reveal Distance: " + revealZone + " Tort: " + current_tortuosity);
         }
 
         // Function to cause multiple waves for visual effect.

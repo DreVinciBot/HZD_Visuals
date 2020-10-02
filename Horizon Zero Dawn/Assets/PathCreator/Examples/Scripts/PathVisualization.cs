@@ -138,8 +138,8 @@ namespace PathCreation.Examples
         {
             if (robot != null)
             {
-                currentPosition = robot.GetComponent<PathFollower>().currentPosition;
-                current_tortuosity = robot.GetComponent<PathFollower>().current_tortuosity;
+                currentPosition = PathFollower.currentPosition;
+                current_tortuosity = PathFollower.current_tortuosity;
                 tortuosityArrows();
                 updateVisual();                
             }

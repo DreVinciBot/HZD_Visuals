@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6521683173355226386}
   - component: {fileID: 2871795685466062628}
   - component: {fileID: 8423459317499282397}
+  - component: {fileID: 1413775970810266732}
+  - component: {fileID: 1215890312120234845}
   m_Layer: 0
   m_Name: hzd_arrow_shader
   m_TagString: Untagged
@@ -77,3 +79,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1413775970810266732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7843851708884973313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b1000470d027f458ff1ea2046f1e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &1215890312120234845
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7843851708884973313}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.10000002
+  m_Height: 0.11390635
+  m_Direction: 1
+  m_Center: {x: 0.020409169, y: 0, z: 0}

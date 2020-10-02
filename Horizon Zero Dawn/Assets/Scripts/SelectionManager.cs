@@ -63,7 +63,7 @@ namespace PathCreation.Examples
 
         void Update()
         {
-            robotPosition = robot.GetComponent<PathFollower>().currentPosition;
+            robotPosition = PathFollower.currentPosition;
             checkpoint();
 
             if (_selection != null && _selection.CompareTag(selectableTag))

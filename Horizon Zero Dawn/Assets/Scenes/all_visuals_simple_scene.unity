@@ -1176,8 +1176,9 @@ MonoBehaviour:
   current_tortuosity: 0
   wave: 0
   initial_visuals: 1
-  fixed_time: 1
+  fixed_time: 0
   log_time: 0
+  fixed_time_new: 0
 --- !u!4 &527909994
 Transform:
   m_ObjectHideFlags: 0
@@ -2043,7 +2044,6 @@ MonoBehaviour:
   segment_holder: {fileID: 907366493}
   segment_start: {x: 0, y: 0, z: 0}
   segment_end: {x: 0, y: 0, z: 0}
-  num_segments: 4
   gem: {fileID: 509468325}
   gemHolder: {fileID: 1570304593}
   Path_Grid: {fileID: 637038818}

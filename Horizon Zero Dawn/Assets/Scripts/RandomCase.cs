@@ -11,7 +11,7 @@ public class RandomCase : MonoBehaviour
 
     public void RandomCase_Selected()
     {        
-        num = Random.Range(2, 3);
+        num = Random.Range(1, 2);
         print("FirstRound");
         StartCoroutine(Wait(num));
         StartCoroutine(Main.Instance.Web.RegisterUserLevel(num));

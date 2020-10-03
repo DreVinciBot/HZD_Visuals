@@ -198,8 +198,6 @@ namespace PathCreation.Examples
                     secondround = true;
                 }
 
-
-
                 demo_complete = true;
                 print("gems collected");
             }

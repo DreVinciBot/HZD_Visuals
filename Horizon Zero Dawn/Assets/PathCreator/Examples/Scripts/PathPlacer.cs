@@ -1,4 +1,5 @@
 ﻿using PathCreation;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace PathCreation.Examples
         public GameObject visualizations;
         public Vector3 currentPosition;
         private float extended_distance;
-        public float visual_render_threshold = 0.8f;
+        // float visual_render_threshold;
         public float spacing = 3;
         public float revolve_speed;
         public float pulse_speed = 0.1f;
@@ -26,25 +27,39 @@ namespace PathCreation.Examples
         private float pulse_delay = 2f;
         public float revealZone = 15f;
         public float fixed_time_zone;
-        public float minimuum_revael_length = 8.0f;
-        public float maximum_revael_length = 15f;
-        public float SI_max_threshold = 1.5f;
-        public float SI_mim_threshold = 1.0f;
-        public float current_tortuosity;
-        public static bool revolve;
+        //public float minimuum_revael_length = 8.0f;
+        //public float maximum_revael_length = 15f;
+        //public float SI_max_threshold = 1.5f;
+        //public float SI_mim_threshold = 1.0f;
+        public static bool revolve;   
         public bool wave = false;
         float[] initial_distance;
         float distanceTravelled;
         float total_distance;
         const float minSpacing = 0.1f;
         public bool initial_visuals;
-        public bool fixed_time = true;
+        public bool fixed_time_new;
         public static bool initial_call = false;
-        bool update_check;
+        public static int count;
+        public static float temp_tort = 1;
+        public static float temp_reveal_length = 1;
+        public static bool fixed_time_intialized;
+        public static bool log_time_initialized;
+        public static bool start_fixed_path;
+        public static bool start_log_path;
+        public static bool fixed_condition;
+        public static bool log_condition;
+        public bool log_time_new;
 
         void Start()
         {
-            update_check = true;
+            start_fixed_path = false;
+            fixed_time_intialized = true;
+            log_time_initialized = true;
+            temp_reveal_length = 1;
+            fixed_condition = false;
+            log_condition = false;
+            start_log_path = true;
             vertex_path = Path.GetComponent<GeneratePathExample>().vertexPath;
             pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
             Generate();
@@ -73,76 +88,6 @@ namespace PathCreation.Examples
                     holder.transform.GetChild(i).GetComponent<Renderer>().enabled = initial_visuals;
                 }
             }
-
-        }
-
-        void updateVisual()
-        {
-      
-            if(fixed_time)
-            {
-                int numChildren = holder.transform.childCount;
-                for (int i = numChildren - 1; i >= 0; i--)
-                {
-                    Vector3 arrowPosition = holder.transform.GetChild(i).position;
-
-                    float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
-                    float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
-                    extended_distance = revealZone + robot_distance;
-
-                    // removes arrow once robot has reached the arrows location
-                    if (Vector3.Distance(arrowPosition, currentPosition) < visual_render_threshold)
-                    {
-                        holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
-                    }
-
-                    // renders arrow if arrows are within the reveal zone
-                    if (arrow_distance > robot_distance && arrow_distance < extended_distance)
-                    {
-                        holder.transform.GetChild(i).GetComponent<Renderer>().enabled = true;
-                    }
-                    // unrender arrows if out of the reveal zone
-                    if (arrow_distance < robot_distance || arrow_distance > extended_distance)
-                    {
-                        holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
-                    }
-
-                }
-
-                update_check = true;
-                
-            }
-
-            /*
-            if (visuals_check == true)
-            {
-                int numChildren = holder.transform.childCount;
-                for (int i = numChildren - 1; i >= 0; i--)
-                {
-                    Vector3 arrowPosition = holder.transform.GetChild(i).position;
-
-                    float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
-                    float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
-                    extended_distance = revealZone + robot_distance;
-
-                    // removes arrow once robot has reached the arrows location
-                    if (Vector3.Distance(arrowPosition, currentPosition) < visual_render_threshold)
-                    {
-                        holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
-                    }
-                    // renders arrow if arrows are within the reveal zone
-                    if (arrow_distance > robot_distance && arrow_distance < extended_distance)
-                    {
-                        holder.transform.GetChild(i).GetComponent<Renderer>().enabled = true;
-                    }
-                    // unrender arrows if out of the reveal zone
-                    if (arrow_distance < robot_distance || arrow_distance > extended_distance)
-                    {
-                        //holder.transform.GetChild(i).GetComponent<Renderer>().enabled = false;
-                    }
-                }
-            } 
-            */
         }
 
         // Function to start the WaveAction animation
@@ -180,116 +125,160 @@ namespace PathCreation.Examples
 
         void Update()
         {
+            // All visuals condition
             if (initial_visuals && initial_call)
             {
                 showVisuals();
                 initial_call = false;
-            }
-
-            if (robot != null)
-            {
-                
-                current_tortuosity = robot.GetComponent<PathFollower>().current_tortuosity;
-                tortuosityArrows();
-                //updateVisual();                
-            }
-
-            //This is the revolve action
-            if (pathCreator != null && prefab != null && holder != null && revolve == true && initial_distance != null)
-            {
-                int numChildren = initial_distance.Length;
-
-                for (int i = numChildren - 1; i >= 0; i--)
-                {
-                    distanceTravelled += (revolve_speed * Time.deltaTime);
-
-                    total_distance = distanceTravelled + initial_distance[i];
-
-                    //holder.transform.GetChild(i).gameObject.transform.position = vertex_path.GetPointAtDistance(total_distance, endOfPathInstruction);
-                    //holder.transform.GetChild(i).gameObject.transform.rotation = vertex_path.GetRotationAtDistance(total_distance, endOfPathInstruction);
-                }
             }  
-            
-            //take all the existing arrows and un-render all the arrows not in the time-zone only once, then apply the revolve action
 
-            if(fixed_time)
+            // Log-time condition
+            if (log_time_new && holder != null && pathCreator != null)
             {
-                //function to unrender arrows call only once
-                if (update_check)
-                {
-                    
-                    update_check = false;
-                    unrenderArrows();
-                }
-                //apply the revolve action to remaining action
+                log_condition = true;
+                float log_scalar = 10;
+                revealZone = (float)(log_scalar * Math.Log(Math.Exp(1) * PathFollower.current_tortuosity));
 
-                //This is the revolve action
-                if (pathCreator != null && prefab != null && holder != null && revolve == true && initial_distance != null)
-                {
-                    int numChildren = initial_distance.Length;
-                    Vector3 offset = new Vector3(0, 0.65f, 0);
-
-                    for (int i = numChildren - 1; i >= 0; i--)
+                if (revealZone != temp_reveal_length)
+                {                 
+                    if(revealZone > temp_reveal_length)
                     {
-                        //distanceTravelled += (revolve_speed * Time.deltaTime);
-                        distanceTravelled = PathFollower.distanceTravelled;
-                        total_distance = distanceTravelled + initial_distance[i];
-                        //total_distance = initial_distance[i];
+                        //log_time_initialized = false;
+                        currentPosition = PathFollower.currentPosition;
+                        pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
+                        float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
 
-                        holder.transform.GetChild(i).gameObject.transform.position = vertex_path.GetPointAtDistance(total_distance, endOfPathInstruction) + offset;
-                        holder.transform.GetChild(i).gameObject.transform.rotation = vertex_path.GetRotationAtDistance(total_distance, endOfPathInstruction);
+                        temp_reveal_length = revealZone;
+                        DestroyObjects();
+          
+                        extended_distance = revealZone + robot_distance;
+                        spacing = Mathf.Max(minSpacing, spacing);
+                        float dst = robot_distance;
+                        extended_distance = revealZone + robot_distance;
+
+                        if (start_log_path)
+                        {
+                            start_log_path = false;
+                            extended_distance = revealZone;
+
+                            dst = 1;
+                        }
+                        
+
+                        while (dst < extended_distance)
+                        {
+                            Vector3 offset = new Vector3(0, 0.65f, 0);
+                            Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
+                            Quaternion rot = vertex_path.GetRotationAtDistance(dst);              
+                            GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
+                            arrowClone.GetComponent<Renderer>().enabled = true;
+                            arrowClone.name = dst.ToString();
+                            dst += spacing;                           
+                        }
+                    }
+                    else if(revealZone < temp_reveal_length)
+                    {
+                        temp_reveal_length = revealZone;
+                    }
+                    else
+                    {
+                        print("error");
+                    }                     
+                }
+
+                //calculate the distance between the last arrow and the robot and compare that with the latest revealzone
+                else
+                {
+                    currentPosition = PathFollower.currentPosition;
+                    float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
+                    Vector3 lastArrow = holder.transform.GetChild(holder.transform.childCount - 1).position;
+                    float dst = pathCreator.path.GetClosestDistanceAlongPath(lastArrow);
+
+                    if(robot_distance < dst)
+                    {
+                        if (dst - robot_distance > revealZone)
+                        {
+                            //pass
+                        }
+                        else
+                        {
+                            //add new arrow
+                            Vector3 offset = new Vector3(0, 0.65f, 0);
+                            Vector3 point = vertex_path.GetPointAtDistance(dst + spacing) + offset;
+                            Quaternion rot = vertex_path.GetRotationAtDistance(dst + spacing);
+                            GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
+                            arrowClone.GetComponent<Renderer>().enabled = true;
+                            arrowClone.name = dst.ToString();
+                            dst += spacing;
+                        }
+                    }
+                    else if(robot_distance > dst)
+                    {
+                        if(dst + (vertex_path.length - robot_distance) > revealZone)
+                        {
+                            //pass
+                        }
+                        else
+                        {
+                            //add new arrow
+                            Vector3 offset = new Vector3(0, 0.65f, 0);
+                            Vector3 point = vertex_path.GetPointAtDistance(dst + spacing) + offset;
+                            Quaternion rot = vertex_path.GetRotationAtDistance(dst + spacing);
+                            GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
+                            arrowClone.GetComponent<Renderer>().enabled = true;
+                            arrowClone.name = dst.ToString();
+                            dst += spacing;
+                        }
+                    }
+                    else
+                    {
+                        print("error is arrow to distance.");
+                    }                            
+                }                         
+            }            
+            
+            // fixed-time condition
+            if(fixed_time_new && holder != null && start_fixed_path)
+            {
+                fixed_condition = true;
+                if (fixed_time_intialized)
+                {
+                    fixed_time_intialized = false;
+                    DestroyObjects();
+                    currentPosition = PathFollower.currentPosition;
+                    pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
+                    float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
+                    extended_distance = fixed_time_zone + robot_distance;
+                    spacing = Mathf.Max(minSpacing, spacing);
+                    float dst = 0;
+                    count = 0;
+
+                    while (dst < fixed_time_zone)
+                    {
+                        Vector3 offset = new Vector3(0, 0.65f, 0);
+                        Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
+                        Quaternion rot = vertex_path.GetRotationAtDistance(dst);
+                        GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
+                        arrowClone.GetComponent<Renderer>().enabled = true;
+                        arrowClone.name = dst.ToString();
+                        dst += spacing;                    
                     }
                 }
 
-
-            }
-        }
-
-        void unrenderArrows()
-        {
-          
-            currentPosition = robot.GetComponent<PathFollower>().currentPosition;
-
-            int numChildren = holder.transform.childCount;
-            for (int i = numChildren - 1; i >= 0; i--)
-            {
-
-                Vector3 arrowPosition = holder.transform.GetChild(i).position;
-
-                float arrow_distance = pathCreator.path.GetClosestDistanceAlongPath(arrowPosition);
-                float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
-                extended_distance = fixed_time_zone + robot_distance;
-
-               
-                
-                // renders arrow if arrows are within the reveal zone
-                if (arrow_distance > 0 && arrow_distance < fixed_time_zone)
-                {                
-                    holder.transform.GetChild(i).GetComponent<Renderer>().enabled = true;
+                if(ArrowBehavior.newArrow)
+                {
+                    ArrowBehavior.newArrow = false;
+                    Vector3 lastArrow = holder.transform.GetChild(holder.transform.childCount-1).position;
+                    float dst = pathCreator.path.GetClosestDistanceAlongPath(lastArrow) + spacing;
+                    //add new arrow
+                    Vector3 offset = new Vector3(0, 0.65f, 0);
+                    Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
+                    Quaternion rot = vertex_path.GetRotationAtDistance(dst);
+                    GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
+                    arrowClone.GetComponent<Renderer>().enabled = true;
+                    arrowClone.name = dst.ToString();
                 }
             }
-        }
-        //function to determine how many visuals to show for each segment
-        void tortuosityArrows()
-        {
-            /* classification of rivers, https://en.wikipedia.org/wiki/Sinuosity
-             * SI <1.05: almost straight
-                1.05 ≤ SI <1.25: winding
-                1.25 ≤ SI <1.50: twisty
-                1.50 ≤ SI: meandering
-             */
-
-            // Using a linear model to calculate the revealZone (distance) ahead of the robot when given the tortuosity value of the path segment.
-            // To do this, calculate the slope (m) and y-intercept (b) using the substition of systme of equations. 
-            float dy = (maximum_revael_length - minimuum_revael_length);
-            float dx = (SI_max_threshold - SI_mim_threshold);
-
-            float m = (dy / dx);
-            float b = minimuum_revael_length - (m * SI_mim_threshold);
-
-            revealZone = (m * current_tortuosity) + b;
-
-            //print("Reveal Distance: " + revealZone + " Tort: " + current_tortuosity);
         }
 
         // Function to cause multiple waves for visual effect.

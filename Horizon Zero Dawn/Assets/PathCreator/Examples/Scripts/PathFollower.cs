@@ -11,9 +11,9 @@ namespace PathCreation.Examples
         public EndOfPathInstruction endOfPathInstruction;
         public float[,] pathInfo;
         public float speed;
-        public float current_tortuosity;
+        public static float current_tortuosity;
         public Vector3 startPosition;
-        public Vector3 currentPosition;
+        public static Vector3 currentPosition;
         float timeRunning = 0.0f;
         public static float distanceTravelled;
         float initial_distaince;
@@ -33,6 +33,7 @@ namespace PathCreation.Examples
 
             Transform initialPosition = Path.GetComponent<GeneratePathExample>().path_waypoints[0];
             transform.position = initialPosition.position;
+            distanceTravelled = 0;
         }
 
         //Function to start robot movement on path

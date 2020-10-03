@@ -17,7 +17,7 @@ namespace PathCreation.Examples
         public GameObject segment_holder;
         public Vector3 segment_start;
         public Vector3 segment_end;
-        public int num_segments = 10;
+        public int num_segments = 5;
         private bool visuals_check = false;
         private bool waypoint_check = false;
         public float[,] tortuosity_segments;
@@ -34,8 +34,10 @@ namespace PathCreation.Examples
         public bool simplePath = false;
         float gem_height = 6f;
         private static int waypoint_counter = -1;
+        bool global_check = true;
 
-   
+
+
         void Awake ()
         {
             Quaternion rot = new Quaternion(0f, 0f, 0f, 0f);
@@ -193,6 +195,8 @@ namespace PathCreation.Examples
                 float dist = Vector3.Distance(localPoints[i], path_waypoints[0].position);
                 tortuosity[i] = curve / dist;
             }
+
+            //print("gt: " + tortuosity[tortuosity.Length -1]);
         }
 
         // Calculates the path's Local Tortuosity through path segments. Currently, the path is seperated into N equal parts. 
@@ -246,6 +250,12 @@ namespace PathCreation.Examples
         void Update()
         {
             LocalTortuosity();    
+
+            if(global_check)
+            {
+                GlobalTortuosity();
+                global_check = false;
+            }
         }
     }
 }

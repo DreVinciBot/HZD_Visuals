@@ -831,7 +831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 121, y: -5}
+  m_AnchoredPosition: {x: 121, y: -8}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &487436726
@@ -1162,23 +1162,16 @@ MonoBehaviour:
   holder: {fileID: 527909992}
   visualizations: {fileID: 527909992}
   currentPosition: {x: 0, y: 0, z: 0}
-  visual_render_threshold: 1
   spacing: 3
   revolve_speed: 0
   pulse_speed: 0.1
   pulse_rise: 0
-  revealZone: -26
-  fixed_time_zone: 0
-  minimuum_revael_length: 8
-  maximum_revael_length: 25
-  SI_max_threshold: 1.5
-  SI_mim_threshold: 1
-  current_tortuosity: 0
+  revealZone: -Infinity
+  fixed_time_zone: 25
   wave: 0
   initial_visuals: 0
-  fixed_time: 0
-  log_time: 0
   fixed_time_new: 0
+  log_time_new: 1
 --- !u!4 &527909994
 Transform:
   m_ObjectHideFlags: 0
@@ -1988,7 +1981,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -2044,6 +2037,7 @@ MonoBehaviour:
   segment_holder: {fileID: 907366493}
   segment_start: {x: 0, y: 0, z: 0}
   segment_end: {x: 0, y: 0, z: 0}
+  num_segments: 5
   gem: {fileID: 509468325}
   gemHolder: {fileID: 1570304593}
   Path_Grid: {fileID: 637038818}
@@ -2051,8 +2045,8 @@ MonoBehaviour:
     type: 3}
   row: 3
   col: 5
-  complexPath: 1
-  simplePath: 0
+  complexPath: 0
+  simplePath: 1
 --- !u!1 &840988862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8226049100601006873, guid: abe88adc7a2818042a9cc86c4d47270f,
@@ -2709,9 +2703,7 @@ MonoBehaviour:
   pathCreator: {fileID: 839433806}
   endOfPathInstruction: 0
   speed: 10
-  current_tortuosity: 0
   startPosition: {x: 0, y: 0, z: 0}
-  currentPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &958857903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5057,7 +5049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 121, y: -4}
+  m_AnchoredPosition: {x: 121, y: -7}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1813399315

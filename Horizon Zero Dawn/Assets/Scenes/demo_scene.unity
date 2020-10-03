@@ -2226,18 +2226,13 @@ MonoBehaviour:
   prefab: {fileID: 769626427}
   holder: {fileID: 1761518741}
   visualizations: {fileID: 1761518741}
-  currentPosition: {x: 0, y: 0, z: 0}
-  visual_render_threshold: 2
+  currentPosition: {x: -29.3555, y: 0, z: 27.284817}
   spacing: 3
   revolve_speed: 10
   pulse_speed: 0.1
   pulse_rise: 0
-  revealZone: 26.054245
+  revealZone: 11.737045
   fixed_time_zone: 15
-  minimuum_revael_length: 8
-  maximum_revael_length: 25
-  SI_max_threshold: 1.5
-  SI_mim_threshold: 1
   wave: 0
   initial_visuals: 0
   fixed_time_new: 0
@@ -2746,7 +2741,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1

@@ -34,15 +34,12 @@ namespace PathCreation.Examples
                 demo_check = false;
             }
 
-
             if (Input.GetKeyDown(KeyCode.C))
             {
                 //DirectionChoices.GetComponent<SelectionManager>().showArrows();
                // Cursor.lockState = CursorLockMode.None;
             }
-        }
-
-   
+        } 
 
         public void no_visuals_simple_Scene()
         {
@@ -80,5 +77,4 @@ namespace PathCreation.Examples
             Application.Quit();
         }
     }
-
 }

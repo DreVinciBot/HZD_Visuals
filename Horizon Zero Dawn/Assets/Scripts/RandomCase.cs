@@ -11,7 +11,7 @@ public class RandomCase : MonoBehaviour
 
     public void RandomCase_Selected()
     {        
-        num = Random.Range(2, 3);
+        num = Random.Range(1, 2);
         print("FirstRound");
         StartCoroutine(Wait(num));
         StartCoroutine(Main.Instance.Web.RegisterUserLevel(num));
@@ -52,10 +52,10 @@ public class RandomCase : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "log_visuals_complex_scene")
         {
-            SceneManager.LoadScene("log_visuals_complex_scene");
+            SceneManager.LoadScene("log_visuals_simple_scene");
         }
 
-        if (SceneManager.GetActiveScene().name == "log_visuals_complex_scene")
+        if (SceneManager.GetActiveScene().name == "log_visuals_simple_scene")
         {
             SceneManager.LoadScene("log_visuals_complex_scene");
         }
@@ -128,7 +128,7 @@ public class RandomCase : MonoBehaviour
                else
                {
                     print("YS");
-                    SceneManager.LoadScene("log_visuals_complex_scene");
+                    SceneManager.LoadScene("log_visuals_simple_scene");
                    // SceneManager.LoadScene("all_visuals_simple_scene");
                }
                break;

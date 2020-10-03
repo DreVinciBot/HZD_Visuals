@@ -39,7 +39,7 @@ namespace PathCreation.Examples
 
                     PathPlacer.revolve = true;
                     PathPlacer.start_fixed_path = true;
-                    PathPlacer.start_log_path = true;
+                    //PathPlacer.start_log_path = true;
 
 
 

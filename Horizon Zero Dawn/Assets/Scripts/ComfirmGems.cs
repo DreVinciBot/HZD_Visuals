@@ -38,6 +38,20 @@ namespace PathCreation.Examples
         static bool timerecord1 = true;
         static bool timerecord2 = true;
 
+        public Transform[] robot_sides;
+        //public Transform AnteriorLeft;
+        //public Transform AnteriorRight;
+        //public Transform PosteriorBack;
+        //public Transform PosteriorLeft;
+        //public Transform PosteriorRight;
+
+        public static int AF;
+        public static int AL;
+        public static int AR;
+        public static int PB;
+        public static int PL;
+        public static int PR;
+
 
         // Start is called before the first frame update
         void Start()
@@ -50,6 +64,14 @@ namespace PathCreation.Examples
             robot_counter = 0;
 
             PlayerMovement.playerCheck = false;
+
+            AF = 0;
+            AL = 0;
+            AR = 0;
+            PB = 0;
+            PL = 0;
+            PR = 0;
+
         }
 
         void Update()
@@ -65,13 +87,12 @@ namespace PathCreation.Examples
                 print("1");
             }
 
-            //Start the second round
+            //End the first round
             if (Input.GetKeyDown(KeyCode.Space) && demo_complete && helloPanel.endofFirstRound && secondround && !exitround)
             {
                 print("5");
                 StartCoroutine(Delay_secondround());
-                round2 = true;
-                secondround = false;
+                round2 = true;               
                 exitround = true;
 
             }
@@ -101,7 +122,7 @@ namespace PathCreation.Examples
                     lastmessage = true;
                     Continue_Panel.SetActive(true);
                 }
-                else if (helloPanel.startofSecondRound)
+                else if (helloPanel.endofSecondRound)
                 {
                     Finished_Panel.SetActive(true);
                 }
@@ -114,31 +135,30 @@ namespace PathCreation.Examples
                     Countdown.GetComponent<Timer>().RecordTime1();
                     Countdown.GetComponent<Timer>().RecordCollected1();
                     timerecord1 = false;
-                    print("4");
+                    print(" Timer 4");
                     secondround = true;
+
+                    print("AF: " + AF + "AL: " + AL + "AR: " + AR + "PB: " + PB + "PL: " + PL + "PR: " + PR);
 
                 }
 
                 if (helloPanel.startofSecondRound && timerecord2)
                 {
-                    print("7");
+                    print("Timer 7");
                     timerecord2 = false;
                     Countdown.GetComponent<Timer>().RecordTime2();
                     Countdown.GetComponent<Timer>().RecordCollected2();
                     finalround = true;
                     round3 = true;
+
+                    print("AF: " + AF + "AL: " + AL + "AR: " + AR + "PB: " + PB + "PL: " + PL + "PR: " + PR);
+
                 }
 
 
                 if (helloPanel.endofFirstRound)
                 {
                     secondround = true;
-                }
-
-
-                if (firstround)
-                {
-                    //secondround = true;
                 }
 
                 print("gems collected");
@@ -165,7 +185,7 @@ namespace PathCreation.Examples
                     Continue_Panel.SetActive(true);
                 }
 
-                if (helloPanel.startofSecondRound)
+                if (helloPanel.endofSecondRound)
                 {
                     Finished_Panel.SetActive(true);
                 }
@@ -178,20 +198,24 @@ namespace PathCreation.Examples
                     Countdown.GetComponent<Timer>().RecordTime1();
                     Countdown.GetComponent<Timer>().RecordCollected1();
                     timerecord1 = false;
-                    print("4");
+                    print(" Gem 4");
                     secondround = true;
+
+                    print("AF: "+ AF+ "AL: " + AL + "AR: " + AR + "PB: " + PB + "PL: " + PL + "PR: " + PR);
                 }
 
                 if (helloPanel.startofSecondRound && timerecord2)
                 {
-                    print("7");
+                    print(" Gem 7");
                     timerecord2 = false;
                     Countdown.GetComponent<Timer>().RecordTime2();
                     Countdown.GetComponent<Timer>().RecordCollected2();
                     finalround = true;
                     round3 = true;
-                }
 
+                    print("AF: " + AF + "AL: " + AL + "AR: " + AR + "PB: " + PB + "PL: " + PL + "PR: " + PR);
+
+                }
 
                 if (helloPanel.endofFirstRound)
                 {
@@ -204,7 +228,7 @@ namespace PathCreation.Examples
         }
 
         void OnTriggerEnter(Collider other)
-        {
+        {        
             if (other.gameObject.name == humanAgent)
             {
                 robot_counter += CollectToken.currentScore;
@@ -218,7 +242,45 @@ namespace PathCreation.Examples
                     CollectToken.currentScore = 0;
                     Delivered_Obj.SetActive(true);
                     StartCoroutine(Wait());
-                }
+
+                    float temp_distance = 100;
+                    string closest_side = "none";
+                    for (int i = 0; i < robot_sides.Length; i++)
+                    {
+                        float collider_distance = Vector3.Distance(other.transform.position, robot_sides[i].position);
+
+                        if (collider_distance < temp_distance)
+                        {
+                            temp_distance = collider_distance;
+                            closest_side = robot_sides[i].name;
+                        }
+                    }
+
+                    if (closest_side == "AnteriorLeft")
+                    {
+                        AL += 1;
+                    }
+                    else if (closest_side == "AnteriorRight")
+                    {
+                        AR += 1;
+                    }
+                    else if (closest_side == "AnteriorFront")
+                    {
+                        AF += 1;
+                    }
+                    else if (closest_side == "PosteriorBack")
+                    {
+                        PB += 1;
+                    }
+                    else if (closest_side == "PosteriorLeft")
+                    {
+                        PL += 1;
+                    }
+                    else if (closest_side == "PosteriorRight")
+                    {
+                        PR += 1;
+                    }
+                }           
             }
         }
 

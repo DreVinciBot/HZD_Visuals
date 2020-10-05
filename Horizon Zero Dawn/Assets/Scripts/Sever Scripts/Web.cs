@@ -27,7 +27,6 @@ public class Web : MonoBehaviour
         //StartCoroutine(RegisterUserTime1("4"));
         //StartCoroutine(RegisterUserCollected1(5));
         //StartCoroutine(RegisterUserCollected2(5));
-
         
     }
 

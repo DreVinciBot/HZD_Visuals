@@ -17,7 +17,7 @@ namespace PathCreation.Examples
         public GameObject segment_holder;
         public Vector3 segment_start;
         public Vector3 segment_end;
-        public int num_segments = 5;
+        public int num_segments = 8;
         private bool visuals_check = false;
         private bool waypoint_check = false;
         public float[,] tortuosity_segments;

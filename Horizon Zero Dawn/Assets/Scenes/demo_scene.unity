@@ -2226,7 +2226,7 @@ MonoBehaviour:
   prefab: {fileID: 769626427}
   holder: {fileID: 1761518741}
   visualizations: {fileID: 1761518741}
-  currentPosition: {x: -29.3555, y: 0, z: 27.284817}
+  currentPosition: {x: 0, y: 0, z: 0}
   spacing: 3
   revolve_speed: 10
   pulse_speed: 0.1
@@ -2235,7 +2235,7 @@ MonoBehaviour:
   fixed_time_zone: 15
   wave: 0
   initial_visuals: 0
-  fixed_time_new: 0
+  fixed_time_new: 1
   log_time_new: 0
 --- !u!4 &527909994
 Transform:
@@ -2741,7 +2741,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -2797,6 +2797,7 @@ MonoBehaviour:
   segment_holder: {fileID: 907366493}
   segment_start: {x: 0, y: 0, z: 0}
   segment_end: {x: 0, y: 0, z: 0}
+  num_segments: 5
   gem: {fileID: 509468325}
   gemHolder: {fileID: 1570304593}
   Path_Grid: {fileID: 637038818}
@@ -3623,30 +3624,6 @@ MonoBehaviour:
   endOfPathInstruction: 0
   speed: 10
   startPosition: {x: 0, y: 0, z: 0}
---- !u!114 &958857903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958857900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee080e2597887e4296445e41bb55ce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  robotAlert: {fileID: 1774431452}
-  Delivered_Obj: {fileID: 197605535}
-  Collected_text: {fileID: 1639017}
-  Remaining_text: {fileID: 1980003979}
-  Delivered_text: {fileID: 2062125993}
-  gemHolder: {fileID: 1570304593}
-  Completed_text: {fileID: 951877804}
-  Continue_Panel: {fileID: 1721965325}
-  Finished_Panel: {fileID: 1139908591}
-  Random_scene: {fileID: 892016719}
-  Countdown: {fileID: 859145373}
-  TimesUp_text: {fileID: 1358140747}
 --- !u!1 &995647059
 GameObject:
   m_ObjectHideFlags: 0
@@ -5078,6 +5055,96 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: robotAlert
+      value: 
+      objectReference: {fileID: 1774431452}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Delivered_Obj
+      value: 
+      objectReference: {fileID: 197605535}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Collected_text
+      value: 
+      objectReference: {fileID: 1639017}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Remaining_text
+      value: 
+      objectReference: {fileID: 1980003979}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Delivered_text
+      value: 
+      objectReference: {fileID: 2062125993}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: gemHolder
+      value: 
+      objectReference: {fileID: 1570304593}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Completed_text
+      value: 
+      objectReference: {fileID: 951877804}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Continue_Panel
+      value: 
+      objectReference: {fileID: 1721965325}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Finished_Panel
+      value: 
+      objectReference: {fileID: 1139908591}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Random_scene
+      value: 
+      objectReference: {fileID: 892016719}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Countdown
+      value: 
+      objectReference: {fileID: 859145373}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: TimesUp_text
+      value: 
+      objectReference: {fileID: 1358140747}
+    - target: {fileID: 4749120005648557357, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 357100007993245270, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813022348348549303, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3980735694704528807, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8554867870331850479, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334445298982946408, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6483120590176594948, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5272,6 +5339,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119893771835541878, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119893771835541878, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 313fe590fdb88cd4e9aa7896b6bc9842, type: 3}

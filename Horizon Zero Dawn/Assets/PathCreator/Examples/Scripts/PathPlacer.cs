@@ -26,7 +26,7 @@ namespace PathCreation.Examples
         private float pulse_delay = 2f;
         public float revealZone = 15f;
         public float fixed_time_zone;
-        public static bool revolve;   
+        public static bool revolve;
         public bool wave = false;
         float[] initial_distance;
         float distanceTravelled;
@@ -58,7 +58,7 @@ namespace PathCreation.Examples
             vertex_path = Path.GetComponent<GeneratePathExample>().vertexPath;
             pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
             Generate();
-           
+
             if (initial_distance != null)
             {
                 int numChildren = initial_distance.Length;
@@ -125,7 +125,7 @@ namespace PathCreation.Examples
             {
                 showVisuals();
                 initial_call = false;
-            }  
+            }
 
             // Log-time condition
             if (log_time_new && holder != null && pathCreator != null)
@@ -135,8 +135,8 @@ namespace PathCreation.Examples
                 revealZone = (float)(log_scalar * Math.Log(Math.Exp(1) * PathFollower.current_tortuosity));
 
                 if (revealZone != temp_reveal_length)
-                {                 
-                    if(revealZone > temp_reveal_length)
+                {
+                    if (revealZone > temp_reveal_length)
                     {
                         //log_time_initialized = false;
                         currentPosition = PathFollower.currentPosition;
@@ -145,7 +145,7 @@ namespace PathCreation.Examples
 
                         temp_reveal_length = revealZone;
                         DestroyObjects();
-          
+
                         extended_distance = revealZone + robot_distance;
                         spacing = Mathf.Max(minSpacing, spacing);
                         float dst = robot_distance;
@@ -158,26 +158,26 @@ namespace PathCreation.Examples
 
                             dst = 1;
                         }
-                        
+
                         while (dst < extended_distance)
                         {
                             Vector3 offset = new Vector3(0, 0.65f, 0);
                             Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
-                            Quaternion rot = vertex_path.GetRotationAtDistance(dst);              
+                            Quaternion rot = vertex_path.GetRotationAtDistance(dst);
                             GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
                             arrowClone.GetComponent<Renderer>().enabled = true;
                             arrowClone.name = dst.ToString();
-                            dst += spacing;                           
+                            dst += spacing;
                         }
                     }
-                    else if(revealZone < temp_reveal_length)
+                    else if (revealZone < temp_reveal_length)
                     {
                         temp_reveal_length = revealZone;
                     }
                     else
                     {
                         print("error");
-                    }                     
+                    }
                 }
 
                 //calculate the distance between the last arrow and the robot and compare that with the latest revealzone
@@ -188,7 +188,7 @@ namespace PathCreation.Examples
                     Vector3 lastArrow = holder.transform.GetChild(holder.transform.childCount - 1).position;
                     float dst = pathCreator.path.GetClosestDistanceAlongPath(lastArrow);
 
-                    if(robot_distance < dst)
+                    if (robot_distance < dst)
                     {
                         if (dst - robot_distance > revealZone)
                         {
@@ -206,9 +206,9 @@ namespace PathCreation.Examples
                             dst += spacing;
                         }
                     }
-                    else if(robot_distance > dst)
+                    else if (robot_distance > dst)
                     {
-                        if(dst + (vertex_path.length - robot_distance) > revealZone)
+                        if (dst + (vertex_path.length - robot_distance) > revealZone)
                         {
                             //pass
                         }
@@ -227,12 +227,12 @@ namespace PathCreation.Examples
                     else
                     {
                         print("error is arrow to distance.");
-                    }                            
-                }                         
-            }            
-            
+                    }
+                }
+            }
+
             // fixed-time condition
-            if(fixed_time_new && holder != null && pathCreator != null)
+            if (fixed_time_new && holder != null && pathCreator != null)
             {
                 fixed_condition = true;
                 if (fixed_time_intialized)
@@ -255,14 +255,14 @@ namespace PathCreation.Examples
                         GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
                         arrowClone.GetComponent<Renderer>().enabled = true;
                         arrowClone.name = dst.ToString();
-                        dst += spacing;                    
+                        dst += spacing;
                     }
                 }
 
-                if(ArrowBehavior.newArrow)
+                if (ArrowBehavior.newArrow)
                 {
                     ArrowBehavior.newArrow = false;
-                    Vector3 lastArrow = holder.transform.GetChild(holder.transform.childCount-1).position;
+                    Vector3 lastArrow = holder.transform.GetChild(holder.transform.childCount - 1).position;
                     float dst = pathCreator.path.GetClosestDistanceAlongPath(lastArrow) + spacing;
                     //add new arrow
                     Vector3 offset = new Vector3(0, 0.65f, 0);
@@ -273,7 +273,7 @@ namespace PathCreation.Examples
                     arrowClone.name = dst.ToString();
                 }
 
-                if(holder.transform.childCount < 3)
+                if (holder.transform.childCount < 3)
                 {
                     currentPosition = PathFollower.currentPosition;
                     pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
@@ -300,14 +300,14 @@ namespace PathCreation.Examples
         // Function to cause multiple waves for visual effect.
         IEnumerator PulseWait()
         {
-            yield return new WaitForSeconds(pulse_delay);          
+            yield return new WaitForSeconds(pulse_delay);
         }
 
         // Creating the Wave by moving 5 arrows along their up axis by a constant value (pulse_rise)
         IEnumerator Wave()
         {
             if (pathCreator != null && prefab != null && holder != null)
-            {     
+            {
                 int numChildren = initial_distance.Length;
                 for (int i = 0; i <= numChildren - 1; i++)
                 {
@@ -335,7 +335,7 @@ namespace PathCreation.Examples
                         holder.transform.GetChild(numChildren - 1).gameObject.transform.position += transform.up * -pulse_rise;
                         yield return new WaitForSeconds(pulse_speed);
                     }
-                    else if (i >= 3 &&  i != numChildren -1)
+                    else if (i >= 3 && i != numChildren - 1)
                     {
                         holder.transform.GetChild(i).gameObject.transform.position += transform.up * pulse_rise;
                         holder.transform.GetChild(i - 1).gameObject.transform.position += transform.up * pulse_rise;
@@ -351,29 +351,29 @@ namespace PathCreation.Examples
                         holder.transform.GetChild(i - 3).gameObject.transform.position += transform.up * -pulse_rise;
                         yield return new WaitForSeconds(pulse_speed);
                         waveAction(); //call waveAction to continue wave action                 
-                    }                 
-                }    
+                    }
+                }
             }
         }
-    
+
         // Generate the arrows along the gernerate path once recieved
         void Generate()
-        {               
+        {
             if (pathCreator != null && prefab != null && holder != null && vertex_path != null)
             {
                 DestroyObjects();
                 spacing = Mathf.Max(minSpacing, spacing);
                 float dst = 0;
                 int count = 0;
-                initial_distance = new float[(int)(vertex_path.length / spacing)+1];
+                initial_distance = new float[(int)(vertex_path.length / spacing) + 1];
 
 
-                Vector3 offset = new Vector3(0,0.65f,0);
+                Vector3 offset = new Vector3(0, 0.65f, 0);
                 while (dst < vertex_path.length)
                 {
-                    
-                    Vector3 point = vertex_path.GetPointAtDistance (dst) + offset;
-                    Quaternion rot = vertex_path.GetRotationAtDistance (dst);
+
+                    Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
+                    Quaternion rot = vertex_path.GetRotationAtDistance(dst);
                     //Instantiate (prefab, point, rot, holder.transform);
                     GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
                     arrowClone.GetComponent<Renderer>().enabled = false;
@@ -381,19 +381,19 @@ namespace PathCreation.Examples
                     initial_distance[count] = dst;
                     dst += spacing;
                     count++;
-                }             
+                }
             }
         }
 
-        void DestroyObjects ()
+        void DestroyObjects()
         {
             int numChildren = holder.transform.childCount;
             for (int i = numChildren - 1; i >= 0; i--)
             {
-                DestroyImmediate(holder.transform.GetChild (i).gameObject, false);
+                DestroyImmediate(holder.transform.GetChild(i).gameObject, false);
             }
         }
-   
+
         /*
         protected override void PathUpdated ()
         {
@@ -402,6 +402,6 @@ namespace PathCreation.Examples
                 
             }
         }
-        */       
+        */
     }
 }

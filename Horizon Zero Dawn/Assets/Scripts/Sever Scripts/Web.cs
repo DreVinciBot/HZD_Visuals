@@ -13,7 +13,7 @@ public class Web : MonoBehaviour
     public bool state = false;
     public static string username_input;
 
-    private string ngrok = "https://6b14b30582a1.ngrok.io";
+    private string ngrok = "https://ac98a8b9b3e5.ngrok.io";
 
     void Start()
     {
@@ -27,7 +27,10 @@ public class Web : MonoBehaviour
         //StartCoroutine(RegisterUserTime1("4"));
         //StartCoroutine(RegisterUserCollected1(5));
         //StartCoroutine(RegisterUserCollected2(5));
-        
+        //StartCoroutine(RegisterUserPointContact1("test"));
+        //StartCoroutine(RegisterUserPointContact2("test2"));
+
+
     }
 
     IEnumerator GetRequest(string uri)
@@ -183,7 +186,7 @@ public class Web : MonoBehaviour
         }
     }
 
-    public IEnumerator RegisterUserLevel(int level)
+    public IEnumerator RegisterUserLevel(string level)
     {
         WWWForm form = new WWWForm();
         form.AddField("loginUser", username_input);
@@ -193,6 +196,66 @@ public class Web : MonoBehaviour
      
         //trying url with ip address with portforwarding
         string uri = ngrok + "/ARNavigationStudy2020/RegisterLevel.php";
+
+        // uri for localhost
+        //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                //Debug.Log(www.error);
+            }
+            else
+            {
+                //Debug.Log(www.downloadHandler.text);            
+            }
+        }
+    }
+
+    public IEnumerator RegisterUserPointContact1(string contacts)
+    {
+       
+        WWWForm form = new WWWForm();
+        form.AddField("loginUser", username_input);
+        form.AddField("loginPointContact_1", contacts);
+
+        print("u/n : " + username_input + " recieved: " + contacts);
+
+        //trying url with ip address with portforwarding
+        string uri = ngrok + "/ARNavigationStudy2020/RegisterPointContact1.php";
+
+        // uri for localhost
+        //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                //Debug.Log(www.error);
+            }
+            else
+            {
+                //Debug.Log(www.downloadHandler.text);            
+            }
+        }
+    }
+
+    public IEnumerator RegisterUserPointContact2(string constacts)
+    {
+      
+        WWWForm form = new WWWForm();
+        form.AddField("loginUser", username_input);
+        form.AddField("loginPointContact_2", constacts);
+
+        print("u/n : " + username_input + " recieved: " + constacts);
+
+        //trying url with ip address with portforwarding
+        string uri = ngrok + "/ARNavigationStudy2020/RegisterPointContact2.php";
 
         // uri for localhost
         //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";

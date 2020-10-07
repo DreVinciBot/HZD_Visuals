@@ -2728,7 +2728,6 @@ MonoBehaviour:
   Random_scene: {fileID: 899457435}
   Countdown: {fileID: 1522258581}
   TimesUp_text: {fileID: 1387876672}
-  robot_sides: []
 --- !u!136 &958857904
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3148,7 +3147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1152926241
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4329,6 +4328,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6483120590176594949, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Name
+      value: turtlebot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483120590176594949, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7711010841358309055, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: robotAlert
@@ -4389,21 +4403,6 @@ PrefabInstance:
       propertyPath: TimesUp_text
       value: 
       objectReference: {fileID: 1387876672}
-    - target: {fileID: 6483120590176594949, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_Name
-      value: turtlebot
-      objectReference: {fileID: 0}
-    - target: {fileID: 6483120590176594949, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711010841358309055, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6483120590176594948, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -17,11 +17,17 @@ namespace PathCreation.Examples
         public static bool endofFirstRound = false;
         public static bool startofSecondRound = false;
         public static bool endofSecondRound = false;
+        public static string scenename;
 
         static bool firstloop = true;
         static bool secondloop = true;
         static bool thirdloop = true;
         static bool finalloop = true;
+
+        void Start()
+        {
+            thisPanel.SetActive(true);
+        }
 
         void Update()
         {
@@ -57,26 +63,28 @@ namespace PathCreation.Examples
             }
 
             //Start of Round 2
-            if (Input.GetKeyDown(KeyCode.Space) && thirdloop && endofFirstRound && ComfirmGems.round2)
+            else if (thirdloop && endofFirstRound && ComfirmGems.round2 && Timer.timeRemaining > 0 && SceneManager.GetActiveScene().name != RandomCase.scene_1)
             {
-                thisPanel.SetActive(false);
-                Cursor.lockState = CursorLockMode.Locked;
-                PlayerMovement.playerCheck = true;
-                ComfirmGems.roundinsession = true;
-                thirdloop = false;
+                if(Input.GetKeyDown(KeyCode.Space))
+                {
+                    //&& SceneManager.GetActiveScene().name == RandomCase.scene_2
+                    thisPanel.SetActive(false);
+                    Cursor.lockState = CursorLockMode.Locked;
+                    PlayerMovement.playerCheck = true;
 
-                startofSecondRound = true;
+                    startofSecondRound = true;
+                    ComfirmGems.roundinsession = true;
+                    thirdloop = false;
+       
+                    Timer.timerCheck = true;
 
-                //endofSecondRound = true;
-                Timer.timerCheck = true;
-
-                PathPlacer.start_fixed_path = true;
-                print("6");
+                    PathPlacer.start_fixed_path = true;
+                    print("6");
+                }
             }
 
-
             //End of Round 2
-            if (Input.GetKeyDown(KeyCode.Space) && finalloop && startofSecondRound && ComfirmGems.round3)
+            else if (Input.GetKeyDown(KeyCode.Space) && finalloop && startofSecondRound && ComfirmGems.round3)
             {
                 thisPanel.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
@@ -85,13 +93,14 @@ namespace PathCreation.Examples
                 finalloop = false;
 
                 endofSecondRound = true;
-                Timer.timerCheck = true;
+                //Timer.timerCheck = true;
+
+                //add the quit button here???
                 print("8");
+                Debug.Log("Quit Game!");
+                Application.Quit();
             }
-
-
         }
-
 
         public void showPanel()
         {

@@ -27,6 +27,8 @@ namespace PathCreation.Examples
         public static bool round2 = false;
         public static bool round3 = false;
         public static bool roundinsession = true;
+        public static string point_count_1;
+        public static string point_count_2;
 
         static bool firstround = false;
         static bool secondround = false;
@@ -39,11 +41,6 @@ namespace PathCreation.Examples
         static bool timerecord2 = true;
 
         public Transform[] robot_sides;
-        //public Transform AnteriorLeft;
-        //public Transform AnteriorRight;
-        //public Transform PosteriorBack;
-        //public Transform PosteriorLeft;
-        //public Transform PosteriorRight;
 
         public static int AF;
         public static int AL;
@@ -51,7 +48,6 @@ namespace PathCreation.Examples
         public static int PB;
         public static int PL;
         public static int PR;
-
 
         // Start is called before the first frame update
         void Start()
@@ -71,7 +67,6 @@ namespace PathCreation.Examples
             PB = 0;
             PL = 0;
             PR = 0;
-
         }
 
         void Update()
@@ -87,12 +82,14 @@ namespace PathCreation.Examples
                 print("1");
             }
 
-            //End the first round
+            //Start the second round
             if (Input.GetKeyDown(KeyCode.Space) && demo_complete && helloPanel.endofFirstRound && secondround && !exitround)
             {
                 print("5");
+                Timer.timeRemaining = 120;
                 StartCoroutine(Delay_secondround());
-                round2 = true;               
+                round2 = true;
+                secondround = false;
                 exitround = true;
 
             }
@@ -122,7 +119,7 @@ namespace PathCreation.Examples
                     lastmessage = true;
                     Continue_Panel.SetActive(true);
                 }
-                else if (helloPanel.endofSecondRound)
+                else if (helloPanel.startofFirstRound)
                 {
                     Finished_Panel.SetActive(true);
                 }
@@ -135,35 +132,40 @@ namespace PathCreation.Examples
                     Countdown.GetComponent<Timer>().RecordTime1();
                     Countdown.GetComponent<Timer>().RecordCollected1();
                     timerecord1 = false;
-                    print(" Timer 4");
+                    print("4");
                     secondround = true;
 
-                    print("AF: " + AF + "AL: " + AL + "AR: " + AR + "PB: " + PB + "PL: " + PL + "PR: " + PR);
+                    point_count_1 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
 
+                    Countdown.GetComponent<Timer>().RecordContacts1();
                 }
 
                 if (helloPanel.startofSecondRound && timerecord2)
                 {
-                    print("Timer 7");
+                    print("7");
                     timerecord2 = false;
                     Countdown.GetComponent<Timer>().RecordTime2();
                     Countdown.GetComponent<Timer>().RecordCollected2();
                     finalround = true;
                     round3 = true;
 
-                    print("AF: " + AF + "AL: " + AL + "AR: " + AR + "PB: " + PB + "PL: " + PL + "PR: " + PR);
+                    point_count_2 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
 
+                    Countdown.GetComponent<Timer>().RecordContacts2();
                 }
-
 
                 if (helloPanel.endofFirstRound)
                 {
                     secondround = true;
                 }
 
+                if (firstround)
+                {
+                    //secondround = true;
+                }
+
                 print("gems collected");
             }
-
 
             if (gemHolder.transform.childCount == 0 && roundinsession)
             {
@@ -185,7 +187,7 @@ namespace PathCreation.Examples
                     Continue_Panel.SetActive(true);
                 }
 
-                if (helloPanel.endofSecondRound)
+                if (helloPanel.startofSecondRound)
                 {
                     Finished_Panel.SetActive(true);
                 }
@@ -198,23 +200,26 @@ namespace PathCreation.Examples
                     Countdown.GetComponent<Timer>().RecordTime1();
                     Countdown.GetComponent<Timer>().RecordCollected1();
                     timerecord1 = false;
-                    print(" Gem 4");
+                    print("4");
                     secondround = true;
 
-                    print("AF: "+ AF+ "AL: " + AL + "AR: " + AR + "PB: " + PB + "PL: " + PL + "PR: " + PR);
+                    point_count_1= "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
+
+                    Countdown.GetComponent<Timer>().RecordContacts1();
                 }
 
                 if (helloPanel.startofSecondRound && timerecord2)
                 {
-                    print(" Gem 7");
+                    print("7");
                     timerecord2 = false;
                     Countdown.GetComponent<Timer>().RecordTime2();
                     Countdown.GetComponent<Timer>().RecordCollected2();
                     finalround = true;
                     round3 = true;
 
-                    print("AF: " + AF + "AL: " + AL + "AR: " + AR + "PB: " + PB + "PL: " + PL + "PR: " + PR);
+                    point_count_2 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
 
+                    Countdown.GetComponent<Timer>().RecordContacts2();
                 }
 
                 if (helloPanel.endofFirstRound)
@@ -228,7 +233,7 @@ namespace PathCreation.Examples
         }
 
         void OnTriggerEnter(Collider other)
-        {        
+        {
             if (other.gameObject.name == humanAgent)
             {
                 robot_counter += CollectToken.currentScore;
@@ -245,6 +250,7 @@ namespace PathCreation.Examples
 
                     float temp_distance = 100;
                     string closest_side = "none";
+
                     for (int i = 0; i < robot_sides.Length; i++)
                     {
                         float collider_distance = Vector3.Distance(other.transform.position, robot_sides[i].position);
@@ -280,7 +286,7 @@ namespace PathCreation.Examples
                     {
                         PR += 1;
                     }
-                }           
+                }
             }
         }
 
@@ -292,10 +298,9 @@ namespace PathCreation.Examples
 
         IEnumerator Delay_secondround()
         {
-            yield return new WaitForSeconds(2);
             RandomCase.SecondRound();
+
+            yield return new WaitForSeconds(2);
         }
-
-
     }
 }

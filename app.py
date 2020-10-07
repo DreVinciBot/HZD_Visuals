@@ -5,5 +5,5 @@ app = Flask(__name__)
 
 @app.route('/')
 def unitygame():
-    # return rendered_template("index.html")
-    return 'Hello, World! test 2'
+    return render_template("index.html")
+    # return 'Hello, World! test 2'

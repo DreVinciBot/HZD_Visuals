@@ -149,7 +149,6 @@ namespace PathCreation.Examples
                         extended_distance = revealZone + robot_distance;
                         spacing = Mathf.Max(minSpacing, spacing);
                         float dst = robot_distance;
-                        extended_distance = revealZone + robot_distance;
 
                         if (start_log_path)
                         {
@@ -181,7 +180,7 @@ namespace PathCreation.Examples
                 }
 
                 //calculate the distance between the last arrow and the robot and compare that with the latest revealzone
-                else
+                else if(holder != null)
                 {
                     currentPosition = PathFollower.currentPosition;
                     float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
@@ -229,6 +228,29 @@ namespace PathCreation.Examples
                         print("error is arrow to distance.");
                     }
                 }
+                else
+                {
+                    //log_time_initialized = false;
+                    currentPosition = PathFollower.currentPosition;
+                    pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
+                    float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
+                    DestroyObjects();
+
+                    extended_distance = revealZone + robot_distance;
+                    spacing = Mathf.Max(minSpacing, spacing);
+                    float dst = robot_distance;
+
+                    while (dst < extended_distance)
+                    {
+                        Vector3 offset = new Vector3(0, 0.65f, 0);
+                        Vector3 point = vertex_path.GetPointAtDistance(dst) + offset;
+                        Quaternion rot = vertex_path.GetRotationAtDistance(dst);
+                        GameObject arrowClone = Instantiate(prefab, point, rot, holder.transform);
+                        arrowClone.GetComponent<Renderer>().enabled = true;
+                        arrowClone.name = dst.ToString();
+                        dst += spacing;
+                    }
+                }
             }
 
             // fixed-time condition
@@ -273,15 +295,15 @@ namespace PathCreation.Examples
                     arrowClone.name = dst.ToString();
                 }
 
-                if (holder.transform.childCount < 3)
+                if (holder.transform.childCount < 4 )
                 {
+                    DestroyObjects();
                     currentPosition = PathFollower.currentPosition;
                     pathCreator = Path.GetComponent<GeneratePathExample>().generatedPath;
                     float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
                     extended_distance = fixed_time_zone + robot_distance;
                     spacing = Mathf.Max(minSpacing, spacing);
                     float dst = robot_distance;
-                    count = 0;
 
                     while (dst < fixed_time_zone)
                     {

@@ -2,7 +2,7 @@
 //$servername = "localhost"; //use url if server is online
 $servername = "database-aws.cimfp3oazumo.us-east-2.rds.amazonaws.com"; //use url if server is online
 $username = "admin";
-$password = "human-robot";
+
 $dbname = "usersDB";
 
 

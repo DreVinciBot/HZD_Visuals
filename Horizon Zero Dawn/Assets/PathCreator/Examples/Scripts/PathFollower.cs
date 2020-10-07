@@ -59,7 +59,7 @@ namespace PathCreation.Examples
         {
             pathInfo = Path.GetComponent<GeneratePathExample>().tortuosity_segments;       
             
-            if (pathCreator != null && start)
+            if (pathCreator != null && start && pathInfo != null)
             {
                 distanceTravelled += (speed * Time.deltaTime);          
                 initial_distaince = 0f;  

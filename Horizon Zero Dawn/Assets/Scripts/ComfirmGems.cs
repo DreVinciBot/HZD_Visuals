@@ -27,6 +27,8 @@ namespace PathCreation.Examples
         public static bool round2 = false;
         public static bool round3 = false;
         public static bool roundinsession = true;
+        public static string point_count_1;
+        public static string point_count_2;
 
         static bool firstround = false;
         static bool secondround = false;
@@ -38,6 +40,14 @@ namespace PathCreation.Examples
         static bool timerecord1 = true;
         static bool timerecord2 = true;
 
+        public Transform[] robot_sides;
+
+        public static int AF;
+        public static int AL;
+        public static int AR;
+        public static int PB;
+        public static int PL;
+        public static int PR;
 
         // Start is called before the first frame update
         void Start()
@@ -50,6 +60,13 @@ namespace PathCreation.Examples
             robot_counter = 0;
 
             PlayerMovement.playerCheck = false;
+
+            AF = 0;
+            AL = 0;
+            AR = 0;
+            PB = 0;
+            PL = 0;
+            PR = 0;
         }
 
         void Update()
@@ -69,6 +86,7 @@ namespace PathCreation.Examples
             if (Input.GetKeyDown(KeyCode.Space) && demo_complete && helloPanel.endofFirstRound && secondround && !exitround)
             {
                 print("5");
+                Timer.timeRemaining = 120;
                 StartCoroutine(Delay_secondround());
                 round2 = true;
                 secondround = false;
@@ -101,7 +119,7 @@ namespace PathCreation.Examples
                     lastmessage = true;
                     Continue_Panel.SetActive(true);
                 }
-                else if (helloPanel.startofSecondRound)
+                else if (helloPanel.startofFirstRound)
                 {
                     Finished_Panel.SetActive(true);
                 }
@@ -117,6 +135,9 @@ namespace PathCreation.Examples
                     print("4");
                     secondround = true;
 
+                    point_count_1 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
+
+                    Countdown.GetComponent<Timer>().RecordContacts1();
                 }
 
                 if (helloPanel.startofSecondRound && timerecord2)
@@ -127,14 +148,16 @@ namespace PathCreation.Examples
                     Countdown.GetComponent<Timer>().RecordCollected2();
                     finalround = true;
                     round3 = true;
-                }
 
+                    point_count_2 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
+
+                    Countdown.GetComponent<Timer>().RecordContacts2();
+                }
 
                 if (helloPanel.endofFirstRound)
                 {
                     secondround = true;
                 }
-
 
                 if (firstround)
                 {
@@ -143,7 +166,6 @@ namespace PathCreation.Examples
 
                 print("gems collected");
             }
-
 
             if (gemHolder.transform.childCount == 0 && roundinsession)
             {
@@ -180,6 +202,10 @@ namespace PathCreation.Examples
                     timerecord1 = false;
                     print("4");
                     secondround = true;
+
+                    point_count_1= "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
+
+                    Countdown.GetComponent<Timer>().RecordContacts1();
                 }
 
                 if (helloPanel.startofSecondRound && timerecord2)
@@ -190,8 +216,11 @@ namespace PathCreation.Examples
                     Countdown.GetComponent<Timer>().RecordCollected2();
                     finalround = true;
                     round3 = true;
-                }
 
+                    point_count_2 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
+
+                    Countdown.GetComponent<Timer>().RecordContacts2();
+                }
 
                 if (helloPanel.endofFirstRound)
                 {
@@ -218,6 +247,45 @@ namespace PathCreation.Examples
                     CollectToken.currentScore = 0;
                     Delivered_Obj.SetActive(true);
                     StartCoroutine(Wait());
+
+                    float temp_distance = 100;
+                    string closest_side = "none";
+
+                    for (int i = 0; i < robot_sides.Length; i++)
+                    {
+                        float collider_distance = Vector3.Distance(other.transform.position, robot_sides[i].position);
+
+                        if (collider_distance < temp_distance)
+                        {
+                            temp_distance = collider_distance;
+                            closest_side = robot_sides[i].name;
+                        }
+                    }
+
+                    if (closest_side == "AnteriorLeft")
+                    {
+                        AL += 1;
+                    }
+                    else if (closest_side == "AnteriorRight")
+                    {
+                        AR += 1;
+                    }
+                    else if (closest_side == "AnteriorFront")
+                    {
+                        AF += 1;
+                    }
+                    else if (closest_side == "PosteriorBack")
+                    {
+                        PB += 1;
+                    }
+                    else if (closest_side == "PosteriorLeft")
+                    {
+                        PL += 1;
+                    }
+                    else if (closest_side == "PosteriorRight")
+                    {
+                        PR += 1;
+                    }
                 }
             }
         }
@@ -230,10 +298,9 @@ namespace PathCreation.Examples
 
         IEnumerator Delay_secondround()
         {
-            yield return new WaitForSeconds(2);
             RandomCase.SecondRound();
+
+            yield return new WaitForSeconds(2);
         }
-
-
     }
 }

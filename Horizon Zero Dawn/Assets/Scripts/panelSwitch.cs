@@ -41,8 +41,6 @@ namespace PathCreation.Examples
                     PathPlacer.start_fixed_path = true;
                     //PathPlacer.start_log_path = true;
 
-
-
                 }
                 else
                 {

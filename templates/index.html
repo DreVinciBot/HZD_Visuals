@@ -9,15 +9,15 @@
     <script src="{{ url_for('static', filename='TemplateData/UnityProgress.js') }}"></script>  
     <script src="{{ url_for('static', filename='Build/UnityLoader.js') }}"></script>
     <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "{{ url_for('static', filename='Build/static.json') }}", {onProgress: UnityProgress});
+      var unityInstance  = UnityLoader.instantiate("unityContainer", "{{ url_for('static', filename='Build/static.json') }}", {onProgress: UnityProgress});
     </script>
   </head>
   <body>
     <div class="webgl-content">
-      <div id="gameContainer" style="width: 960px; height: 600px"></div>
+      <div id="unityContainer" style="width: 1024px; height: 768px"></div>
       <div class="footer">
         <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
         <div class="title">HZD</div>
       </div>
     </div>

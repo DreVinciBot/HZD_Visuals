@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 1612519936}
+  m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427188, b: 0.56452423, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -94,8 +94,9 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -172,11 +173,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Collected:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -324,17 +324,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7430501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -344,6 +343,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &7430504
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -385,11 +385,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Timer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -557,7 +556,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 150953472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -602,8 +601,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &150953475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,17 +610,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 150953472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -633,6 +629,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &150953476
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -699,11 +696,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "Your task is to collect as many of these gems as fast as you can before
     the timer runs out \n\n\n\n\nTo collect a gem, you simply need walk up to gem
     and wait for this ring to form in the center of the screen"
@@ -858,11 +854,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Delivered!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1047,24 +1042,25 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: '
 
     Welcome to the demo stage!
 
 
-    Here, you will get a feel for the controls and learn how you can collect gems.
+    Here, you will get a feel for the
+    controls and learn how you can collect gems.
 
 
-    To move around, use the W/A/S/D or Arrow keys.
+    To move around, use the W/A/S/D
+    or Arrow keys.
 
 
-    To look around, use the mouse. you can click within the game window to lock the
-    mouse on the screen.'
+    To look around, use the mouse. you can click within the
+    game window to lock the mouse on the screen.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1216,19 +1212,19 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Great Job!
 
 
-    You Finished the Main Study, be sure to go back to the Survey window and answer
-    some final questions!
+    You Finished the Main Study, be sure to go back to the
+    Survey window and answer some final questions!
 
 
-    Press the Space Bar to Exit the Game.'
+    Press the Space Bar to Exit
+    the Game.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1376,7 +1372,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 295025119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1432,8 +1428,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &295025122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1443,17 +1437,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 295025119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1463,6 +1456,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &295025123
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1518,17 +1512,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 299028457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1538,6 +1531,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &299028460
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1594,7 +1588,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 379135041}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1639,8 +1633,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &379135044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1650,17 +1642,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 379135041}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1670,6 +1661,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &379135045
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1705,7 +1697,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 412581394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalAxis: Horizontal
@@ -1724,7 +1716,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 412581394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
@@ -1796,11 +1788,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Reset
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1991,17 +1982,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 459795265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2011,6 +2001,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &459795268
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2026,51 +2017,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 208835353}
     m_Modifications:
-    - target: {fileID: 6654240362412941144, guid: a5ae7fda9ba97e54c9c69374492eaf91,
-        type: 3}
-      propertyPath: m_Name
-      value: Cubie
-      objectReference: {fileID: 0}
-    - target: {fileID: 6654240362412941144, guid: a5ae7fda9ba97e54c9c69374492eaf91,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6632297810262860004, guid: a5ae7fda9ba97e54c9c69374492eaf91,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
-        type: 3}
-      propertyPath: fillImage
-      value: 
-      objectReference: {fileID: 693474572}
-    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
-        type: 3}
-      propertyPath: robotAlert
-      value: 
-      objectReference: {fileID: 1774431452}
-    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
-        type: 3}
-      propertyPath: scoreSystem
-      value: 
-      objectReference: {fileID: 2029606642}
-    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
-        type: 3}
-      propertyPath: Collected_text
-      value: 
-      objectReference: {fileID: 1639017}
-    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
-        type: 3}
-      propertyPath: Remaining_text
-      value: 
-      objectReference: {fileID: 1980003979}
-    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
-        type: 3}
-      propertyPath: collected_text
-      value: 
-      objectReference: {fileID: 1639019}
     - target: {fileID: 623256713294415107, guid: a5ae7fda9ba97e54c9c69374492eaf91,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2176,6 +2122,51 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6632297810262860004, guid: a5ae7fda9ba97e54c9c69374492eaf91,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654240362412941144, guid: a5ae7fda9ba97e54c9c69374492eaf91,
+        type: 3}
+      propertyPath: m_Name
+      value: Cubie
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654240362412941144, guid: a5ae7fda9ba97e54c9c69374492eaf91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
+        type: 3}
+      propertyPath: fillImage
+      value: 
+      objectReference: {fileID: 693474572}
+    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
+        type: 3}
+      propertyPath: robotAlert
+      value: 
+      objectReference: {fileID: 1774431452}
+    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
+        type: 3}
+      propertyPath: scoreSystem
+      value: 
+      objectReference: {fileID: 2029606642}
+    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
+        type: 3}
+      propertyPath: Collected_text
+      value: 
+      objectReference: {fileID: 1639017}
+    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
+        type: 3}
+      propertyPath: Remaining_text
+      value: 
+      objectReference: {fileID: 1980003979}
+    - target: {fileID: 8811226815104700451, guid: a5ae7fda9ba97e54c9c69374492eaf91,
+        type: 3}
+      propertyPath: collected_text
+      value: 
+      objectReference: {fileID: 1639019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5ae7fda9ba97e54c9c69374492eaf91, type: 3}
 --- !u!224 &509468324 stripped
@@ -2389,11 +2380,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Depending on the robot''s mood, the robot might help you by showing you
     its path plan.
 
@@ -2403,8 +2393,8 @@ MonoBehaviour:
 
 
 
-    These blue arrows show the robot''s path plan which will be displayed on the ground
-    plane. '
+    These blue arrows show the robot''s path plan which
+    will be displayed on the ground plane. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2580,17 +2570,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 693474570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: f7020cc47b4f33c488477da243e0dda6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
@@ -2600,6 +2589,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &693474573
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2615,11 +2605,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 527909994}
     m_Modifications:
-    - target: {fileID: 7843851708884973313, guid: d11c20d5eb952a5418644a48a47ceb40,
-        type: 3}
-      propertyPath: m_Name
-      value: hzd_arrow_shader
-      objectReference: {fileID: 0}
     - target: {fileID: 6521683173355226386, guid: d11c20d5eb952a5418644a48a47ceb40,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2674,6 +2659,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843851708884973313, guid: d11c20d5eb952a5418644a48a47ceb40,
+        type: 3}
+      propertyPath: m_Name
+      value: hzd_arrow_shader
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d11c20d5eb952a5418644a48a47ceb40, type: 3}
@@ -2827,6 +2817,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2838,6 +2829,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -2953,7 +2945,7 @@ Transform:
   m_Children:
   - {fileID: 1616524234}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &892016719
 GameObject:
@@ -3110,11 +3102,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Path
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3267,11 +3258,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Start/Stop
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3424,11 +3414,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Completed!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3575,17 +3564,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 958237330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Texture: {fileID: 2800000, guid: da64e81f01c8cf84cbcf5525434e7ac2, type: 3}
   m_UVRect:
     serializedVersion: 2
@@ -3672,17 +3660,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 995647059}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3692,6 +3679,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &995647062
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3752,17 +3740,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1051156272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
@@ -3833,7 +3820,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1115263193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -3889,8 +3876,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1115263196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3900,17 +3885,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1115263193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3920,6 +3904,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1115263197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3975,17 +3960,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1139908591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3995,6 +3979,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1139908594
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4049,17 +4034,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157519607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4069,6 +4053,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1157519610
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4180,11 +4165,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Camera
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4400,11 +4384,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'You can only hold 3 Gems at a time, so in order to collect more, you need
     to deliever them to this robot.
 
@@ -4414,8 +4397,9 @@ MonoBehaviour:
 
 
 
-    This robot will be moving around the space so you will need to chase it! To deliver
-    your gems to the robot, simply make contact by walking through the robot.'
+    This robot will be moving around the
+    space so you will need to chase it! To deliver your gems to the robot, simply
+    make contact by walking through the robot.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4561,17 +4545,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1325004055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Texture: {fileID: 2800000, guid: 727afa59d52d9174c91a156cbb58832a, type: 3}
   m_UVRect:
     serializedVersion: 2
@@ -4639,11 +4622,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Times Up!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4653,7 +4635,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278191359
+    rgba: 4278191615
   m_fontColor: {r: 1, g: 0.01792933, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4796,11 +4778,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Choices
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4949,7 +4930,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1499018756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -4994,8 +4975,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1499018759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5005,17 +4984,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1499018756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5025,6 +5003,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1499018760
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5040,86 +5019,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6483120590176594949, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_Name
-      value: turtlebot
-      objectReference: {fileID: 0}
-    - target: {fileID: 6483120590176594949, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7711010841358309055, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: robotAlert
-      value: 
-      objectReference: {fileID: 1774431452}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: Delivered_Obj
-      value: 
-      objectReference: {fileID: 197605535}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: Collected_text
-      value: 
-      objectReference: {fileID: 1639017}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: Remaining_text
-      value: 
-      objectReference: {fileID: 1980003979}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: Delivered_text
-      value: 
-      objectReference: {fileID: 2062125993}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: gemHolder
-      value: 
-      objectReference: {fileID: 1570304593}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: Completed_text
-      value: 
-      objectReference: {fileID: 951877804}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: Continue_Panel
-      value: 
-      objectReference: {fileID: 1721965325}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: Finished_Panel
-      value: 
-      objectReference: {fileID: 1139908591}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: Random_scene
-      value: 
-      objectReference: {fileID: 892016719}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: Countdown
-      value: 
-      objectReference: {fileID: 859145373}
-    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: TimesUp_text
-      value: 
-      objectReference: {fileID: 1358140747}
-    - target: {fileID: 4749120005648557357, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 357100007993245270, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_Enabled
@@ -5130,21 +5029,121 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2119893771835541878, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119893771835541878, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 3980735694704528807, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8554867870331850479, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+    - target: {fileID: 4749120005648557357, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7334445298982946408, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_LocalPosition.x
+      value: -0.50056
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00013644
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.73938066
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8015705
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.48788345
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871269353844797870, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Name
+      value: Arrow Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0058486
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000042566
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.43295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.66238505
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7180987
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4370776
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136360840984480462, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Name
+      value: Arrow Forward
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483120588724140374, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3758a9137cf142644b94db03c84471fe, type: 2}
+    - target: {fileID: 6483120588757049806, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3758a9137cf142644b94db03c84471fe, type: 2}
+    - target: {fileID: 6483120589100128228, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6483120589486815663, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3758a9137cf142644b94db03c84471fe, type: 2}
+    - target: {fileID: 6483120589864911702, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3758a9137cf142644b94db03c84471fe, type: 2}
     - target: {fileID: 6483120590176594948, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5215,75 +5214,95 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 9.8805
       objectReference: {fileID: 0}
-    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0058486
-      objectReference: {fileID: 0}
-    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.00000042566
-      objectReference: {fileID: 0}
-    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.43295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.66238505
-      objectReference: {fileID: 0}
-    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7180987
-      objectReference: {fileID: 0}
-    - target: {fileID: 6136360840984480449, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.4370776
-      objectReference: {fileID: 0}
-    - target: {fileID: 6136360840984480462, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+    - target: {fileID: 6483120590176594949, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_Name
-      value: Arrow Forward
+      value: turtlebot
       objectReference: {fileID: 0}
-    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+    - target: {fileID: 6483120590176594949, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.50056
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+    - target: {fileID: 6483120590212794428, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3758a9137cf142644b94db03c84471fe, type: 2}
+    - target: {fileID: 6538280557543776975, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00013644
+      value: 0.54
       objectReference: {fileID: 0}
-    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+    - target: {fileID: 7334445298982946408, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.009
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.73938066
-      objectReference: {fileID: 0}
-    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+      propertyPath: robotAlert
+      value: 
+      objectReference: {fileID: 1774431452}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8015705
-      objectReference: {fileID: 0}
-    - target: {fileID: 4871269353844797857, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+      propertyPath: Delivered_Obj
+      value: 
+      objectReference: {fileID: 197605535}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.48788345
-      objectReference: {fileID: 0}
-    - target: {fileID: 4871269353844797870, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+      propertyPath: Collected_text
+      value: 
+      objectReference: {fileID: 1639017}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Remaining_text
+      value: 
+      objectReference: {fileID: 1980003979}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Delivered_text
+      value: 
+      objectReference: {fileID: 2062125993}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: gemHolder
+      value: 
+      objectReference: {fileID: 1570304593}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Completed_text
+      value: 
+      objectReference: {fileID: 951877804}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Continue_Panel
+      value: 
+      objectReference: {fileID: 1721965325}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Finished_Panel
+      value: 
+      objectReference: {fileID: 1139908591}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Random_scene
+      value: 
+      objectReference: {fileID: 892016719}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: Countdown
+      value: 
+      objectReference: {fileID: 859145373}
+    - target: {fileID: 7393183996317578314, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: TimesUp_text
+      value: 
+      objectReference: {fileID: 1358140747}
+    - target: {fileID: 7710487697409819206, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_Name
-      value: Arrow Left
+      value: Arrow Right
       objectReference: {fileID: 0}
     - target: {fileID: 7710487697409819209, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
@@ -5300,55 +5319,15 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.009
       objectReference: {fileID: 0}
-    - target: {fileID: 7710487697409819206, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_Name
-      value: Arrow Right
-      objectReference: {fileID: 0}
-    - target: {fileID: 6538280557543776975, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 6483120590212794428, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3758a9137cf142644b94db03c84471fe, type: 2}
-    - target: {fileID: 6483120588724140374, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3758a9137cf142644b94db03c84471fe, type: 2}
-    - target: {fileID: 6483120588757049806, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3758a9137cf142644b94db03c84471fe, type: 2}
-    - target: {fileID: 6483120589486815663, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3758a9137cf142644b94db03c84471fe, type: 2}
-    - target: {fileID: 6483120589864911702, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3758a9137cf142644b94db03c84471fe, type: 2}
-    - target: {fileID: 6483120589100128228, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+    - target: {fileID: 7711010841358309055, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2119893771835541878, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+    - target: {fileID: 8554867870331850479, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
-      propertyPath: m_Height
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2119893771835541878, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.21
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 313fe590fdb88cd4e9aa7896b6bc9842, type: 3}
@@ -5429,17 +5408,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1574416573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5449,6 +5427,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1574416576
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5509,15 +5488,15 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'If you are ready to continue with a practice round, press the Next button.
 
 
-    Be sure to play this game in Full Screen'
+    Be
+    sure to play this game in Full Screen'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5617,97 +5596,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611780652}
   m_CullTransparentMesh: 0
---- !u!1 &1612519935
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1612519937}
-  - component: {fileID: 1612519936}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &1612519936
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1612519935}
-  m_Enabled: 1
-  serializedVersion: 9
-  m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.802082
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 0.5
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1612519937
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1612519935}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1616524231
 GameObject:
   m_ObjectHideFlags: 0
@@ -5740,6 +5628,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5751,6 +5640,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5834,17 +5724,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1620043665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5854,6 +5743,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1620043668
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5908,17 +5798,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1648623624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Texture: {fileID: 2800000, guid: b0efbfc4e585f8e43943e44757c06965, type: 3}
   m_UVRect:
     serializedVersion: 2
@@ -6022,11 +5911,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Segments
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6175,7 +6063,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1732586069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
@@ -6192,7 +6080,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1732586069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
@@ -6289,11 +6177,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Give Gems to Robot!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6459,17 +6346,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1804900175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
@@ -6540,7 +6426,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1823668474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -6585,8 +6471,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1823668477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6596,17 +6480,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1823668474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -6616,6 +6499,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1823668478
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6652,7 +6536,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1840230204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
@@ -6669,7 +6553,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1840230204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
@@ -6729,13 +6613,82 @@ RectTransform:
   - {fileID: 1721965326}
   - {fileID: 1139908592}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1853169524
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253243, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_Name
+      value: Directional Light
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c120e02bfb36acf459eb0c717327169a, type: 3}
 --- !u!1 &1895346087
 GameObject:
   m_ObjectHideFlags: 0
@@ -6788,12 +6741,12 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Awesome! Press the ''Space Bar'' to proceed with the Study and please wait. '
+  m_text: 'Awesome! Press the ''Space Bar'' to proceed with the Study and please
+    wait. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6945,11 +6898,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Select the direction you believe the robot will make by clicking one of
     the three objects. '
   m_isRightToLeft: 0
@@ -7103,11 +7055,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Remaining:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7260,11 +7211,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Waypoints
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7413,7 +7363,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2019979969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -7458,8 +7408,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &2019979972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7469,17 +7417,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2019979969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -7489,6 +7436,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &2019979973
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7591,17 +7539,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2030095310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Texture: {fileID: 2800000, guid: f7020cc47b4f33c488477da243e0dda6, type: 3}
   m_UVRect:
     serializedVersion: 2
@@ -7665,7 +7612,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2059614104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -7710,8 +7657,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &2059614107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7721,17 +7666,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2059614104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -7741,6 +7685,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &2059614108
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7801,11 +7746,10 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Delivered: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7954,7 +7898,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2129198879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -7999,8 +7943,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &2129198882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8010,17 +7952,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2129198879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -8030,6 +7971,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &2129198883
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8045,15 +7987,55 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8226049100601006873, guid: abe88adc7a2818042a9cc86c4d47270f,
+    - target: {fileID: 513066871820775371, guid: abe88adc7a2818042a9cc86c4d47270f,
+        type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 660068338695643360, guid: abe88adc7a2818042a9cc86c4d47270f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 900329649441554115, guid: abe88adc7a2818042a9cc86c4d47270f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782908004769543801, guid: abe88adc7a2818042a9cc86c4d47270f,
+        type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2329058832697810611, guid: abe88adc7a2818042a9cc86c4d47270f,
+        type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419229030425092995, guid: abe88adc7a2818042a9cc86c4d47270f,
+        type: 3}
+      propertyPath: m_Height
+      value: 5.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419229030425092995, guid: abe88adc7a2818042a9cc86c4d47270f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419229030425092995, guid: abe88adc7a2818042a9cc86c4d47270f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5099003686459159596, guid: abe88adc7a2818042a9cc86c4d47270f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5493611083002888403, guid: abe88adc7a2818042a9cc86c4d47270f,
         type: 3}
       propertyPath: m_Name
-      value: HumanAgent
-      objectReference: {fileID: 0}
-    - target: {fileID: 8226049100601006873, guid: abe88adc7a2818042a9cc86c4d47270f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: HumanBody
       objectReference: {fileID: 0}
     - target: {fileID: 6082929760917799944, guid: abe88adc7a2818042a9cc86c4d47270f,
         type: 3}
@@ -8110,70 +8092,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1782908004769543801, guid: abe88adc7a2818042a9cc86c4d47270f,
-        type: 3}
-      propertyPath: speed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528048344552665154, guid: abe88adc7a2818042a9cc86c4d47270f,
-        type: 3}
-      propertyPath: m_Name
-      value: Player Camera
-      objectReference: {fileID: 0}
     - target: {fileID: 6744850446466037799, guid: abe88adc7a2818042a9cc86c4d47270f,
         type: 3}
       propertyPath: playerBody
       value: 
       objectReference: {fileID: 8411858632066719665}
-    - target: {fileID: 660068338695643360, guid: abe88adc7a2818042a9cc86c4d47270f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5493611083002888403, guid: abe88adc7a2818042a9cc86c4d47270f,
-        type: 3}
-      propertyPath: m_Name
-      value: HumanBody
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419229030425092995, guid: abe88adc7a2818042a9cc86c4d47270f,
-        type: 3}
-      propertyPath: m_Height
-      value: 5.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419229030425092995, guid: abe88adc7a2818042a9cc86c4d47270f,
-        type: 3}
-      propertyPath: m_Radius
-      value: 1.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 4419229030425092995, guid: abe88adc7a2818042a9cc86c4d47270f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7032430229212923095, guid: abe88adc7a2818042a9cc86c4d47270f,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5099003686459159596, guid: abe88adc7a2818042a9cc86c4d47270f,
+    - target: {fileID: 8226049100601006873, guid: abe88adc7a2818042a9cc86c4d47270f,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_Name
+      value: HumanAgent
       objectReference: {fileID: 0}
-    - target: {fileID: 513066871820775371, guid: abe88adc7a2818042a9cc86c4d47270f,
+    - target: {fileID: 8226049100601006873, guid: abe88adc7a2818042a9cc86c4d47270f,
         type: 3}
-      propertyPath: speed
-      value: 10
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2329058832697810611, guid: abe88adc7a2818042a9cc86c4d47270f,
+    - target: {fileID: 8528048344552665154, guid: abe88adc7a2818042a9cc86c4d47270f,
         type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 900329649441554115, guid: abe88adc7a2818042a9cc86c4d47270f,
-        type: 3}
-      propertyPath: m_Radius
-      value: 4
+      propertyPath: m_Name
+      value: Player Camera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abe88adc7a2818042a9cc86c4d47270f, type: 3}

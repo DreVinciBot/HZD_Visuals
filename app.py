@@ -4,6 +4,6 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def unitygame():
+def index():
     return render_template("index.html")
     # return 'Hello, World! test 2'

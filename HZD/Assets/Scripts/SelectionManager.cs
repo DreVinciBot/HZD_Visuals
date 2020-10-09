@@ -11,8 +11,8 @@ namespace PathCreation.Examples
     public class SelectionManager : MonoBehaviour
     {
         [SerializeField] private string selectableTag = "Selectable";
-        [SerializeField] private Material unselected_material;
-        [SerializeField] private Material selected_material;
+        [SerializeField] private Material unselected_material = null;
+        [SerializeField] private Material selected_material = null;
 
         private bool arrowCheck = false;
         private Transform _selection;

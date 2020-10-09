@@ -13,7 +13,7 @@ public class Web : MonoBehaviour
     public bool state = false;
     public static string username_input;
 
-    private string ngrok = "https://ac98a8b9b3e5.ngrok.io";
+    private string ngrok = "https://d8b2e98eeb87.ngrok.io";
 
     void Start()
     {
@@ -29,8 +29,6 @@ public class Web : MonoBehaviour
         //StartCoroutine(RegisterUserCollected2(5));
         //StartCoroutine(RegisterUserPointContact1("test"));
         //StartCoroutine(RegisterUserPointContact2("test2"));
-
-
     }
 
     IEnumerator GetRequest(string uri)

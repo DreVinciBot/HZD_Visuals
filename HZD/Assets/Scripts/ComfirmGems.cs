@@ -250,9 +250,6 @@ namespace PathCreation.Examples
             if (other.gameObject.name == humanAgent)
             {
 
-                pose_1 += String.Format("{0:0.##}", other.transform.position.x) + "," + String.Format("{0:0.##}", other.transform.position.z) + "," + String.Format("{0:0.##}", other.transform.rotation.eulerAngles.y) + "," + String.Format("{0:0.##}", transform.rotation.eulerAngles.y) + "\n";
-                pose_2 += String.Format("{0:0.##}", other.transform.position.x) + "," + String.Format("{0:0.##}", other.transform.position.z) + "," + String.Format("{0:0.##}", other.transform.rotation.eulerAngles.y) + "," + String.Format("{0:0.##}", transform.rotation.eulerAngles.y) + "\n";
-
 
                 robot_counter += CollectToken.currentScore;
                 robotAlert.SetActive(false);
@@ -262,6 +259,12 @@ namespace PathCreation.Examples
 
                 if (CollectToken.currentScore > 0)
                 {
+
+
+                    pose_1 += String.Format("{0:0.##}", other.transform.position.x) + "," + String.Format("{0:0.##}", other.transform.position.z) + "," + String.Format("{0:0.##}", other.transform.rotation.eulerAngles.y) + "," + String.Format("{0:0.##}", transform.rotation.eulerAngles.y) + "\n";
+                    pose_2 += String.Format("{0:0.##}", other.transform.position.x) + "," + String.Format("{0:0.##}", other.transform.position.z) + "," + String.Format("{0:0.##}", other.transform.rotation.eulerAngles.y) + "," + String.Format("{0:0.##}", transform.rotation.eulerAngles.y) + "\n";
+
+
                     CollectToken.currentScore = 0;
                     Delivered_Obj.SetActive(true);
                     StartCoroutine(Wait());

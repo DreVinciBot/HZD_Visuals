@@ -180,7 +180,7 @@ namespace PathCreation.Examples
                 }
 
                 //calculate the distance between the last arrow and the robot and compare that with the latest revealzone
-                else if(holder != null)
+                else if(holder != null && holder.transform.childCount > 1)
                 {
                     currentPosition = PathFollower.currentPosition;
                     float robot_distance = pathCreator.path.GetClosestDistanceAlongPath(currentPosition);
@@ -254,7 +254,7 @@ namespace PathCreation.Examples
             }
 
             // fixed-time condition
-            if (fixed_time_new && holder != null && pathCreator != null)
+            if (fixed_time_new && holder != null && pathCreator != null && vertex_path != null)
             {
                 fixed_condition = true;
                 if (fixed_time_intialized)

@@ -13,7 +13,7 @@ public class Web : MonoBehaviour
     public bool state = false;
     public static string username_input;
 
-    private string ngrok = "https://d8b2e98eeb87.ngrok.io";
+    private string ngrok = "https://eee90993d4e7.ngrok.io";
 
     void Start()
     {
@@ -312,6 +312,64 @@ public class Web : MonoBehaviour
 
         //trying url with ip address with portforwarding
         string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime2.php";
+
+        // uri for localhost
+        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                //Debug.Log(www.error);
+            }
+            else
+            {
+                //Debug.Log(www.downloadHandler.text);            
+            }
+        }
+    }
+
+    public IEnumerator RegisterUserSequence1(string sequence1)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("loginUser", username_input);
+        form.AddField("loginSequence1", sequence1);
+
+        print("u/n : " + username_input + " recieved: " + sequence1);
+
+        //trying url with ip address with portforwarding
+        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserSequence1.php";
+
+        // uri for localhost
+        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError || www.isHttpError)
+            {
+                //Debug.Log(www.error);
+            }
+            else
+            {
+                //Debug.Log(www.downloadHandler.text);            
+            }
+        }
+    }
+
+    public IEnumerator RegisterUserSequence2(string sequence2)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("loginUser", username_input);
+        form.AddField("loginSequence2", sequence2);
+
+        print("u/n : " + username_input + " recieved: " + sequence2);
+
+        //trying url with ip address with portforwarding
+        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserSequence2.php";
 
         // uri for localhost
         //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";

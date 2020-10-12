@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +30,9 @@ namespace PathCreation.Examples
         public static bool roundinsession = true;
         public static string point_count_1;
         public static string point_count_2;
+        public static string pose_1;
+        public static string pose_2;
+
 
         static bool firstround = false;
         static bool secondround = false;
@@ -52,6 +56,8 @@ namespace PathCreation.Examples
         // Start is called before the first frame update
         void Start()
         {
+            pose_1 = "";
+            pose_2 = "";
             Completed_text.SetActive(false);
             TimesUp_text.SetActive(false);
             Continue_Panel.SetActive(false);
@@ -138,6 +144,8 @@ namespace PathCreation.Examples
                     point_count_1 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
 
                     Countdown.GetComponent<Timer>().RecordContacts1();
+                    Countdown.GetComponent<Timer>().RecordSequence1();
+
                 }
 
                 if (helloPanel.startofSecondRound && timerecord2)
@@ -152,6 +160,7 @@ namespace PathCreation.Examples
                     point_count_2 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
 
                     Countdown.GetComponent<Timer>().RecordContacts2();
+                    Countdown.GetComponent<Timer>().RecordSequence2();
                 }
 
                 if (helloPanel.endofFirstRound)
@@ -206,6 +215,8 @@ namespace PathCreation.Examples
                     point_count_1= "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
 
                     Countdown.GetComponent<Timer>().RecordContacts1();
+                    Countdown.GetComponent<Timer>().RecordSequence1();
+
                 }
 
                 if (helloPanel.startofSecondRound && timerecord2)
@@ -220,6 +231,8 @@ namespace PathCreation.Examples
                     point_count_2 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
 
                     Countdown.GetComponent<Timer>().RecordContacts2();
+                    Countdown.GetComponent<Timer>().RecordSequence2();
+
                 }
 
                 if (helloPanel.endofFirstRound)
@@ -236,6 +249,11 @@ namespace PathCreation.Examples
         {
             if (other.gameObject.name == humanAgent)
             {
+
+                pose_1 += String.Format("{0:0.##}", other.transform.position.x) + "," + String.Format("{0:0.##}", other.transform.position.z) + "," + String.Format("{0:0.##}", other.transform.rotation.eulerAngles.y) + "," + String.Format("{0:0.##}", transform.rotation.eulerAngles.y) + "\n";
+                pose_2 += String.Format("{0:0.##}", other.transform.position.x) + "," + String.Format("{0:0.##}", other.transform.position.z) + "," + String.Format("{0:0.##}", other.transform.rotation.eulerAngles.y) + "," + String.Format("{0:0.##}", transform.rotation.eulerAngles.y) + "\n";
+
+
                 robot_counter += CollectToken.currentScore;
                 robotAlert.SetActive(false);
                 Collected_text.SetActive(true);

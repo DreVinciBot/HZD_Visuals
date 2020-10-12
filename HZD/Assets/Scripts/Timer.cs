@@ -125,6 +125,18 @@ namespace PathCreation.Examples
             StartCoroutine(Main.Instance.Web.RegisterUserPointContact2(ComfirmGems.point_count_2));
         }
 
+        public void RecordSequence1()
+        {
+            StartCoroutine(Wait());
+            StartCoroutine(Main.Instance.Web.RegisterUserSequence1(ComfirmGems.pose_1));
+        }
+
+        public void RecordSequence2()
+        {
+            StartCoroutine(Wait());
+            StartCoroutine(Main.Instance.Web.RegisterUserSequence2(ComfirmGems.pose_2));
+        }
+
         IEnumerator Wait()
         {
             yield return new WaitForSeconds(2);

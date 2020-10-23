@@ -13,7 +13,7 @@ public class Web : MonoBehaviour
     public bool state = false;
     public static string username_input;
 
-    private string ngrok = "https://32a9b2d1ebe4.ngrok.io";
+    private string ngrok = "https://7ab26d97b9c2.ngrok.io";
 
     void Start()
     {

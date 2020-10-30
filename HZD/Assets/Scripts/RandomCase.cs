@@ -18,7 +18,7 @@ namespace PathCreation.Examples
 
         public void RandomCase_Selected()
         {
-            num = Random.Range(1, 5);
+            num = Random.Range(4, 5);
             print("FirstRound");
             StartCoroutine(Wait(num));
             //StartCoroutine(Main.Instance.Web.RegisterUserLevel(first_level));
@@ -74,7 +74,7 @@ namespace PathCreation.Examples
             switch (num)
             {
                 case 4:
-                    int A = Random.Range(0, 2);
+                    int A = Random.Range(1, 2);
 
                     if (A == 0)
                     {

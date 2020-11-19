@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 
-public class Main : MonoBehaviour
+
+namespace PathCreation.Examples
 {
-    public static Main Instance;
-
-    public Web Web;
-    //public UserInfo UserInfo;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Main : MonoBehaviour
     {
-        Instance = this;
-        Web = GetComponent<Web>();
-        //UserInfo = GetComponent<UserInfo>();
+        public static Main Instance;
+
+        public Web Web;
+        //public UserInfo UserInfo;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            Instance = this;
+            Web = GetComponent<Web>();
+            //UserInfo = GetComponent<UserInfo>();
+        }
     }
 }

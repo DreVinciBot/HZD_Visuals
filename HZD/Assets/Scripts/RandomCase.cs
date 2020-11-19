@@ -10,30 +10,39 @@ namespace PathCreation.Examples
     public class RandomCase : MonoBehaviour
     {
 
-        public int num;
+        //public int num;
         public static string first_level;
         public static bool level_changed = false;
         public static string scene_1;
         public static string scene_2;
+        public int temp_pass_id;
 
         public void RandomCase_Selected()
         {
-            num = Random.Range(4, 5);
+            //num = Random.Range(4, 5);
             print("FirstRound");
-            StartCoroutine(Wait(num));
-            //StartCoroutine(Main.Instance.Web.RegisterUserLevel(first_level));
+
+
+            // Be sure to change the web url to server 
+            //StartCoroutine(Main.Instance.Web.GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
+
+            print("chosen_id2: " + Web.pass_id);
+            temp_pass_id = Web.pass_id;
+            StartCoroutine(Wait(temp_pass_id));
+
+
         }
 
         public static void SecondRound()
-        {        
+        {
             if (SceneManager.GetActiveScene().name == "all_visuals_complex_scene")
             {
-                SceneManager.LoadScene("all_visuals_simple_scene");              
+                SceneManager.LoadScene("all_visuals_simple_scene");
             }
 
             if (SceneManager.GetActiveScene().name == "all_visuals_simple_scene")
             {
-                SceneManager.LoadScene("all_visuals_complex_scene");          
+                SceneManager.LoadScene("all_visuals_complex_scene");
             }
 
             if (SceneManager.GetActiveScene().name == "no_visuals_simple_scene")
@@ -70,11 +79,12 @@ namespace PathCreation.Examples
         IEnumerator Wait(int num)
         {
             yield return new WaitForSeconds(2);
+            print("num: " + num);
 
             switch (num)
             {
-                case 4:
-                    int A = Random.Range(1, 2);
+                case 3:
+                    int A = Random.Range(0, 1);
 
                     if (A == 0)
                     {
@@ -93,8 +103,8 @@ namespace PathCreation.Examples
                         scene_2 = "no_visuals_simple_scene";
                     }
                     break;
-                case 3:
-                    int B = Random.Range(0, 2);
+                case 2:
+                    int B = Random.Range(1, 2);
 
                     if (B == 0)
                     {
@@ -113,8 +123,8 @@ namespace PathCreation.Examples
                         scene_2 = "all_visuals_complex_scene";
                     }
                     break;
-                case 2:
-                    int C = Random.Range(0, 2);
+                case 1:
+                    int C = Random.Range(1, 2);
 
                     if (C == 0)
                     {
@@ -133,8 +143,8 @@ namespace PathCreation.Examples
                         scene_2 = "fixed_visuals_complex_scene";
                     }
                     break;
-                case 1:
-                    int D = Random.Range(0, 2);
+                case 0:
+                    int D = Random.Range(1, 2);
 
                     if (D == 0)
                     {
@@ -153,7 +163,7 @@ namespace PathCreation.Examples
                         scene_2 = "log_visuals_complex_scene";
                     }
                     break;
- 
+
                 default:
                     print("Fail to select Level");
                     break;

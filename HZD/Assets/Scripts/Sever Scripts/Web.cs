@@ -6,443 +6,485 @@ using UnityEngine.SceneManagement;
 
 using TMPro;
 
-public class Web : MonoBehaviour
+
+namespace PathCreation.Examples
 {
-  
-    public TMP_Text loginResponse;
-    public bool state = false;
-    public static string username_input;
-
-    private string ngrok = "https://05604b75ffc7.ngrok.io";
-
-    void Start()
+    public class Web : MonoBehaviour
     {
-        //StartCoroutine(GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
-        //StartCoroutine(GetRequest("https://example-php-files.s3.us-east-2.amazonaws.com/GetID.php"));
-        //StartCoroutine(GetUsers());
-        //StartCoroutine(Login("testuser", "123456"));
-        //StartCoroutine(RegisterUser("testuser3", "tufts"));
-        //StartCoroutine(RegisterUserID("testuser4"));
-        //StartCoroutine(RegisterUserLevel(4));
-        //StartCoroutine(RegisterUserTime1("4"));
-        //StartCoroutine(RegisterUserCollected1(5));
-        //StartCoroutine(RegisterUserCollected2(5));
-        //StartCoroutine(RegisterUserPointContact1("test"));
-        //StartCoroutine(RegisterUserPointContact2("test2"));
-    }
 
-    IEnumerator GetRequest(string uri)
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        public TMP_Text loginResponse;
+        public bool state = false;
+        public static string username_input;
+        public static int last_id;
+        public static int chosen_id;
+        public static int pass_id;
+
+        //private string ngrok = "https://05604b75ffc7.ngrok.io";
+
+        void Start()
         {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
+            StartCoroutine(GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
+            //StartCoroutine(GetRequest("https://example-php-files.s3.us-east-2.amazonaws.com/GetID.php"));
+            //StartCoroutine(GetUsers());
+            //StartCoroutine(Login("testuser", "123456"));
+            //StartCoroutine(RegisterUser("testuser3", "tufts"));
+            //StartCoroutine(RegisterUserID("testuser4"));
+            //StartCoroutine(RegisterUserLevel(4));
+            //StartCoroutine(RegisterUserTime1("4"));
+            //StartCoroutine(RegisterUserCollected1(5));
+            //StartCoroutine(RegisterUserCollected2(5));
+            //StartCoroutine(RegisterUserPointContact1("test"));
+            //StartCoroutine(RegisterUserPointContact2("test2"));
 
-            string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
-
-            if (webRequest.isNetworkError)
-            {
-                Debug.Log(pages[page] + ": Error: " + webRequest.error);
-            }
-            else
-            {
-                Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-            }
+         
         }
-    }
 
-    public IEnumerator GetUsers()
-    {
-        //string uri = "http://24.60.202.6:80/ARNavigationStudy2020/GetUsers.php";
-        string uri = "http://localhost/ARNavigationStudy2020/GetUsers.php";
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
-        {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
-
-            string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
-
-            if (webRequest.isNetworkError)
-            {
-                Debug.Log(pages[page] + ": Error: " + webRequest.error);
-            }
-            else
-            {
-                Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-            }
+        public void choosen_case(int level)
+        {         
+            pass_id = level;
         }
-    }
 
-    public IEnumerator Login(string username, string password)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username);
-        form.AddField("loginPass", password);
-
-        string uri = "http://localhost/ARNavigationStudy2020/Login.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        public IEnumerator GetRequest(string uri)
         {
-
-            yield return www.SendWebRequest();
-
-            if (www.isNetworkError || www.isHttpError)
+            using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
             {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                Debug.Log(www.downloadHandler.text);
-                string message = www.downloadHandler.text;
+                // Request and wait for the desired page.
+                yield return webRequest.SendWebRequest();
 
-                loginResponse.text = message;
+                string[] pages = uri.Split('/');
+                int page = pages.Length - 1;
 
-                if (message == "Login Success")
+                if (webRequest.isNetworkError)
                 {
-                    SceneManager.LoadScene("menu_scene");
-                }
-            }
-        }
-    }
-
-    public IEnumerator RegisterUser(string username, string password)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username);
-        form.AddField("loginPass", password);
-
-        string uri = "http://localhost/ARNavigationStudy2020/RegisterUser.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.isNetworkError || www.isHttpError)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                Debug.Log(www.downloadHandler.text);
-            }
-        }
-    }
-
-    //This function is for the AR Navigational Study
-    public IEnumerator RegisterUserID(string username)
-    {
-        username_input = username;
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username);
-        //form.AddField("loginPass", password);
-
-        //trying url with ip address with portforwarding
-        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserID.php";
-
-        // uri for localhost
-        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserID.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
-        {
-            yield return www.SendWebRequest();
-
-            //loginResponse.text = www.downloadHandler.text;
-            
-            if (www.isDone)
-            {
-                loginResponse.text = www.downloadHandler.text;
-                
-
-                //SceneManager.LoadScene("menu_scene");
-            }
-
-            if (www.isNetworkError || www.isHttpError)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                //Main.Instance.UserInfo.SetInfo(username);
-
-                Debug.Log(www.downloadHandler.text);
-                string message = www.downloadHandler.text;
-    
-                loginResponse.text = message;
-
-                if (message == "created user")
-                {
-                    loginResponse.text = "Login Successful, Click next to continue.";
-                    //SceneManager.LoadScene("menu_scene");                  
+                    Debug.Log(pages[page] + ": Error: " + webRequest.error);
                 }
                 else
                 {
-                    loginResponse.text = message;
+                    //Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                    last_id = System.Convert.ToInt32(webRequest.downloadHandler.text);
+                    print("last_id: " + last_id);
+
+                    chosen_id = last_id % 4;
+                    print("chosen_id: " + (chosen_id + 1));
+
+                    choosen_case(chosen_id);
+
                 }
             }
         }
-    }
 
-    public IEnumerator RegisterUserLevel(string level)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username_input);
-        form.AddField("loginLevel", level);
-
-        print("u/n : " + username_input + " recieved: " + level);
-     
-        //trying url with ip address with portforwarding
-        string uri = ngrok + "/ARNavigationStudy2020/RegisterLevel.php";
-
-        // uri for localhost
-        //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        public IEnumerator GetUsers()
         {
-            yield return www.SendWebRequest();
+            //string uri = "http://24.60.202.6:80/ARNavigationStudy2020/GetUsers.php";
+            string uri = "http://localhost/ARNavigationStudy2020/GetUsers.php";
+            using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+            {
+                // Request and wait for the desired page.
+                yield return webRequest.SendWebRequest();
 
-            if (www.isNetworkError || www.isHttpError)
-            {
-                //Debug.Log(www.error);
-            }
-            else
-            {
-                //Debug.Log(www.downloadHandler.text);            
+                string[] pages = uri.Split('/');
+                int page = pages.Length - 1;
+
+                if (webRequest.isNetworkError)
+                {
+                    Debug.Log(pages[page] + ": Error: " + webRequest.error);
+                }
+                else
+                {
+                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                }
             }
         }
-    }
 
-    public IEnumerator RegisterUserPointContact1(string contacts)
-    {
-       
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username_input);
-        form.AddField("loginPointContact_1", contacts);
-
-        print("u/n : " + username_input + " recieved: " + contacts);
-
-        //trying url with ip address with portforwarding
-        string uri = ngrok + "/ARNavigationStudy2020/RegisterPointContact1.php";
-
-        // uri for localhost
-        //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        public IEnumerator Login(string username, string password)
         {
-            yield return www.SendWebRequest();
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username);
+            form.AddField("loginPass", password);
 
-            if (www.isNetworkError || www.isHttpError)
+            string uri = "http://localhost/ARNavigationStudy2020/Login.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
             {
-                //Debug.Log(www.error);
-            }
-            else
-            {
-                //Debug.Log(www.downloadHandler.text);            
+
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    Debug.Log(www.error);
+                }
+                else
+                {
+                    Debug.Log(www.downloadHandler.text);
+                    string message = www.downloadHandler.text;
+
+                    loginResponse.text = message;
+
+                    if (message == "Login Success")
+                    {
+                        SceneManager.LoadScene("menu_scene");
+                    }
+                }
             }
         }
-    }
 
-    public IEnumerator RegisterUserPointContact2(string constacts)
-    {
-      
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username_input);
-        form.AddField("loginPointContact_2", constacts);
-
-        print("u/n : " + username_input + " recieved: " + constacts);
-
-        //trying url with ip address with portforwarding
-        string uri = ngrok + "/ARNavigationStudy2020/RegisterPointContact2.php";
-
-        // uri for localhost
-        //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        public IEnumerator RegisterUser(string username, string password)
         {
-            yield return www.SendWebRequest();
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username);
+            form.AddField("loginPass", password);
 
-            if (www.isNetworkError || www.isHttpError)
+            string uri = "http://localhost/ARNavigationStudy2020/RegisterUser.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
             {
-                //Debug.Log(www.error);
-            }
-            else
-            {
-                //Debug.Log(www.downloadHandler.text);            
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    Debug.Log(www.error);
+                }
+                else
+                {
+                    Debug.Log(www.downloadHandler.text);
+                }
             }
         }
-    }
 
-    public IEnumerator RegisterUserTime1(string time1)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username_input);
-        form.AddField("loginTime1", time1);
-
-        print("u/n : " + username_input + " recieved: " + time1);
-
-        //trying url with ip address with portforwarding
-        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime1.php";
-
-        // uri for localhost
-        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        //This function is for the AR Navigational Study
+        public IEnumerator RegisterUserID(string username)
         {
-            yield return www.SendWebRequest();
+            username_input = username;
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username);
+            //form.AddField("loginPass", password);
 
-            if (www.isNetworkError || www.isHttpError)
+            //trying url with ip address with portforwarding
+            //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserID.php";
+
+            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserID.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserID.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
             {
-                //Debug.Log(www.error);
-            }
-            else
-            {
-                //Debug.Log(www.downloadHandler.text);            
+                yield return www.SendWebRequest();
+
+                //loginResponse.text = www.downloadHandler.text;
+
+                if (www.isDone)
+                {
+                    loginResponse.text = www.downloadHandler.text;
+
+
+                    //SceneManager.LoadScene("menu_scene");
+                }
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    Debug.Log(www.error);
+                }
+                else
+                {
+                    //Main.Instance.UserInfo.SetInfo(username);
+
+                    Debug.Log(www.downloadHandler.text);
+                    string message = www.downloadHandler.text;
+
+                    loginResponse.text = message;
+
+                    if (message == "created user")
+                    {
+                        loginResponse.text = "Login Successful, Click next to continue.";
+                        //SceneManager.LoadScene("menu_scene");                  
+                    }
+                    else
+                    {
+                        loginResponse.text = message;
+                    }
+                }
             }
         }
-    }
 
-    public IEnumerator RegisterUserTime2(string time2)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username_input);
-        form.AddField("loginTime2", time2);
-
-        print("u/n : " + username_input + " recieved: " + time2);
-
-        //trying url with ip address with portforwarding
-        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime2.php";
-
-        // uri for localhost
-        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        public IEnumerator RegisterUserLevel(string level)
         {
-            yield return www.SendWebRequest();
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            form.AddField("loginLevel", level);
 
-            if (www.isNetworkError || www.isHttpError)
+            print("u/n : " + username_input + " recieved: " + level);
+
+            //trying url with ip address with portforwarding
+            //string uri = ngrok + "/ARNavigationStudy2020/RegisterLevel.php";
+
+            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterLevel.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
             {
-                //Debug.Log(www.error);
-            }
-            else
-            {
-                //Debug.Log(www.downloadHandler.text);            
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    //Debug.Log(www.error);
+                }
+                else
+                {
+                    //Debug.Log(www.downloadHandler.text);            
+                }
             }
         }
-    }
 
-    public IEnumerator RegisterUserSequence1(string sequence1)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username_input);
-        form.AddField("loginSequence1", sequence1);
-
-        print("u/n : " + username_input + " recieved: " + sequence1);
-
-        //trying url with ip address with portforwarding
-        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserSequence1.php";
-
-        // uri for localhost
-        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        public IEnumerator RegisterUserPointContact1(string contacts)
         {
-            yield return www.SendWebRequest();
 
-            if (www.isNetworkError || www.isHttpError)
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            form.AddField("loginPointContact_1", contacts);
+
+            print("u/n : " + username_input + " recieved: " + contacts);
+
+            //trying url with ip address with portforwarding
+            //string uri = ngrok + "/ARNavigationStudy2020/RegisterPointContact1.php";
+
+            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterPointContact1.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
             {
-                //Debug.Log(www.error);
-            }
-            else
-            {
-                //Debug.Log(www.downloadHandler.text);            
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    //Debug.Log(www.error);
+                }
+                else
+                {
+                    //Debug.Log(www.downloadHandler.text);            
+                }
             }
         }
-    }
 
-    public IEnumerator RegisterUserSequence2(string sequence2)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username_input);
-        form.AddField("loginSequence2", sequence2);
-
-        print("u/n : " + username_input + " recieved: " + sequence2);
-
-        //trying url with ip address with portforwarding
-        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserSequence2.php";
-
-        // uri for localhost
-        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        public IEnumerator RegisterUserPointContact2(string constacts)
         {
-            yield return www.SendWebRequest();
 
-            if (www.isNetworkError || www.isHttpError)
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            form.AddField("loginPointContact_2", constacts);
+
+            print("u/n : " + username_input + " recieved: " + constacts);
+
+            //trying url with ip address with portforwarding
+            //string uri = ngrok + "/ARNavigationStudy2020/RegisterPointContact2.php";
+
+            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterPointContact2.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
             {
-                //Debug.Log(www.error);
-            }
-            else
-            {
-                //Debug.Log(www.downloadHandler.text);            
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    //Debug.Log(www.error);
+                }
+                else
+                {
+                    //Debug.Log(www.downloadHandler.text);            
+                }
             }
         }
-    }
 
-    public IEnumerator RegisterUserCollected1(int items1)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username_input);
-        form.AddField("loginCollected1", items1);
-
-        print("u/n : " + username_input + " recieved: " + items1);
-
-        //trying url with ip address with portforwarding
-        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserCollected1.php";
-
-        // uri for localhost
-        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        public IEnumerator RegisterUserTime1(string time1)
         {
-            yield return www.SendWebRequest();
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            form.AddField("loginTime1", time1);
 
-            if (www.isNetworkError || www.isHttpError)
+            print("u/n : " + username_input + " recieved: " + time1);
+
+            //trying url with ip address with portforwarding
+            //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime1.php";
+
+            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserTime1.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
             {
-                //Debug.Log(www.error);
-            }
-            else
-            {
-                //Debug.Log(www.downloadHandler.text);            
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    //Debug.Log(www.error);
+                }
+                else
+                {
+                    //Debug.Log(www.downloadHandler.text);            
+                }
             }
         }
-    }
 
-    public IEnumerator RegisterUserCollected2(int items2)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("loginUser", username_input);
-        form.AddField("loginCollected2", items2);
-
-        print("u/n : " + username_input + " recieved: " + items2);
-
-        //trying url with ip address with portforwarding
-        string uri = ngrok + "/ARNavigationStudy2020/RegisterUserCollected2.php";
-
-        // uri for localhost
-        //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
-
-        using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+        public IEnumerator RegisterUserTime2(string time2)
         {
-            yield return www.SendWebRequest();
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            form.AddField("loginTime2", time2);
 
-            if (www.isNetworkError || www.isHttpError)
+            print("u/n : " + username_input + " recieved: " + time2);
+
+            //trying url with ip address with portforwarding
+            //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime2.php";
+
+            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserTime2.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
             {
-                //Debug.Log(www.error);
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    //Debug.Log(www.error);
+                }
+                else
+                {
+                    //Debug.Log(www.downloadHandler.text);            
+                }
             }
-            else
+        }
+
+        public IEnumerator RegisterUserSequence1(string sequence1)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            form.AddField("loginSequence1", sequence1);
+
+            print("u/n : " + username_input + " recieved: " + sequence1);
+
+            //trying url with ip address with portforwarding
+            //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserSequence1.php";
+
+            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserSequence1.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
             {
-                //Debug.Log(www.downloadHandler.text);            
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    //Debug.Log(www.error);
+                }
+                else
+                {
+                    //Debug.Log(www.downloadHandler.text);            
+                }
+            }
+        }
+
+        public IEnumerator RegisterUserSequence2(string sequence2)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            form.AddField("loginSequence2", sequence2);
+
+            print("u/n : " + username_input + " recieved: " + sequence2);
+
+            //trying url with ip address with portforwarding
+            //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserSequence2.php";
+
+            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserSequence2.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    //Debug.Log(www.error);
+                }
+                else
+                {
+                    //Debug.Log(www.downloadHandler.text);            
+                }
+            }
+        }
+
+        public IEnumerator RegisterUserCollected1(int items1)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            form.AddField("loginCollected1", items1);
+
+            print("u/n : " + username_input + " recieved: " + items1);
+
+            //trying url with ip address with portforwarding
+            //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserCollected1.php";
+
+            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserCollected1.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    //Debug.Log(www.error);
+                }
+                else
+                {
+                    //Debug.Log(www.downloadHandler.text);            
+                }
+            }
+        }
+
+        public IEnumerator RegisterUserCollected2(int items2)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            form.AddField("loginCollected2", items2);
+
+            print("u/n : " + username_input + " recieved: " + items2);
+
+            //trying url with ip address with portforwarding
+            //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserCollected2.php";
+
+            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserCollected2.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    //Debug.Log(www.error);
+                }
+                else
+                {
+                    //Debug.Log(www.downloadHandler.text);            
+                }
             }
         }
     }

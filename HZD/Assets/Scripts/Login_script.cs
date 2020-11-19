@@ -5,37 +5,43 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class Login_script : MonoBehaviour
+
+namespace PathCreation.Examples
 {
-    public TMP_Text response;
-    public TMP_InputField UsernameInput;
-    public TMP_InputField PasswordInput;
-    public Button LoginButton;
-    public GameObject next_btn;
-    public static string username;
 
-    // Start is called before the first frame update
-    void Start()
+    public class Login_script : MonoBehaviour
     {
-        username = UsernameInput.text;
-        PlayerPrefs.SetString("username", UsernameInput.text);
+        public TMP_Text response;
+        public TMP_InputField UsernameInput;
+        public TMP_InputField PasswordInput;
+        public Button LoginButton;
+        public GameObject next_btn;
+        public static string username;
 
-        next_btn.SetActive(false);
-        LoginButton.onClick.AddListener(() => {
-            //StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text));
+        // Start is called before the first frame update
+        void Start()
+        {
+            username = UsernameInput.text;
+            PlayerPrefs.SetString("username", UsernameInput.text);
 
-            if (PasswordInput.text == "robot" && UsernameInput.text != null)
+            next_btn.SetActive(false);
+            LoginButton.onClick.AddListener(() =>
             {
-                //response.text = "Please Wait...";
-                StartCoroutine(Main.Instance.Web.RegisterUserID(UsernameInput.text));
+                //StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text));
 
-                next_btn.SetActive(true);
-            }
-            else
-            {
-                response.text = "Wrong Credentials...";
-            }
+                if (PasswordInput.text == "robot" && UsernameInput.text != null)
+                {
+                    //response.text = "Please Wait...";
+                    StartCoroutine(Main.Instance.Web.RegisterUserID(UsernameInput.text));
 
-        });
+                    next_btn.SetActive(true);
+                }
+                else
+                {
+                    response.text = "Wrong Credentials...";
+                }
+
+            });
+        }
     }
 }

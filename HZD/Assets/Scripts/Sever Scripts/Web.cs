@@ -23,7 +23,11 @@ namespace PathCreation.Examples
 
         void Start()
         {
-            StartCoroutine(GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
+            //StartCoroutine(GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
+            StartCoroutine(GetRequest("https://www.eecs.tufts.edu/~jsinapov/ar_study/GetID.php"));
+
+
+            //string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserID.php";
             //StartCoroutine(GetRequest("https://example-php-files.s3.us-east-2.amazonaws.com/GetID.php"));
             //StartCoroutine(GetUsers());
             //StartCoroutine(Login("testuser", "123456"));
@@ -36,7 +40,7 @@ namespace PathCreation.Examples
             //StartCoroutine(RegisterUserPointContact1("test"));
             //StartCoroutine(RegisterUserPointContact2("test2"));
 
-         
+
         }
 
         public void choosen_case(int level)

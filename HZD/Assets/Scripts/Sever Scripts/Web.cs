@@ -24,8 +24,7 @@ namespace PathCreation.Examples
         void Start()
         {
             //StartCoroutine(GetRequest("http://localhost/ARNavigationStudy2020/GetID.php"));
-            StartCoroutine(GetRequest("https://www.eecs.tufts.edu/~jsinapov/ar_study/GetID.php"));
-
+            StartCoroutine(GetRequest("https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/GetID.php"));
 
             //string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserID.php";
             //StartCoroutine(GetRequest("https://example-php-files.s3.us-east-2.amazonaws.com/GetID.php"));
@@ -166,7 +165,7 @@ namespace PathCreation.Examples
             //trying url with ip address with portforwarding
             //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserID.php";
 
-            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserID.php";
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterUserID.php";
 
             // uri for localhost
             //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserID.php";
@@ -222,7 +221,7 @@ namespace PathCreation.Examples
             //trying url with ip address with portforwarding
             //string uri = ngrok + "/ARNavigationStudy2020/RegisterLevel.php";
 
-            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterLevel.php";
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterLevel.php";
 
             // uri for localhost
             //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
@@ -254,7 +253,7 @@ namespace PathCreation.Examples
             //trying url with ip address with portforwarding
             //string uri = ngrok + "/ARNavigationStudy2020/RegisterPointContact1.php";
 
-            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterPointContact1.php";
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterPointContact1.php";
 
             // uri for localhost
             //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
@@ -286,7 +285,7 @@ namespace PathCreation.Examples
             //trying url with ip address with portforwarding
             //string uri = ngrok + "/ARNavigationStudy2020/RegisterPointContact2.php";
 
-            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterPointContact2.php";
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterPointContact2.php";
 
             // uri for localhost
             //string uri = "http://localhost/ARNavigationStudy2020/RegisterLevel.php";
@@ -317,7 +316,7 @@ namespace PathCreation.Examples
             //trying url with ip address with portforwarding
             //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime1.php";
 
-            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserTime1.php";
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterUserTime1.php";
 
             // uri for localhost
             //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
@@ -348,7 +347,7 @@ namespace PathCreation.Examples
             //trying url with ip address with portforwarding
             //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserTime2.php";
 
-            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserTime2.php";
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterUserTime2.php";
 
             // uri for localhost
             //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
@@ -379,7 +378,7 @@ namespace PathCreation.Examples
             //trying url with ip address with portforwarding
             //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserSequence1.php";
 
-            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserSequence1.php";
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterUserSequence1.php";
 
             // uri for localhost
             //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
@@ -410,7 +409,7 @@ namespace PathCreation.Examples
             //trying url with ip address with portforwarding
             //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserSequence2.php";
 
-            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserSequence2.php";
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterUserSequence2.php";
 
             // uri for localhost
             //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
@@ -441,7 +440,7 @@ namespace PathCreation.Examples
             //trying url with ip address with portforwarding
             //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserCollected1.php";
 
-            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserCollected1.php";
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterUserCollected1.php";
 
             // uri for localhost
             //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";
@@ -472,7 +471,7 @@ namespace PathCreation.Examples
             //trying url with ip address with portforwarding
             //string uri = ngrok + "/ARNavigationStudy2020/RegisterUserCollected2.php";
 
-            string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserCollected2.php";
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterUserCollected2.php";
 
             // uri for localhost
             //string uri = "http://localhost/ARNavigationStudy2020/RegisterUserTime1.php";

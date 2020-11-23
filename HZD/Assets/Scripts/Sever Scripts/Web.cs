@@ -67,10 +67,7 @@ namespace PathCreation.Examples
                     last_id = System.Convert.ToInt32(webRequest.downloadHandler.text);
                     print("last_id: " + last_id);
 
-                    chosen_id = last_id % 4;
-                    print("chosen_id: " + (chosen_id + 1));
-
-                    choosen_case(chosen_id);
+                    choosen_case(last_id);
 
                 }
             }

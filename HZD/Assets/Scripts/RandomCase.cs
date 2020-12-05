@@ -21,7 +21,7 @@ namespace PathCreation.Examples
         public static int temp_pass_id;
         public static int last_id_aws;
         public string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/GetID.php";
-        public Text last_id_text;
+        //public Text last_id_text;
 
         //int[] sequence = new int[2000];
 
@@ -69,8 +69,6 @@ namespace PathCreation.Examples
             StartCoroutine(Wait(temp_pass_id));
             //StartCoroutine(Wait2());
             //StartCoroutine(GetID());
-          
-
 
         }
 
@@ -96,12 +94,13 @@ namespace PathCreation.Examples
                     int last_id = System.Convert.ToInt32(webRequest.downloadHandler.text);
                     print("last_id: " + last_id);
 
-                    last_id_text.text = webRequest.downloadHandler.text.ToString();
+                    //last_id_text.text = webRequest.downloadHandler.text.ToString();
 
                     //WaitFunction();              
 
                 }
             }
+            
         }
 
         public static void SecondRound()

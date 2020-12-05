@@ -34,7 +34,7 @@ namespace PathCreation.Examples
                     //response.text = "Please Wait...";
                     StartCoroutine(Main.Instance.Web.RegisterUserID(UsernameInput.text));
 
-                    next_btn.SetActive(true);
+
                 }
                 else
                 {
@@ -42,6 +42,14 @@ namespace PathCreation.Examples
                 }
 
             });
+        }
+
+        void Update()
+        {
+            if (response.text != null && response.text == "Login Successful, Click next to continue.")
+            {
+                next_btn.SetActive(true);
+            }
         }
     }
 }

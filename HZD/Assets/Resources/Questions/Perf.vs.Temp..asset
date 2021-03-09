@@ -15,9 +15,11 @@ MonoBehaviour:
   _info: Of the two categories, click on the category title that represents the more
     important contributor to workload for the task you completed.
   _answers:
-  - _info: Temporal Demand
+  - _info: Performance
     _isCorrect: 0
-  - _info: Effort
+  - _info: 'Temporal Demand
+
+'
     _isCorrect: 0
   _useTimer: 0
   _timer: 0

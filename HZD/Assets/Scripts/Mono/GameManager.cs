@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour {
 
     public static int answerChoice = 0;
 
+    public GameObject nextButton;
+
     private             bool                IsFinished
     {
         get
@@ -38,6 +40,21 @@ public class GameManager : MonoBehaviour {
             return (FinishedQuestions.Count < Questions.Length) ? false : true;
         }
     }
+
+    public static int mentalDemeand;
+    public static int physicalDemand;
+    public static int temporalDemand;
+    public static int Effort;
+    public static int Performance;
+    public static int Frustration;
+    public static float mental_value;
+    public static float physical_value;
+    public static float temporal_value;
+    public static float effort_value;
+    public static float frustration_value;
+    public static float performance_value;
+    public static float nasa_tlx;
+
 
     #endregion
 
@@ -70,6 +87,8 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     void Start()
     {
+        nextButton.SetActive(false);
+
         events.StartupHighscore = PlayerPrefs.GetInt(GameUtility.SavePrefKey);
 
         timerDefaultColor = timerText.color;
@@ -81,19 +100,42 @@ public class GameManager : MonoBehaviour {
         UnityEngine.Random.InitState(seed);
 
         Display();
+
+        mentalDemeand = 0;
+        physicalDemand = 0;
+        temporalDemand = 0;
+        Performance = 0;
+        Effort = 0;
+        Frustration = 0;
+
+        mental_value = 0;
+        physical_value = 0;
+        temporal_value = 0;
+        performance_value = 0;
+        effort_value = 0;
+        frustration_value = 0;
+
+        nasa_tlx = 0.0f;
     }
 
     #endregion
+
+
+
+
 
     /// <summary>
     /// Function that is called to update new selected answer.
     /// </summary>
     public void UpdateAnswers(AnswerData newAnswer)
     {
+
         if (Questions[currentQuestion].GetAnswerType == Question.AnswerType.Single)
         {
+            nextButton.SetActive(true);
             foreach (var answer in PickedAnswers)
             {
+                
                 if (answer != newAnswer)
                 {
                     answer.Reset();
@@ -107,7 +149,7 @@ public class GameManager : MonoBehaviour {
 
             //Debug.Log("Total count: " + Questions.Length);
 
-
+            //add active next button here.
 
         }
         else
@@ -166,7 +208,160 @@ public class GameManager : MonoBehaviour {
         bool isCorrect = CheckAnswers();
         FinishedQuestions.Add(currentQuestion);
 
-        Debug.Log(Questions[currentQuestion].name.ToString() + " Answerchoice: " + answerChoice);
+        //conduct tally for each response here.
+        if (Questions[currentQuestion].name.ToString() == "Ment.vs.Eff.")
+        {
+            if (answerChoice == 0)
+            {
+                mentalDemeand = mentalDemeand + 1;
+            }
+            else { Effort = Effort + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Phy.vs.Perf.")
+        {
+            if (answerChoice == 0)
+            {
+                physicalDemand = physicalDemand + 1;
+            }
+            else { Performance = Performance + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Phy.vs.Temp")
+        {
+            if (answerChoice == 0)
+            {
+                physicalDemand = physicalDemand + 1;
+            }
+            else { temporalDemand = temporalDemand + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Ment.vs.Phy.")
+        {
+            if (answerChoice == 0)
+            {
+                mentalDemeand = mentalDemeand + 1;
+            }
+            else { physicalDemand = physicalDemand + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Frust.vs.Eff.")
+        {
+            if (answerChoice == 0)
+            {
+                Frustration = Frustration + 1;
+            }
+            else { Effort = Effort + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Temp.vs.Eff.")
+        {
+            if (answerChoice == 0)
+            {
+                temporalDemand = temporalDemand + 1;
+            }
+            else { Effort = Effort + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Perf.vs.Frust")
+        {
+            if (answerChoice == 0)
+            {
+                Performance = Performance + 1;
+            }
+            else { Frustration = Frustration + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Temp.vs.Ment.")
+        {
+            if (answerChoice == 0)
+            {
+                temporalDemand = temporalDemand + 1;
+            }
+            else { mentalDemeand = mentalDemeand + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Eff.vs.Phy.")
+        {
+            if (answerChoice == 0)
+            {
+                Effort = Effort + 1;
+            }
+            else { physicalDemand = physicalDemand + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Perf.vs.Temp.")
+        {
+            if (answerChoice == 0)
+            {
+                Performance = Performance + 1;
+            }
+            else { temporalDemand = temporalDemand + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Eff.vs.Perf.")
+        {
+            if (answerChoice == 0)
+            {
+                Effort = Effort + 1;
+            }
+            else { Performance = Performance + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Phy.vs.Frust.")
+        {
+            if (answerChoice == 0)
+            {
+                physicalDemand = physicalDemand + 1;
+            }
+            else { Frustration = Frustration + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Perf.vs.Ment.")
+        {
+            if (answerChoice == 0)
+            {
+                Performance = Performance + 1;
+            }
+            else { mentalDemeand = mentalDemeand + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Perf.vs.Temp.")
+        {
+            if (answerChoice == 0)
+            {
+                Performance = Performance + 1;
+            }
+            else { temporalDemand = temporalDemand + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Temp.vs.Frust.")
+        {
+            if (answerChoice == 0)
+            {
+                temporalDemand = temporalDemand + 1;
+            }
+            else { Frustration = Frustration + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Frust.vs.Ment")
+        {
+            if (answerChoice == 0)
+            {
+                Frustration = Frustration + 1; 
+            }
+            else { mentalDemeand = mentalDemeand + 1; }
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Effort")
+        {
+            effort_value = answerChoice * 10;
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Frustration")
+        {
+            frustration_value = answerChoice * 10;
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Mental Demand")
+        {
+            mental_value = answerChoice * 10;
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Performance")
+        {
+            performance_value = answerChoice * 10;
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Physical Demand")
+        {
+            physical_value = answerChoice * 10;
+        }
+        else if (Questions[currentQuestion].name.ToString() == "Temporal Demand")
+        {
+            temporal_value = answerChoice * 10;
+        }
+        //Debug.Log(Questions[currentQuestion].name.ToString() + " Answerchoice: " + answerChoice);
 
 
         UpdateScore((isCorrect) ? Questions[currentQuestion].AddScore : -Questions[currentQuestion].AddScore);
@@ -174,6 +369,11 @@ public class GameManager : MonoBehaviour {
         if (IsFinished)
         {
             SetHighscore();
+            //Debug.Log("total: " + mental_value + " , " + physical_value + " , " + temporal_value + " , " + effort_value + " , " + performance_value + " , " + frustration_value);
+
+            //calculate the NASA TLX 
+            nasa_tlx = (mental_value * (mentalDemeand / 15.0f) + physical_value * (physicalDemand / 15.0f) + temporal_value * (temporalDemand / 15.0f) + effort_value * (Effort / 15.0f) + frustration_value * (Frustration / 15.0f) + performance_value * (Performance / 15.0f));
+            Debug.Log("NASA TLX: " + nasa_tlx);
         }
 
         var type 
@@ -290,13 +490,20 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     void LoadQuestions()
     {
-        Object[] objs = Resources.LoadAll("Questions2", typeof(Question));
+        Object[] objs = Resources.LoadAll("Questions", typeof(Question));
+        Object[] objs2 = Resources.LoadAll("Questions2", typeof(Question));
 
         //Add to the list of questions
-        _questions = new Question[objs.Length];
+        _questions = new Question[objs.Length + objs2.Length];
         for (int i = 0; i < objs.Length; i++)
         {
             _questions[i] = (Question)objs[i];
+            //Debug.Log("Question: " +  objs[i].name.ToString());
+        }
+
+        for (int i = 0; i < objs2.Length; i++)
+        {
+            _questions[i+ objs.Length] = (Question)objs2[i];
             //Debug.Log("Question: " +  objs[i].name.ToString());
         }
     }
@@ -346,7 +553,7 @@ public class GameManager : MonoBehaviour {
     {
         var randomIndex = GetRandomQuestionIndex();
         currentQuestion = randomIndex;
-
+        nextButton.SetActive(false);
         return Questions[currentQuestion];
     }
     int GetRandomQuestionIndex()

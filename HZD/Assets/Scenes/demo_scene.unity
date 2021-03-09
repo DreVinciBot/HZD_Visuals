@@ -2393,7 +2393,7 @@ MonoBehaviour:
 
 
 
-    These blue arrows show the robot''s path plan which
+    These green arrows show the robot''s path plan which
     will be displayed on the ground plane. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3777,6 +3777,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051156272}
   m_CullTransparentMesh: 0
+--- !u!1001 &1082080816
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253237, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253243, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_Name
+      value: Directional Light (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 98811080327253243, guid: c120e02bfb36acf459eb0c717327169a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c120e02bfb36acf459eb0c717327169a, type: 3}
 --- !u!1 &1115263193
 GameObject:
   m_ObjectHideFlags: 0
@@ -5813,7 +5887,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: b0efbfc4e585f8e43943e44757c06965, type: 3}
+  m_Texture: {fileID: 2800000, guid: 6405515abc7e71d429878c31f8b11307, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

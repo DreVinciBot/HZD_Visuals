@@ -16,6 +16,7 @@ namespace PathCreation.Examples
         public bool state = false;
         public static string username_input;
         public static int last_id;
+        public static int code_value;
         public static int chosen_id;
         public static int pass_id;
 
@@ -27,7 +28,7 @@ namespace PathCreation.Examples
             StartCoroutine(GetRequest("https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/GetID.php"));
 
             //string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserID.php";
-            //StartCoroutine(GetRequest("https://example-php-files.s3.us-east-2.amazonaws.com/GetID.php"));
+            StartCoroutine(GetCodes());
             //StartCoroutine(GetUsers());
             //StartCoroutine(Login("testuser", "123456"));
             //StartCoroutine(RegisterUser("testuser3", "tufts"));
@@ -69,6 +70,30 @@ namespace PathCreation.Examples
 
                     choosen_case(last_id);
 
+                }
+            }
+        }
+
+        public IEnumerator GetCodes()
+        {
+            string uri = "http://localhost/ARNavigationStudy2020/Codes.php";
+            using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+            {
+                // Request and wait for the desired page.
+                yield return webRequest.SendWebRequest();
+
+                string[] pages = uri.Split('/');
+                int page = pages.Length - 1;
+
+                if (webRequest.isNetworkError)
+                {
+                    Debug.Log(pages[page] + ": Error: " + webRequest.error);
+                }
+                else
+                {
+                    code_value = System.Convert.ToInt32(webRequest.downloadHandler.text);
+                    print("Code: " + code_value);
+                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                 }
             }
         }

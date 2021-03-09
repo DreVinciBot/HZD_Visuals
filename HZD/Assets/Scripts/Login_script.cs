@@ -21,25 +21,27 @@ namespace PathCreation.Examples
         // Start is called before the first frame update
         void Start()
         {
-            username = UsernameInput.text;
-            PlayerPrefs.SetString("username", UsernameInput.text);
+            //username = UsernameInput.text;
+            //PlayerPrefs.SetString("username", UsernameInput.text);
 
             next_btn.SetActive(false);
             LoginButton.onClick.AddListener(() =>
             {
                 //StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text));
 
+                int randomNum = Random.Range(100000,999999);
+                StartCoroutine(Main.Instance.Web.RegisterUserID(randomNum.ToString()));
+                /*
                 if (PasswordInput.text == "robot" && UsernameInput.text != null)
                 {
                     //response.text = "Please Wait...";
                     StartCoroutine(Main.Instance.Web.RegisterUserID(UsernameInput.text));
-
-
                 }
                 else
                 {
                     response.text = "Wrong Credentials...";
                 }
+                */
 
             });
         }

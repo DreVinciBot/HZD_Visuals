@@ -290,7 +290,9 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     void LoadQuestions()
     {
-        Object[] objs = Resources.LoadAll("Questions", typeof(Question));
+        Object[] objs = Resources.LoadAll("Questions2", typeof(Question));
+
+        //Add to the list of questions
         _questions = new Question[objs.Length];
         for (int i = 0; i < objs.Length; i++)
         {

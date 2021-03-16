@@ -28,7 +28,7 @@ namespace PathCreation.Examples
             StartCoroutine(GetRequest("https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/GetID.php"));
 
             //string uri = "https://www.eecs.tufts.edu/~jsinapov/ar_study/RegisterUserID.php";
-            StartCoroutine(GetCodes());
+            //StartCoroutine(GetCodes());
             //StartCoroutine(GetUsers());
             //StartCoroutine(Login("testuser", "123456"));
             //StartCoroutine(RegisterUser("testuser3", "tufts"));
@@ -39,7 +39,7 @@ namespace PathCreation.Examples
             //StartCoroutine(RegisterUserCollected2(5));
             //StartCoroutine(RegisterUserPointContact1("test"));
             //StartCoroutine(RegisterUserPointContact2("test2"));
-
+            //StartCoroutine(RegisterNASA_TLX_2("3412"));
 
         }
 
@@ -66,7 +66,7 @@ namespace PathCreation.Examples
                 {
                     //Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                     last_id = System.Convert.ToInt32(webRequest.downloadHandler.text);
-                    print("last_id: " + last_id);
+                    //print("last_id: " + last_id);
 
                     choosen_case(last_id);
 
@@ -509,6 +509,64 @@ namespace PathCreation.Examples
                 else
                 {
                     //Debug.Log(www.downloadHandler.text);            
+                }
+            }
+        }
+
+        public IEnumerator RegisterNASA_TLX_1(string value1)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            //form.AddField("loginUser", "1234");
+            form.AddField("loginNasaTLX1", value1);
+
+            print("u/n : " + username_input + " recieved: " + value1);
+
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterNasaTLX1.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterNasaTLX1.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    Debug.Log(www.error);
+                }
+                else
+                {
+                    Debug.Log(www.downloadHandler.text);            
+                }
+            }
+        }
+
+        public IEnumerator RegisterNASA_TLX_2(string value1)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("loginUser", username_input);
+            //form.AddField("loginUser", "1234");
+            form.AddField("loginNasaTLX2", value1);
+
+            print("u/n : " + username_input + " recieved: " + value1);
+
+            string uri = "https://www.eecs.tufts.edu/~acleav01/ar_nav_study/php/RegisterNasaTLX2.php";
+
+            // uri for localhost
+            //string uri = "http://localhost/ARNavigationStudy2020/RegisterNasaTLX2.php";
+
+            using (UnityWebRequest www = UnityWebRequest.Post(uri, form))
+            {
+                yield return www.SendWebRequest();
+
+                if (www.isNetworkError || www.isHttpError)
+                {
+                    Debug.Log(www.error);
+                }
+                else
+                {
+                    Debug.Log(www.downloadHandler.text);
                 }
             }
         }

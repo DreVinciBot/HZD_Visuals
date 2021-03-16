@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace PathCreation.Examples
@@ -93,7 +94,10 @@ namespace PathCreation.Examples
             {
                 print("5");
                 Timer.timeRemaining = 120;
-                StartCoroutine(Delay_secondround());
+
+                //call for first series of questions
+                SceneManager.LoadScene("Survey_Questions1");
+                //StartCoroutine(Delay_secondround());
                 round2 = true;
                 secondround = false;
                 exitround = true;
@@ -141,7 +145,7 @@ namespace PathCreation.Examples
                     print("4");
                     secondround = true;
 
-                    point_count_1 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
+                    point_count_1 = "AF " + AF.ToString() + " PB: " + PB.ToString();
 
                     Countdown.GetComponent<Timer>().RecordContacts1();
                     Countdown.GetComponent<Timer>().RecordSequence1();
@@ -157,7 +161,7 @@ namespace PathCreation.Examples
                     finalround = true;
                     round3 = true;
 
-                    point_count_2 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
+                    point_count_2 = "AF " + AF.ToString() + " PB: " + PB.ToString();
 
                     Countdown.GetComponent<Timer>().RecordContacts2();
                     Countdown.GetComponent<Timer>().RecordSequence2();
@@ -212,7 +216,7 @@ namespace PathCreation.Examples
                     print("4");
                     secondround = true;
 
-                    point_count_1= "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
+                    point_count_1= "AF " + AF.ToString() + " PB: " + PB.ToString();
 
                     Countdown.GetComponent<Timer>().RecordContacts1();
                     Countdown.GetComponent<Timer>().RecordSequence1();
@@ -228,7 +232,7 @@ namespace PathCreation.Examples
                     finalround = true;
                     round3 = true;
 
-                    point_count_2 = "AF " + AF.ToString() + " AL: " + AL.ToString() + " AR: " + AR.ToString() + " PB: " + PB.ToString() + " PL: " + PL.ToString() + " PR: " + PR.ToString();
+                    point_count_2 = "AF " + AF.ToString() +  " PB: " + PB.ToString();
 
                     Countdown.GetComponent<Timer>().RecordContacts2();
                     Countdown.GetComponent<Timer>().RecordSequence2();
@@ -285,11 +289,11 @@ namespace PathCreation.Examples
 
                     if (closest_side == "AnteriorLeft")
                     {
-                        AL += 1;
+                        AF += 1;
                     }
                     else if (closest_side == "AnteriorRight")
                     {
-                        AR += 1;
+                        AF += 1;
                     }
                     else if (closest_side == "AnteriorFront")
                     {
@@ -301,11 +305,11 @@ namespace PathCreation.Examples
                     }
                     else if (closest_side == "PosteriorLeft")
                     {
-                        PL += 1;
+                        PB += 1;
                     }
                     else if (closest_side == "PosteriorRight")
                     {
-                        PR += 1;
+                        PB += 1;
                     }
                 }
             }
@@ -319,8 +323,9 @@ namespace PathCreation.Examples
 
         IEnumerator Delay_secondround()
         {
-            RandomCase.SecondRound();
+            //RandomCase.SecondRound();
 
+            SceneManager.LoadScene("Survey_Questions1");
             yield return new WaitForSeconds(2);
         }
     }

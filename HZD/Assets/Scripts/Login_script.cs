@@ -24,7 +24,7 @@ namespace PathCreation.Examples
             //username = UsernameInput.text;
             //PlayerPrefs.SetString("username", UsernameInput.text);
 
-            next_btn.SetActive(false);
+            //next_btn.SetActive(false);
             LoginButton.onClick.AddListener(() =>
             {
                 //StartCoroutine(Main.Instance.Web.Login(UsernameInput.text, PasswordInput.text));
@@ -50,7 +50,7 @@ namespace PathCreation.Examples
         {
             if (response.text != null && response.text == "Login Successful, Click next to continue.")
             {
-                next_btn.SetActive(true);
+                //next_btn.SetActive(true);
             }
         }
     }

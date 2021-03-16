@@ -95,10 +95,14 @@ namespace PathCreation.Examples
                 endofSecondRound = true;
                 //Timer.timerCheck = true;
 
+                //call for second round of quesitions
+
+                SceneManager.LoadScene("Survey_Questions1");
+
                 //add the quit button here???
                 print("8");
-                Debug.Log("Quit Game!");
-                Application.Quit();
+               // Debug.Log("Quit Game!");
+                //Application.Quit();
             }
         }
 

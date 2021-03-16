@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/log_visuals_simple_scene.unity
     guid: ccadb7b99ec47774d8d632b243b45961
+  - enabled: 1
+    path: Assets/Scenes/Survey_Questions1.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Survey_Questions2.unity
+    guid: d0886e8d39e50ed4ba184ddca931ca54
   m_configObjects: {}
